@@ -14,9 +14,149 @@
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+.pricing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1050px;
+    margin: 60px auto 0;
+}
+
+.price-card {
+    position: relative;
+    padding: 32px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.035);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(140,92,255,0.45);
+    background: rgba(140,92,255,0.06);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.price-card.best-value {
+    border: 1px solid rgba(140,92,255,0.55);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(140,92,255,0.12),
+            rgba(255,255,255,0.035)
+        );
+    box-shadow:
+        0 20px 70px rgba(100,70,255,0.15);
+    transform: translateY(-8px);
+}
+
+.price-card.best-value:hover {
+    transform: translateY(-14px);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    padding: 7px 16px;
+
+    border-radius: 100px;
+
+    background: linear-gradient(
+        90deg,
+        #8c5cff,
+        #54d9ff
+    );
+
+    color: white;
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 8px 25px rgba(100,70,255,0.35);
+}
+
+.price-card h3 {
+    font-size: 23px;
+    margin-bottom: 18px;
+}
+
+.price {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.price span {
+    font-size: 14px;
+    font-weight: normal;
+    color: #777;
+    letter-spacing: 0;
+}
+
+.price-description {
+    color: #888;
+    line-height: 1.6;
+    min-height: 75px;
+    margin: 18px 0 25px;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.features li {
+    color: #bbb;
+    margin: 13px 0;
+}
+
+.features li::before {
+    content: "✓";
+    color: #8c5cff;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price-button {
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+@media (max-width: 900px) {
+
+    .pricing {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    .price-card.best-value {
+        transform: none;
+    }
+
+    .price-card.best-value:hover {
+        transform: translateY(-7px);
+    }
+
+}
+
+</style>
+
 </head>
 
+
 <body>
+
 
 <div class="background">
 
@@ -72,8 +212,8 @@
                 margin-right:auto;
             "
         >
-            Start for free. Upgrade when you want
-            more from Squence.
+            Choose the Squence experience
+            that fits you best.
         </p>
 
     </div>
@@ -82,47 +222,9 @@
     <div class="pricing">
 
 
-        <!-- FREE -->
-
-        <div class="price-card">
-
-            <h3>Squence Free</h3>
-
-            <div class="price">
-                €0
-                <span>forever</span>
-            </div>
-
-            <p class="price-description">
-                Everything you need to explore Squence.
-            </p>
-
-            <ul class="features">
-
-                <li>News</li>
-                <li>Games</li>
-                <li>Basic features</li>
-                <li>Ad-supported</li>
-
-            </ul>
-
-            <a
-                href="./"
-                class="button secondary price-button"
-            >
-                Start for free
-            </a>
-
-        </div>
-
-
         <!-- GO -->
 
-        <div class="price-card popular">
-
-            <div class="popular-badge">
-                BEST VALUE
-            </div>
+        <div class="price-card">
 
             <h3>Squence Go</h3>
 
@@ -138,16 +240,16 @@
 
             <ul class="features">
 
-                <li>Everything in Free</li>
                 <li>No pop-up ads</li>
                 <li>Fewer static ads</li>
                 <li>Extra features</li>
+                <li>Standard Squence experience</li>
 
             </ul>
 
             <a
                 href="#"
-                class="button primary price-button"
+                class="button secondary price-button"
                 onclick="comingSoon(); return false;"
             >
                 Get Go
@@ -158,7 +260,11 @@
 
         <!-- PLUS -->
 
-        <div class="price-card">
+        <div class="price-card best-value">
+
+            <div class="popular-badge">
+                BEST VALUE
+            </div>
 
             <h3>Squence Plus</h3>
 
@@ -168,8 +274,8 @@
             </div>
 
             <p class="price-description">
-                A completely ad-free Squence experience
-                with more features.
+                The best balance of features,
+                customization and comfort.
             </p>
 
             <ul class="features">
@@ -183,7 +289,7 @@
 
             <a
                 href="#"
-                class="button secondary price-button"
+                class="button primary price-button"
                 onclick="comingSoon(); return false;"
             >
                 Get Plus
@@ -204,16 +310,16 @@
             </div>
 
             <p class="price-description">
-                The complete Squence experience for
-                power users.
+                The complete Squence experience
+                for power users.
             </p>
 
             <ul class="features">
 
                 <li>Everything in Plus</li>
-                <li>Completely ad-free</li>
                 <li>Advanced features</li>
                 <li>Early access</li>
+                <li>Premium Squence experience</li>
 
             </ul>
 
