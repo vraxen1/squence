@@ -24,7 +24,6 @@
         overflow-x: hidden;
     }
 
-    /* Animated background */
     .background {
         position: fixed;
         inset: 0;
@@ -68,7 +67,6 @@
         }
     }
 
-    /* Navigation */
     nav {
         position: fixed;
         top: 0;
@@ -108,7 +106,6 @@
         color: white;
     }
 
-    /* Hero */
     .hero {
         min-height: 100vh;
         display: flex;
@@ -205,7 +202,6 @@
         transform: translateY(-3px);
     }
 
-    /* Sections */
     section {
         padding: 100px 7%;
     }
@@ -222,7 +218,6 @@
         font-size: 17px;
     }
 
-    /* Cards */
     .cards {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -262,7 +257,100 @@
         line-height: 1.6;
     }
 
-    /* Clock */
+    /* Pricing */
+
+    .pricing {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .price-card {
+        position: relative;
+        padding: 35px 30px;
+
+        background: rgba(255,255,255,0.035);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 22px;
+
+        transition: 0.3s;
+    }
+
+    .price-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(140, 92, 255, 0.45);
+    }
+
+    .price-card.popular {
+        border-color: #805cff;
+        background: rgba(128, 92, 255, 0.08);
+        box-shadow: 0 20px 70px rgba(100, 70, 255, 0.15);
+    }
+
+    .popular-badge {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        padding: 6px 14px;
+        border-radius: 50px;
+
+        background: linear-gradient(135deg, #7045ff, #3e9dff);
+        font-size: 12px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .price-card h3 {
+        font-size: 25px;
+        margin-bottom: 12px;
+    }
+
+    .price {
+        font-size: 45px;
+        font-weight: bold;
+        margin: 20px 0 5px;
+    }
+
+    .price span {
+        font-size: 15px;
+        color: #777;
+        font-weight: normal;
+    }
+
+    .price-description {
+        color: #888;
+        min-height: 48px;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .features {
+        list-style: none;
+        margin-bottom: 30px;
+    }
+
+    .features li {
+        color: #aaa;
+        padding: 8px 0;
+    }
+
+    .features li::before {
+        content: "✓";
+        color: #8c5cff;
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .price-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
     .clock-box {
         margin-top: 30px;
         padding: 35px;
@@ -285,7 +373,6 @@
         color: #777;
     }
 
-    /* Footer */
     footer {
         padding: 50px 7%;
         border-top: 1px solid rgba(255,255,255,0.06);
@@ -297,7 +384,13 @@
         color: #aaa;
     }
 
-    /* Mobile */
+    @media (max-width: 800px) {
+        .pricing {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+        }
+    }
+
     @media (max-width: 600px) {
         nav {
             padding: 17px 5%;
@@ -330,6 +423,7 @@
 
     <div class="links">
         <a href="#explore">Explore</a>
+        <a href="#pricing">Pricing</a>
         <a href="#clock-section">Clock</a>
         <a href="#about">About</a>
     </div>
@@ -337,7 +431,6 @@
 
 <main>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
 
@@ -364,7 +457,6 @@
     </section>
 
 
-    <!-- EXPLORE -->
     <section id="explore">
 
         <h2 class="section-title">Explore</h2>
@@ -416,7 +508,104 @@
     </section>
 
 
-    <!-- CLOCK -->
+    <!-- PRICING -->
+
+    <section id="pricing">
+
+        <h2 class="section-title">Squence Plans</h2>
+
+        <p class="section-subtitle">
+            Pick your sequence. Cancel whenever you want.
+        </p>
+
+        <div class="pricing">
+
+            <div class="price-card">
+
+                <h3>Squence Go</h3>
+
+                <div class="price">
+                    €3.50 <span>/ month</span>
+                </div>
+
+                <p class="price-description">
+                    The simple way to get started with Squence.
+                </p>
+
+                <ul class="features">
+                    <li>Basic Squence features</li>
+                    <li>Standard access</li>
+                    <li>Personal profile</li>
+                    <li>Community features</li>
+                </ul>
+
+                <a href="#" class="button secondary price-button">
+                    Get Go
+                </a>
+
+            </div>
+
+
+            <div class="price-card popular">
+
+                <div class="popular-badge">
+                    MOST POPULAR
+                </div>
+
+                <h3>Squence Plus</h3>
+
+                <div class="price">
+                    €9.99 <span>/ month</span>
+                </div>
+
+                <p class="price-description">
+                    More features, more possibilities, more Squence.
+                </p>
+
+                <ul class="features">
+                    <li>Everything in Go</li>
+                    <li>More customization</li>
+                    <li>Priority features</li>
+                    <li>Extra storage</li>
+                </ul>
+
+                <a href="#" class="button primary price-button">
+                    Get Plus
+                </a>
+
+            </div>
+
+
+            <div class="price-card">
+
+                <h3>Squence Pro</h3>
+
+                <div class="price">
+                    €14.99 <span>/ month</span>
+                </div>
+
+                <p class="price-description">
+                    The complete Squence experience for power users.
+                </p>
+
+                <ul class="features">
+                    <li>Everything in Plus</li>
+                    <li>Advanced customization</li>
+                    <li>Maximum storage</li>
+                    <li>Early access to features</li>
+                </ul>
+
+                <a href="#" class="button secondary price-button">
+                    Get Pro
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
     <section id="clock-section">
 
         <h2 class="section-title">Right now</h2>
@@ -433,7 +622,6 @@
     </section>
 
 
-    <!-- ABOUT -->
     <section id="about">
 
         <h2 class="section-title">About Squence</h2>
@@ -466,15 +654,13 @@
 
 <footer>
     <p>
-        Built with <strong>HTML, CSS & JavaScript</strong> ·
-        Hosted on GitHub Pages
+        © 2026 <strong>Squence</strong>. All rights reserved.
     </p>
 </footer>
 
 
 <script>
 
-    // Live clock
     function updateClock() {
 
         const now = new Date();
@@ -500,7 +686,6 @@
     setInterval(updateClock, 1000);
 
 
-    // Mood changer
     function changeMood() {
 
         const colors = [
@@ -512,16 +697,6 @@
         ];
 
         const random = colors[Math.floor(Math.random() * colors.length)];
-
-        document.documentElement.style.setProperty(
-            "--mood1",
-            random[0]
-        );
-
-        document.documentElement.style.setProperty(
-            "--mood2",
-            random[1]
-        );
 
         document.querySelector(".primary").style.background =
             `linear-gradient(135deg, ${random[0]}, ${random[1]})`;
