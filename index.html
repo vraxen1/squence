@@ -14,37 +14,101 @@
 
 <link rel="stylesheet" href="style.css">
 
-</head>
+<style>
 
-<script>
-function updateClock() {
+/* Squence navigation clock */
 
-    const now = new Date();
-
-    const hours =
-        String(now.getHours()).padStart(2, "0");
-
-    const minutes =
-        String(now.getMinutes()).padStart(2, "0");
-
-    const seconds =
-        String(now.getSeconds()).padStart(2, "0");
-
-    document.getElementById("clock").textContent =
-        `${hours}:${minutes}:${seconds}`;
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-updateClock();
+.squence-plan {
+    padding: 7px 12px;
 
-setInterval(updateClock, 1000);
-</script><body>
+    border-radius: 10px;
+
+    background: rgba(140, 92, 255, 0.10);
+
+    border: 1px solid rgba(140, 92, 255, 0.25);
+
+    color: #bba5ff;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+.squence-clock {
+    padding: 7px 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+.clock-time {
+    color: white;
+
+    font-family: monospace;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.clock-date {
+    color: #777;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+/* Mobile navigation */
+
+@media (max-width: 1000px) {
+
+    .squence-clock {
+        display: none;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .nav-right {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
 
 <div class="background">
 
     <div class="orb one"></div>
+
     <div class="orb two"></div>
 
 </div>
+
 
 
 <!-- NAVIGATION -->
@@ -55,23 +119,61 @@ setInterval(updateClock, 1000);
         s<span>q</span>uence
     </a>
 
-    <div class="nav-links">
 
-        <a href="./">Home</a>
-        <a href="news.html">News</a>
-        <a href="games.html">Games</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="account.html">Account</a>
-       <div class="squence-clock" id="clock">
-    00:00:00
-</div>
+    <div class="nav-right">
+
+        <div class="nav-links">
+
+            <a href="./">Home</a>
+
+            <a href="news.html">News</a>
+
+            <a href="games.html">Games</a>
+
+            <a href="pricing.html">Pricing</a>
+
+            <a href="account.html">Account</a>
+
+        </div>
+
+
+        <!-- CURRENT PLAN -->
+
+        <div class="squence-plan">
+
+            ✦ Free Plan
+
+        </div>
+
+
+        <!-- CLOCK -->
+
+        <div class="squence-clock">
+
+            <div
+                class="clock-time"
+                id="clockTime"
+            >
+                --:--:--
+            </div>
+
+            <div
+                class="clock-date"
+                id="clockDate"
+            >
+                Loading date...
+            </div>
+
+        </div>
 
     </div>
 
 </nav>
 
 
+
 <main>
+
 
 
 <!-- HERO -->
@@ -89,6 +191,7 @@ setInterval(updateClock, 1000);
         <div class="badge">
             ✦ Welcome to Squence
         </div>
+
 
         <h1
             style="
@@ -113,6 +216,7 @@ setInterval(updateClock, 1000);
             EVERYTHING.<br>
             IN ONE PLACE.
         </h1>
+
 
         <p
             style="
@@ -144,6 +248,7 @@ setInterval(updateClock, 1000);
                 Explore News →
             </a>
 
+
             <a
                 href="games.html"
                 class="button secondary"
@@ -158,6 +263,7 @@ setInterval(updateClock, 1000);
 </section>
 
 
+
 <!-- NEWS -->
 
 <section>
@@ -166,9 +272,11 @@ setInterval(updateClock, 1000);
         📰 Squence News
     </div>
 
+
     <h2 class="section-title">
         Stay in the loop.
     </h2>
+
 
     <p class="section-subtitle">
         Fresh stories from around the world,
@@ -268,6 +376,7 @@ setInterval(updateClock, 1000);
 </section>
 
 
+
 <!-- GAMES -->
 
 <section>
@@ -276,9 +385,11 @@ setInterval(updateClock, 1000);
         🎮 Squence Games
     </div>
 
+
     <h2 class="section-title">
         Take a break.
     </h2>
+
 
     <p class="section-subtitle">
         Play quick games without leaving Squence.
@@ -360,6 +471,7 @@ setInterval(updateClock, 1000);
 </section>
 
 
+
 <!-- ACCOUNT -->
 
 <section>
@@ -370,6 +482,7 @@ setInterval(updateClock, 1000);
             👤
         </div>
 
+
         <h2
             style="
                 font-size: 35px;
@@ -378,6 +491,7 @@ setInterval(updateClock, 1000);
         >
             Your Squence.
         </h2>
+
 
         <p
             style="
@@ -389,6 +503,7 @@ setInterval(updateClock, 1000);
             save your game progress, customize your
             news feed, save favorites and more.
         </p>
+
 
         <a
             href="account.html"
@@ -402,6 +517,7 @@ setInterval(updateClock, 1000);
 </section>
 
 
+
 <!-- PRICING -->
 
 <section>
@@ -410,9 +526,11 @@ setInterval(updateClock, 1000);
         ✦ Squence Plans
     </div>
 
+
     <h2 class="section-title">
         Squence your way.
     </h2>
+
 
     <p class="section-subtitle">
         Start for free and upgrade whenever you
@@ -447,6 +565,7 @@ setInterval(updateClock, 1000);
         </div>
 
 
+
         <div class="card">
 
             <h3>
@@ -471,6 +590,7 @@ setInterval(updateClock, 1000);
         </div>
 
 
+
         <div class="card">
 
             <h3>
@@ -493,6 +613,7 @@ setInterval(updateClock, 1000);
             </p>
 
         </div>
+
 
 
         <div class="card">
@@ -539,6 +660,7 @@ setInterval(updateClock, 1000);
 </main>
 
 
+
 <!-- FOOTER -->
 
 <footer>
@@ -547,6 +669,7 @@ setInterval(updateClock, 1000);
         © 2026 <strong>Squence</strong>.
         All rights reserved.
     </p>
+
 
     <p
         style="
@@ -558,6 +681,71 @@ setInterval(updateClock, 1000);
     </p>
 
 </footer>
+
+
+
+<!-- CLOCK SCRIPT -->
+
+<script>
+
+function updateSquenceClock() {
+
+    const now = new Date();
+
+
+    /* TIME */
+
+    const time =
+        now.toLocaleTimeString(
+            undefined,
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        );
+
+
+    /* DATE */
+
+    const date =
+        now.toLocaleDateString(
+            undefined,
+            {
+                weekday: "short",
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "clockTime"
+    ).textContent = time;
+
+
+    document.getElementById(
+        "clockDate"
+    ).textContent = date;
+
+}
+
+
+/* Start immediately */
+
+updateSquenceClock();
+
+
+/* Update every second */
+
+setInterval(
+    updateSquenceClock,
+    1000
+);
+
+</script>
 
 
 </body>
