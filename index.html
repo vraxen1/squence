@@ -1,708 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Squence</title>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+<link rel="stylesheet" href="style.css">
 
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: #07070b;
-        color: white;
-        overflow-x: hidden;
-    }
-
-    .background {
-        position: fixed;
-        inset: 0;
-        z-index: -2;
-        overflow: hidden;
-        background:
-            radial-gradient(circle at 20% 20%, rgba(120, 70, 255, 0.18), transparent 30%),
-            radial-gradient(circle at 80% 70%, rgba(0, 200, 255, 0.13), transparent 30%),
-            #07070b;
-    }
-
-    .orb {
-        position: absolute;
-        width: 350px;
-        height: 350px;
-        border-radius: 50%;
-        filter: blur(100px);
-        opacity: 0.25;
-        animation: float 12s infinite alternate ease-in-out;
-    }
-
-    .orb.one {
-        background: #7c3cff;
-        left: -100px;
-        top: 10%;
-    }
-
-    .orb.two {
-        background: #00c8ff;
-        right: -100px;
-        bottom: 5%;
-        animation-delay: -5s;
-    }
-
-    @keyframes float {
-        from {
-            transform: translate(0, 0);
-        }
-        to {
-            transform: translate(80px, -60px);
-        }
-    }
-
-    nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        padding: 20px 7%;
-
-        background: rgba(7, 7, 11, 0.65);
-        backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: 800;
-        letter-spacing: -1px;
-    }
-
-    .logo span {
-        color: #8c5cff;
-    }
-
-    nav a {
-        color: #aaa;
-        text-decoration: none;
-        margin-left: 25px;
-        transition: 0.2s;
-    }
-
-    nav a:hover {
-        color: white;
-    }
-
-    .hero {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-
-        padding: 120px 20px 80px;
-    }
-
-    .hero-content {
-        max-width: 900px;
-    }
-
-    .badge {
-        display: inline-block;
-        padding: 8px 15px;
-        border: 1px solid rgba(140, 92, 255, 0.4);
-        border-radius: 100px;
-        color: #bba5ff;
-        background: rgba(140, 92, 255, 0.08);
-        font-size: 14px;
-        margin-bottom: 25px;
-    }
-
-    h1 {
-        font-size: clamp(60px, 11vw, 140px);
-        line-height: 0.9;
-        letter-spacing: -7px;
-        margin-bottom: 30px;
-
-        background: linear-gradient(
-            120deg,
-            #ffffff,
-            #9c7cff,
-            #54d9ff
-        );
-
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
-
-    .hero p {
-        color: #999;
-        font-size: 20px;
-        max-width: 600px;
-        margin: auto;
-        line-height: 1.6;
-    }
-
-    .buttons {
-        margin-top: 40px;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-
-    button,
-    .button {
-        border: none;
-        cursor: pointer;
-        text-decoration: none;
-
-        padding: 14px 23px;
-        border-radius: 12px;
-
-        font-size: 15px;
-        font-weight: bold;
-
-        transition: 0.2s;
-    }
-
-    .primary {
-        color: white;
-        background: linear-gradient(135deg, #7045ff, #3e9dff);
-        box-shadow: 0 10px 35px rgba(100, 70, 255, 0.25);
-    }
-
-    .primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 45px rgba(100, 70, 255, 0.4);
-    }
-
-    .secondary {
-        color: white;
-        background: rgba(255,255,255,0.06);
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .secondary:hover {
-        background: rgba(255,255,255,0.11);
-        transform: translateY(-3px);
-    }
-
-    section {
-        padding: 100px 7%;
-    }
-
-    .section-title {
-        font-size: 42px;
-        margin-bottom: 15px;
-        letter-spacing: -2px;
-    }
-
-    .section-subtitle {
-        color: #777;
-        margin-bottom: 45px;
-        font-size: 17px;
-    }
-
-    .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 20px;
-    }
-
-    .card {
-        padding: 30px;
-        min-height: 220px;
-
-        background: rgba(255,255,255,0.035);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 20px;
-
-        transition: 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(140, 92, 255, 0.45);
-        background: rgba(140, 92, 255, 0.07);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    }
-
-    .icon {
-        font-size: 35px;
-        margin-bottom: 25px;
-    }
-
-    .card h3 {
-        font-size: 21px;
-        margin-bottom: 12px;
-    }
-
-    .card p {
-        color: #888;
-        line-height: 1.6;
-    }
-
-    /* Pricing */
-
-    .pricing {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-        max-width: 1100px;
-        margin: auto;
-    }
-
-    .price-card {
-        position: relative;
-        padding: 35px 30px;
-
-        background: rgba(255,255,255,0.035);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 22px;
-
-        transition: 0.3s;
-    }
-
-    .price-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(140, 92, 255, 0.45);
-    }
-
-    .price-card.popular {
-        border-color: #805cff;
-        background: rgba(128, 92, 255, 0.08);
-        box-shadow: 0 20px 70px rgba(100, 70, 255, 0.15);
-    }
-
-    .popular-badge {
-        position: absolute;
-        top: -14px;
-        left: 50%;
-        transform: translateX(-50%);
-
-        padding: 6px 14px;
-        border-radius: 50px;
-
-        background: linear-gradient(135deg, #7045ff, #3e9dff);
-        font-size: 12px;
-        font-weight: bold;
-        white-space: nowrap;
-    }
-
-    .price-card h3 {
-        font-size: 25px;
-        margin-bottom: 12px;
-    }
-
-    .price {
-        font-size: 45px;
-        font-weight: bold;
-        margin: 20px 0 5px;
-    }
-
-    .price span {
-        font-size: 15px;
-        color: #777;
-        font-weight: normal;
-    }
-
-    .price-description {
-        color: #888;
-        min-height: 48px;
-        line-height: 1.5;
-        margin-bottom: 25px;
-    }
-
-    .features {
-        list-style: none;
-        margin-bottom: 30px;
-    }
-
-    .features li {
-        color: #aaa;
-        padding: 8px 0;
-    }
-
-    .features li::before {
-        content: "✓";
-        color: #8c5cff;
-        margin-right: 10px;
-        font-weight: bold;
-    }
-
-    .price-button {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    .clock-box {
-        margin-top: 30px;
-        padding: 35px;
-
-        text-align: center;
-
-        border-radius: 20px;
-        background: rgba(255,255,255,0.035);
-        border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    #clock {
-        font-size: clamp(40px, 8vw, 80px);
-        font-weight: bold;
-        letter-spacing: -3px;
-    }
-
-    #date {
-        margin-top: 10px;
-        color: #777;
-    }
-
-    footer {
-        padding: 50px 7%;
-        border-top: 1px solid rgba(255,255,255,0.06);
-        text-align: center;
-        color: #555;
-    }
-
-    footer strong {
-        color: #aaa;
-    }
-
-    @media (max-width: 800px) {
-        .pricing {
-            grid-template-columns: 1fr;
-            max-width: 500px;
-        }
-    }
-
-    @media (max-width: 600px) {
-        nav {
-            padding: 17px 5%;
-        }
-
-        nav .links {
-            display: none;
-        }
-
-        h1 {
-            letter-spacing: -4px;
-        }
-
-        section {
-            padding: 80px 5%;
-        }
-    }
-</style>
 </head>
 
 <body>
 
 <div class="background">
+
     <div class="orb one"></div>
     <div class="orb two"></div>
+
 </div>
 
-<nav>
-    <div class="logo">s<span>q</span>uence</div>
 
-    <div class="links">
-        <a href="#explore">Explore</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#clock-section">Clock</a>
-        <a href="#about">About</a>
+<!-- NAVIGATION -->
+
+<nav>
+
+    <a class="logo" href="./">
+        s<span>q</span>uence
+    </a>
+
+    <div class="nav-links">
+
+        <a href="./">Home</a>
+        <a href="news.html">News</a>
+        <a href="games.html">Games</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="account.html">Account</a>
+       <div class="squence-clock" id="clock">
+    00:00:00
+</div>
+
     </div>
+
 </nav>
+
 
 <main>
 
-    <section class="hero">
-        <div class="hero-content">
 
-            <div class="badge">✦ Welcome to Squence</div>
+<!-- HERO -->
 
-            <h1>MAKE<br>YOUR<br>SEQUENCE.</h1>
+<section
+    style="
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    "
+>
 
-            <p>
-                A tiny corner of the internet for interesting things,
-                experiments, ideas and whatever comes next.
-            </p>
+    <div style="max-width: 850px;">
 
-            <div class="buttons">
-                <a class="button primary" href="#explore">
-                    Explore ↓
-                </a>
-
-                <button class="secondary" onclick="changeMood()">
-                    Change mood ✨
-                </button>
-            </div>
-
-        </div>
-    </section>
-
-
-    <section id="explore">
-
-        <h2 class="section-title">Explore</h2>
-
-        <p class="section-subtitle">
-            There isn't really a plan. That's part of the fun.
-        </p>
-
-        <div class="cards">
-
-            <div class="card">
-                <div class="icon">🌌</div>
-                <h3>Random Stuff</h3>
-                <p>
-                    Weird ideas, experiments and things that
-                    probably didn't need to exist.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🎮</div>
-                <h3>Games</h3>
-                <p>
-                    Tiny browser games and experiments.
-                    More coming eventually.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icon">🧪</div>
-                <h3>Experiments</h3>
-                <p>
-                    Testing strange ideas with HTML, CSS
-                    and JavaScript.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="icon">💡</div>
-                <h3>Ideas</h3>
-                <p>
-                    Things that seemed cool enough to put
-                    on the internet.
-                </p>
-            </div>
-
+        <div class="badge">
+            ✦ Welcome to Squence
         </div>
 
-    </section>
+        <h1
+            style="
+                font-size: clamp(60px, 10vw, 120px);
+                line-height: 0.9;
+                letter-spacing: -7px;
+                margin-bottom: 30px;
 
+                background:
+                    linear-gradient(
+                        120deg,
+                        #ffffff,
+                        #9c7cff,
+                        #54d9ff
+                    );
 
-    <!-- PRICING -->
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            "
+        >
+            EVERYTHING.<br>
+            IN ONE PLACE.
+        </h1>
 
-    <section id="pricing">
-
-        <h2 class="section-title">Squence Plans</h2>
-
-        <p class="section-subtitle">
-            Pick your sequence. Cancel whenever you want.
+        <p
+            style="
+                color: #888;
+                font-size: 20px;
+                line-height: 1.6;
+                max-width: 650px;
+                margin-bottom: 35px;
+            "
+        >
+            Discover news, play games, explore tools
+            and experience the internet your way.
+            Welcome to Squence.
         </p>
 
-        <div class="pricing">
 
-            <div class="price-card">
+        <div
+            style="
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+            "
+        >
 
-                <h3>Squence Go</h3>
+            <a
+                href="news.html"
+                class="button primary"
+            >
+                Explore News →
+            </a>
 
-                <div class="price">
-                    €3.50 <span>/ month</span>
-                </div>
-
-                <p class="price-description">
-                    The simple way to get started with Squence.
-                </p>
-
-                <ul class="features">
-                    <li>Basic Squence features</li>
-                    <li>Standard access</li>
-                    <li>Personal profile</li>
-                    <li>Community features</li>
-                </ul>
-
-                <a href="#" class="button secondary price-button">
-                    Get Go
-                </a>
-
-            </div>
-
-
-            <div class="price-card popular">
-
-                <div class="popular-badge">
-                    MOST POPULAR
-                </div>
-
-                <h3>Squence Plus</h3>
-
-                <div class="price">
-                    €9.99 <span>/ month</span>
-                </div>
-
-                <p class="price-description">
-                    More features, more possibilities, more Squence.
-                </p>
-
-                <ul class="features">
-                    <li>Everything in Go</li>
-                    <li>More customization</li>
-                    <li>Priority features</li>
-                    <li>Extra storage</li>
-                </ul>
-
-                <a href="#" class="button primary price-button">
-                    Get Plus
-                </a>
-
-            </div>
-
-
-            <div class="price-card">
-
-                <h3>Squence Pro</h3>
-
-                <div class="price">
-                    €14.99 <span>/ month</span>
-                </div>
-
-                <p class="price-description">
-                    The complete Squence experience for power users.
-                </p>
-
-                <ul class="features">
-                    <li>Everything in Plus</li>
-                    <li>Advanced customization</li>
-                    <li>Maximum storage</li>
-                    <li>Early access to features</li>
-                </ul>
-
-                <a href="#" class="button secondary price-button">
-                    Get Pro
-                </a>
-
-            </div>
+            <a
+                href="games.html"
+                class="button secondary"
+            >
+                Play Games
+            </a>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <section id="clock-section">
+<!-- NEWS -->
 
-        <h2 class="section-title">Right now</h2>
+<section>
 
-        <p class="section-subtitle">
-            Because apparently every website needs a clock.
-        </p>
+    <div class="badge">
+        📰 Squence News
+    </div>
 
-        <div class="clock-box">
-            <div id="clock">00:00:00</div>
-            <div id="date">Loading...</div>
-        </div>
+    <h2 class="section-title">
+        Stay in the loop.
+    </h2>
 
-    </section>
+    <p class="section-subtitle">
+        Fresh stories from around the world,
+        technology, gaming and more.
+    </p>
 
 
-    <section id="about">
+    <div class="cards">
 
-        <h2 class="section-title">About Squence</h2>
-
-        <p class="section-subtitle">
-            Version 1.0
-        </p>
 
         <div class="card">
 
-            <p>
-                Squence is an experimental website built on the
-                open web. There isn't a huge corporation behind it,
-                there isn't a complicated business plan, and there
-                definitely isn't a reason for this clock to exist.
-            </p>
+            <div class="icon">
+                🌍
+            </div>
 
-            <br>
+            <h3>
+                World
+            </h3>
 
             <p>
-                It's just a place to build cool stuff.
+                Discover what's happening around
+                the world.
             </p>
 
         </div>
 
-    </section>
+
+        <div class="card">
+
+            <div class="icon">
+                💻
+            </div>
+
+            <h3>
+                Technology
+            </h3>
+
+            <p>
+                The latest technology and internet
+                stories.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🎮
+            </div>
+
+            <h3>
+                Gaming
+            </h3>
+
+            <p>
+                Gaming news, updates and everything
+                gamers care about.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🔬
+            </div>
+
+            <h3>
+                Science
+            </h3>
+
+            <p>
+                Interesting discoveries and scientific
+                developments.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="news.html"
+            class="button secondary"
+        >
+            View all news →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- GAMES -->
+
+<section>
+
+    <div class="badge">
+        🎮 Squence Games
+    </div>
+
+    <h2 class="section-title">
+        Take a break.
+    </h2>
+
+    <p class="section-subtitle">
+        Play quick games without leaving Squence.
+        More games are coming soon.
+    </p>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icon">
+                🧩
+            </div>
+
+            <h3>
+                Puzzle Games
+            </h3>
+
+            <p>
+                Challenge your brain with quick,
+                addictive puzzles.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                🏆
+            </div>
+
+            <h3>
+                Leaderboards
+            </h3>
+
+            <p>
+                Compete with other Squence players
+                and climb the rankings.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icon">
+                💾
+            </div>
+
+            <h3>
+                Save Your Progress
+            </h3>
+
+            <p>
+                Squence accounts will eventually let
+                you keep your game progress.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="games.html"
+            class="button primary"
+        >
+            Explore Games →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ACCOUNT -->
+
+<section>
+
+    <div class="card">
+
+        <div class="icon">
+            👤
+        </div>
+
+        <h2
+            style="
+                font-size: 35px;
+                margin-bottom: 15px;
+            "
+        >
+            Your Squence.
+        </h2>
+
+        <p
+            style="
+                max-width: 650px;
+                margin-bottom: 25px;
+            "
+        >
+            Create a Squence account to eventually
+            save your game progress, customize your
+            news feed, save favorites and more.
+        </p>
+
+        <a
+            href="account.html"
+            class="button primary"
+        >
+            Create an account →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section>
+
+    <div class="badge">
+        ✦ Squence Plans
+    </div>
+
+    <h2 class="section-title">
+        Squence your way.
+    </h2>
+
+    <p class="section-subtitle">
+        Start for free and upgrade whenever you
+        want more.
+    </p>
+
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <h3>
+                Free
+            </h3>
+
+            <div
+                style="
+                    font-size: 35px;
+                    font-weight: bold;
+                    margin: 20px 0;
+                "
+            >
+                €0
+            </div>
+
+            <p>
+                News, games and basic Squence
+                features with ads.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Go
+            </h3>
+
+            <div
+                style="
+                    font-size: 35px;
+                    font-weight: bold;
+                    margin: 20px 0;
+                "
+            >
+                €3.50
+            </div>
+
+            <p>
+                No pop-up ads and fewer static ads,
+                plus extra features.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Plus
+            </h3>
+
+            <div
+                style="
+                    font-size: 35px;
+                    font-weight: bold;
+                    margin: 20px 0;
+                "
+            >
+                €9.99
+            </div>
+
+            <p>
+                Completely ad-free with additional
+                Squence features.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Pro
+            </h3>
+
+            <div
+                style="
+                    font-size: 35px;
+                    font-weight: bold;
+                    margin: 20px 0;
+                "
+            >
+                €14.99
+            </div>
+
+            <p>
+                Everything Squence has to offer,
+                including advanced features.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div style="margin-top: 30px;">
+
+        <a
+            href="pricing.html"
+            class="button primary"
+        >
+            Compare all plans →
+        </a>
+
+    </div>
+
+</section>
+
 
 </main>
 
 
+<!-- FOOTER -->
+
 <footer>
+
     <p>
-        © 2026 <strong>Squence</strong>. All rights reserved.
+        © 2026 <strong>Squence</strong>.
+        All rights reserved.
     </p>
+
+    <p
+        style="
+            margin-top: 10px;
+            font-size: 13px;
+        "
+    >
+        Squence is an independent project.
+    </p>
+
 </footer>
 
 
-<script>
-
-    function updateClock() {
-
-        const now = new Date();
-
-        const time = now.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit"
-        });
-
-        const date = now.toLocaleDateString([], {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric"
-        });
-
-        document.getElementById("clock").textContent = time;
-        document.getElementById("date").textContent = date;
-    }
-
-    updateClock();
-    setInterval(updateClock, 1000);
-
-
-    function changeMood() {
-
-        const colors = [
-            ["#7045ff", "#3e9dff"],
-            ["#ff3cac", "#784ba0"],
-            ["#00c6ff", "#0072ff"],
-            ["#00f2fe", "#4facfe"],
-            ["#f7971e", "#ffd200"]
-        ];
-
-        const random = colors[Math.floor(Math.random() * colors.length)];
-
-        document.querySelector(".primary").style.background =
-            `linear-gradient(135deg, ${random[0]}, ${random[1]})`;
-    }
-
-</script>
-
 </body>
+
 </html>
