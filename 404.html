@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>404 - Page Not Found</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* Squence navigation clock */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.squence-plan {
+    padding: 7px 12px;
+
+    border-radius: 10px;
+
+    background: rgba(140, 92, 255, 0.10);
+
+    border: 1px solid rgba(140, 92, 255, 0.25);
+
+    color: #bba5ff;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+.squence-clock {
+    padding: 7px 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    text-align: right;
+
+    white-space: nowrap;
+}
+
+.clock-time {
+    color: white;
+
+    font-family: monospace;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.clock-date {
+    color: #777;
+
+    font-size: 11px;
+
+    margin-top: 2px;
+}
+
+
+/* Neon 404 Custom Styling */
+
+.error-card {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    margin: auto;
+    backdrop-filter: blur(10px);
+}
+
+.neon-num {
+    font-size: clamp(80px, 12vw, 130px);
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: -4px;
+    margin-bottom: 20px;
+    background: linear-gradient(120deg, #ff54b0, #9c7cff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(255, 84, 176, 0.3);
+}
+
+.action-box {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+
+/* Mobile navigation */
+
+@media (max-width: 1000px) {
+
+    .squence-clock {
+        display: none;
+    }
+
+}
+
+@media (max-width: 800px) {
+
+    .nav-right {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- BACKGROUND -->
+
+<div class="background">
+
+    <div class="orb one"></div>
+
+    <div class="orb two"></div>
+
+</div>
+
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <a class="logo" href="./">
+        s<span>q</span>uence
+    </a>
+
+
+    <div class="nav-right">
+
+        <div class="nav-links">
+
+            <a href="./">Home</a>
+
+            <a href="news.html">News</a>
+
+            <a href="games.html">Games</a>
+
+            <a href="pricing.html">Pricing</a>
+
+            <a href="account.html">Account</a>
+
+        </div>
+
+
+        <!-- CURRENT PLAN -->
+
+        <div class="squence-plan">
+
+            ✦ Free Plan
+
+        </div>
+
+
+        <!-- CLOCK -->
+
+        <div class="squence-clock">
+
+            <div
+                class="clock-time"
+                id="clockTime"
+            >
+                --:--:--
+            </div>
+
+            <div
+                class="clock-date"
+                id="clockDate"
+            >
+                Loading date...
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<main>
+
+
+<!-- MAIN AREA -->
+
+<section
+    style="
+        min-height: calc(100vh - 100px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+    "
+>
+
+    <div class="error-card">
+
+        <div class="badge" style="margin-bottom: 15px; color: #ff54b0; background: rgba(255, 84, 176, 0.1); border-color: rgba(255, 84, 176, 0.2);">
+            ⚠️ System Error
+        </div>
+
+
+        <div class="neon-num">
+            404
+        </div>
+
+
+        <h2
+            style="
+                font-size: 24px;
+                color: #fff;
+                margin-bottom: 15px;
+                letter-spacing: -0.5px;
+            "
+        >
+            Lost in the sequence.
+        </h2>
+
+
+        <p
+            style="
+                color: #888;
+                font-size: 15px;
+                line-height: 1.6;
+                max-width: 400px;
+                margin: 0 auto;
+            "
+        >
+            The page you are looking for doesn't exist, has been moved, or is floating in hyperspace. Let's get you back on track.
+        </p>
+
+
+        <!-- ACTIONS -->
+        <div class="action-box">
+
+            <a href="./" class="button primary">
+                ← Back Home
+            </a>
+
+            <a href="games.html" class="button secondary">
+                Play Games
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- CLOCK SCRIPT -->
+<script>
+    function updateClock() {
+        const now = new Date();
+        
+        // Time Formatting
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        document.getElementById('clockTime').textContent = now.toLocaleTimeString('en-US', timeOptions);
+        
+        // Date Formatting
+        const dateOptions = { month: 'short', day: 'numeric', year: 'numeric' };
+        document.getElementById('clockDate').textContent = now.toLocaleDateString('en-US', dateOptions).toUpperCase();
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+</script>
+
+</body>
+</html>
