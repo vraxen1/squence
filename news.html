@@ -569,14 +569,7 @@ Later we can move the API request to a backend.
 =========================================================
 */
 
-const API_KEY = "https://newsdata.io/api/1/latest? 
-  apikey=pub_9d93d8624af44ca18ebb2be3fb9df002
-  &country=lv
-  &language=lv
-  &timezone=europe/riga
-  &prioritydomain=low
-  &image=1
-  &video=1";
+const API_KEY = "684c04a94fb927ecf6811942dca59dac49769c448eeb177be3acc2389c83533a";
 
 const newsContainer =
     document.getElementById("news");
@@ -625,7 +618,7 @@ async function loadNews(category = "world", button = null) {
     */
 
     let url =
-        "https://newsdata.io/api/1/latest" +
+        "https://freenewsapi.io/admin/api_keys.php" +
         "?apikey=" + API_KEY +
         "&language=en";
 
