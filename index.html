@@ -5,88 +5,1436 @@
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Squence</title>
 
-<link rel="stylesheet" href="style.css">
-
 <style>
 
-/* Squence navigation clock */
+/* =====================================================
+   RESET
+   ===================================================== */
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.squence-plan {
-    padding: 7px 12px;
+html {
+    scroll-behavior: smooth;
+}
 
-    border-radius: 10px;
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-    background: rgba(140, 92, 255, 0.10);
+    min-height: 100vh;
 
-    border: 1px solid rgba(140, 92, 255, 0.25);
+    background: #050318;
+    color: white;
 
-    color: #bba5ff;
+    transition:
+        background 0.5s ease,
+        color 0.5s ease;
+}
+
+button,
+a {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   THEME VARIABLES
+   ===================================================== */
+
+body.neon {
+
+    --background: #050318;
+    --background2: #09062b;
+
+    --text: #ffffff;
+    --muted: #9995ad;
+
+    --card: rgba(14, 11, 45, 0.78);
+    --card-border: rgba(151, 92, 255, 0.20);
+
+    --accent: #a855ff;
+    --accent2: #5968ff;
+
+    --nav:
+        rgba(5, 3, 24, 0.82);
+
+    --button-text: white;
+
+    --shadow:
+        rgba(111, 47, 255, 0.25);
+}
+
+
+body.tulip {
+
+    --background: #ffffff;
+    --background2: #fff4f7;
+
+    --text: #181820;
+    --muted: #777780;
+
+    --card: rgba(255,255,255,0.88);
+    --card-border: rgba(0,0,0,0.07);
+
+    --accent: #f53668;
+    --accent2: #ff658b;
+
+    --nav:
+        rgba(255,255,255,0.84);
+
+    --button-text: white;
+
+    --shadow:
+        rgba(245, 54, 104, 0.20);
+}
+
+
+/* =====================================================
+   BACKGROUND
+   ===================================================== */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -10;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--background),
+            var(--background2)
+        );
+
+    transition:
+        background 0.5s ease;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   NEON BACKGROUND
+   ===================================================== */
+
+.neon .background::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    border-radius: 50%;
+
+    right: 5%;
+    top: 100px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(160,70,255,0.45),
+            rgba(70,40,255,0.15) 45%,
+            transparent 70%
+        );
+
+    filter: blur(20px);
+
+    animation:
+        floatOrb 8s ease-in-out infinite;
+}
+
+
+.neon .background::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    right: -50px;
+    top: 260px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(20,180,255,0.32),
+            transparent 68%
+        );
+
+    filter: blur(15px);
+
+    animation:
+        floatOrb2 10s ease-in-out infinite;
+}
+
+
+@keyframes floatOrb {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-35px);
+    }
+}
+
+
+@keyframes floatOrb2 {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(30px);
+    }
+}
+
+
+/* =====================================================
+   TULIP BACKGROUND
+   ===================================================== */
+
+.tulip .background {
+
+    background-image:
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.98) 0%,
+            rgba(255,255,255,0.93) 25%,
+            rgba(255,255,255,0.45) 55%,
+            rgba(255,255,255,0.08) 100%
+        ),
+
+        url("tulip-wallpaper.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+nav {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 76px;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 4.5%;
+
+    background:
+        var(--nav);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    border-bottom:
+        1px solid
+        var(--card-border);
+
+    transition:
+        background 0.5s ease,
+        border 0.5s ease;
+}
+
+
+/* LOGO */
+
+.logo {
+
+    text-decoration: none;
+
+    color:
+        var(--text);
+
+    font-size: 26px;
+
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+}
+
+.logo span {
+
+    color:
+        var(--accent);
+}
+
+
+/* NAV RIGHT */
+
+.nav-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* NAV LINKS */
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+}
+
+
+.nav-links a {
+
+    color:
+        var(--muted);
+
+    text-decoration: none;
 
     font-size: 13px;
 
-    white-space: nowrap;
+    font-weight: 600;
+
+    transition:
+        color 0.2s ease;
 }
 
-.squence-clock {
-    padding: 7px 12px;
 
-    border-radius: 10px;
+.nav-links a:hover {
 
-    background: rgba(255,255,255,0.05);
-
-    border: 1px solid rgba(255,255,255,0.08);
-
-    text-align: right;
-
-    white-space: nowrap;
+    color:
+        var(--accent);
 }
+
+
+.nav-links a.active {
+
+    color:
+        var(--accent);
+}
+
+
+/* =====================================================
+   PLAN
+   ===================================================== */
+
+.plan {
+
+    padding:
+        8px 13px;
+
+    border-radius:
+        20px;
+
+    border:
+        1px solid
+        var(--card-border);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color:
+        var(--text);
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    white-space:
+        nowrap;
+}
+
+
+/* =====================================================
+   CLOCK
+   ===================================================== */
+
+.clock {
+
+    padding-left:
+        17px;
+
+    border-left:
+        1px solid
+        var(--card-border);
+
+    text-align:
+        right;
+
+    min-width:
+        105px;
+}
+
 
 .clock-time {
-    color: white;
 
-    font-family: monospace;
+    color:
+        var(--text);
 
-    font-size: 14px;
+    font-family:
+        monospace;
 
-    font-weight: bold;
+    font-size:
+        14px;
+
+    font-weight:
+        700;
 }
+
 
 .clock-date {
-    color: #777;
 
-    font-size: 11px;
+    color:
+        var(--muted);
 
-    margin-top: 2px;
+    font-size:
+        10px;
+
+    margin-top:
+        2px;
+
+    white-space:
+        nowrap;
 }
 
 
-/* Mobile navigation */
+/* =====================================================
+   THEME SELECTOR
+   ===================================================== */
 
-@media (max-width: 1000px) {
+.theme-selector {
 
-    .squence-clock {
+    position:
+        relative;
+}
+
+
+.theme-button {
+
+    border:
+        1px solid
+        var(--card-border);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    color:
+        var(--text);
+
+    padding:
+        9px 13px;
+
+    border-radius:
+        10px;
+
+    cursor:
+        pointer;
+
+    font-size:
+        12px;
+
+    font-weight:
+        600;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+}
+
+
+.theme-dot {
+
+    width:
+        9px;
+
+    height:
+        9px;
+
+    border-radius:
+        50%;
+
+    background:
+        var(--accent);
+}
+
+
+.theme-menu {
+
+    position:
+        absolute;
+
+    top:
+        calc(100% + 10px);
+
+    right:
+        0;
+
+    width:
+        210px;
+
+    padding:
+        8px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--card);
+
+    border:
+        1px solid
+        var(--card-border);
+
+    backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 20px 60px
+        var(--shadow);
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+
+    transform:
+        translateY(-5px);
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.theme-selector.open
+.theme-menu {
+
+    opacity:
+        1;
+
+    pointer-events:
+        auto;
+
+    transform:
+        translateY(0);
+}
+
+
+.theme-option {
+
+    width:
+        100%;
+
+    border:
+        none;
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
+    text-align:
+        left;
+
+    padding:
+        12px;
+
+    border-radius:
+        10px;
+
+    cursor:
+        pointer;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+}
+
+
+.theme-option:hover {
+
+    background:
+        rgba(255,255,255,0.07);
+}
+
+
+.theme-option.selected {
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+
+.theme-description {
+
+    display:
+        block;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    margin-top:
+        2px;
+}
+
+
+/* =====================================================
+   MAIN
+   ===================================================== */
+
+main {
+
+    padding-top:
+        76px;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+
+    min-height:
+        600px;
+
+    max-width:
+        1350px;
+
+    margin:
+        auto;
+
+    padding:
+        100px 6% 70px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    position:
+        relative;
+}
+
+
+.hero-content {
+
+    width:
+        52%;
+
+    position:
+        relative;
+
+    z-index:
+        5;
+}
+
+
+.eyebrow {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    gap:
+        7px;
+
+    padding:
+        7px 13px;
+
+    border:
+        1px solid
+        var(--card-border);
+
+    border-radius:
+        30px;
+
+    color:
+        var(--accent);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    margin-bottom:
+        23px;
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(60px, 8vw, 105px);
+
+    line-height:
+        0.92;
+
+    letter-spacing:
+        -6px;
+
+    color:
+        var(--text);
+
+    margin-bottom:
+        25px;
+}
+
+
+.hero h1 span {
+
+    color:
+        var(--accent);
+}
+
+
+.hero-description {
+
+    max-width:
+        530px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        16px;
+
+    line-height:
+        1.65;
+
+    margin-bottom:
+        28px;
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.buttons {
+
+    display:
+        flex;
+
+    gap:
+        10px;
+
+    flex-wrap:
+        wrap;
+}
+
+
+.button {
+
+    display:
+        inline-flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        13px 20px;
+
+    border-radius:
+        10px;
+
+    text-decoration:
+        none;
+
+    font-size:
+        13px;
+
+    font-weight:
+        700;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.button:hover {
+
+    transform:
+        translateY(-3px);
+}
+
+
+.primary {
+
+    color:
+        var(--button-text);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent2)
+        );
+
+    box-shadow:
+        0 10px 30px
+        var(--shadow);
+}
+
+
+.secondary {
+
+    color:
+        var(--text);
+
+    background:
+        rgba(255,255,255,0.04);
+
+    border:
+        1px solid
+        var(--card-border);
+}
+
+
+/* =====================================================
+   HERO NEON VISUAL
+   ===================================================== */
+
+.hero-visual {
+
+    position:
+        absolute;
+
+    right:
+        3%;
+
+    top:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    width:
+        48%;
+
+    height:
+        450px;
+
+    pointer-events:
+        none;
+}
+
+
+.neon-circle {
+
+    position:
+        absolute;
+
+    border-radius:
+        50%;
+
+    border:
+        1px solid
+        rgba(157,78,255,0.5);
+
+    box-shadow:
+        0 0 70px
+        rgba(130,60,255,0.4);
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(174,80,255,0.55),
+            rgba(50,30,160,0.15) 45%,
+            transparent 70%
+        );
+}
+
+
+.neon-circle.one {
+
+    width:
+        360px;
+
+    height:
+        360px;
+
+    right:
+        25px;
+
+    top:
+        20px;
+}
+
+
+.neon-circle.two {
+
+    width:
+        320px;
+
+    height:
+        320px;
+
+    right:
+        -15px;
+
+    bottom:
+        10px;
+
+    border-color:
+        rgba(30,180,255,0.55);
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            rgba(50,180,255,0.45),
+            rgba(20,50,160,0.1) 50%,
+            transparent 70%
+        );
+
+    box-shadow:
+        0 0 70px
+        rgba(30,150,255,0.35);
+}
+
+
+/* =====================================================
+   TULIP HERO
+   ===================================================== */
+
+.tulip .hero {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.3),
+            transparent
+        );
+}
+
+
+/* =====================================================
+   FEATURE CARDS
+   ===================================================== */
+
+.features {
+
+    max-width:
+        1220px;
+
+    margin:
+        -15px auto 0;
+
+    padding:
+        0 4%;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        16px;
+
+    position:
+        relative;
+
+    z-index:
+        10;
+}
+
+
+.card {
+
+    min-height:
+        210px;
+
+    padding:
+        25px;
+
+    border:
+        1px solid
+        var(--card-border);
+
+    border-radius:
+        16px;
+
+    background:
+        var(--card);
+
+    backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.5s ease;
+}
+
+
+.card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 20px 55px
+        var(--shadow);
+}
+
+
+.card-icon {
+
+    width:
+        42px;
+
+    height:
+        42px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        11px;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    color:
+        var(--accent);
+
+    font-size:
+        20px;
+
+    margin-bottom:
+        22px;
+}
+
+
+.card h3 {
+
+    color:
+        var(--text);
+
+    font-size:
+        17px;
+
+    margin-bottom:
+        9px;
+}
+
+
+.card p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    line-height:
+        1.6;
+
+    margin-bottom:
+        18px;
+}
+
+
+.card-link {
+
+    color:
+        var(--accent);
+
+    text-decoration:
+        none;
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+}
+
+
+/* =====================================================
+   WHY SQUENCE
+   ===================================================== */
+
+.why {
+
+    max-width:
+        1200px;
+
+    margin:
+        auto;
+
+    padding:
+        90px 5% 100px;
+}
+
+
+.center {
+
+    text-align:
+        center;
+}
+
+
+.section-title {
+
+    color:
+        var(--text);
+
+    font-size:
+        34px;
+
+    letter-spacing:
+        -1.5px;
+
+    margin-bottom:
+        10px;
+}
+
+
+.section-subtitle {
+
+    color:
+        var(--muted);
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        50px;
+}
+
+
+.why-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:
+        35px;
+}
+
+
+.why-item {
+
+    display:
+        flex;
+
+    gap:
+        14px;
+}
+
+
+.why-icon {
+
+    flex-shrink:
+        0;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border-radius:
+        13px;
+
+    color:
+        var(--accent);
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border:
+        1px solid
+        var(--card-border);
+
+    font-size:
+        20px;
+}
+
+
+.why-item h3 {
+
+    color:
+        var(--text);
+
+    font-size:
+        14px;
+
+    margin-bottom:
+        6px;
+}
+
+
+.why-item p {
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.5;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+footer {
+
+    border-top:
+        1px solid
+        var(--card-border);
+
+    padding:
+        30px 5%;
+
+    text-align:
+        center;
+
+    background:
+        rgba(0,0,0,0.08);
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+}
+
+
+footer strong {
+
+    color:
+        var(--text);
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 1050px) {
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .clock {
         display: none;
+    }
+
+    .hero-visual {
+        opacity: 0.5;
     }
 
 }
 
-@media (max-width: 800px) {
 
-    .nav-right {
+@media (max-width: 850px) {
+
+    nav {
+        height: 68px;
+    }
+
+    main {
+        padding-top: 68px;
+    }
+
+    .nav-links {
         display: none;
+    }
+
+    .plan {
+        display: none;
+    }
+
+    .theme-selector {
+        display: none;
+    }
+
+    .hero {
+        min-height: 600px;
+        padding: 80px 7%;
+    }
+
+    .hero-content {
+        width: 100%;
+    }
+
+    .hero-visual {
+        width: 100%;
+        right: -30%;
+        opacity: 0.25;
+    }
+
+    .features {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        padding:
+            0 5%;
+    }
+
+    .why-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .hero {
+        padding:
+            70px 7%;
+    }
+
+    .hero h1 {
+        font-size:
+            58px;
+
+        letter-spacing:
+            -4px;
+    }
+
+    .features {
+        grid-template-columns:
+            1fr;
+    }
+
+    .why-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+/* =====================================================
+   REDUCE ANIMATIONS
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        scroll-behavior:
+            auto !important;
+
+        animation:
+            none !important;
+
+        transition:
+            none !important;
     }
 
 }
@@ -96,59 +1444,67 @@
 </head>
 
 
-<body>
+<body class="neon">
 
 
-<!-- BACKGROUND -->
+<!-- =====================================================
+     BACKGROUND
+     ===================================================== -->
 
-<div class="background">
-
-    <div class="orb one"></div>
-
-    <div class="orb two"></div>
-
-</div>
+<div class="background"></div>
 
 
-
-<!-- NAVIGATION -->
+<!-- =====================================================
+     NAVIGATION
+     ===================================================== -->
 
 <nav>
 
-    <a class="logo" href="./">
+    <a
+        href="./"
+        class="logo"
+    >
         s<span>q</span>uence
     </a>
 
 
     <div class="nav-right">
 
+
         <div class="nav-links">
 
-            <a href="./">Home</a>
+            <a
+                href="./"
+                class="active"
+            >
+                Home
+            </a>
 
-            <a href="news.html">News</a>
+            <a href="news.html">
+                News
+            </a>
 
-            <a href="games.html">Games</a>
+            <a href="games.html">
+                Games
+            </a>
 
-            <a href="pricing.html">Pricing</a>
+            <a href="pricing.html">
+                Pricing
+            </a>
 
-            <a href="account.html">Account</a>
+            <a href="account.html">
+                Account
+            </a>
 
         </div>
 
 
-        <!-- CURRENT PLAN -->
-
-        <div class="squence-plan">
-
+        <div class="plan">
             ✦ Free Plan
-
         </div>
 
 
-        <!-- CLOCK -->
-
-        <div class="squence-clock">
+        <div class="clock">
 
             <div
                 class="clock-time"
@@ -161,10 +1517,92 @@
                 class="clock-date"
                 id="clockDate"
             >
-                Loading date...
+                Loading...
             </div>
 
         </div>
+
+
+        <!-- THEME -->
+
+        <div
+            class="theme-selector"
+            id="themeSelector"
+        >
+
+            <button
+                class="theme-button"
+                onclick="toggleThemeMenu()"
+            >
+
+                <span
+                    class="theme-dot"
+                    id="themeDot"
+                ></span>
+
+                Theme
+
+            </button>
+
+
+            <div class="theme-menu">
+
+
+                <button
+                    class="theme-option"
+                    id="neonOption"
+                    onclick="setTheme('neon')"
+                >
+
+                    <span>
+                        🌌
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Neon
+                        </strong>
+
+                        <small class="theme-description">
+                            Original dark theme
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="theme-option"
+                    id="tulipOption"
+                    onclick="setTheme('tulip')"
+                >
+
+                    <span>
+                        🌷
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Tulip
+                        </strong>
+
+                        <small class="theme-description">
+                            Light tulip theme
+                        </small>
+
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -172,74 +1610,52 @@
 
 
 
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
 <main>
 
 
+<!-- =====================================================
+     HERO
+     ===================================================== -->
 
-<!-- HERO -->
+<section class="hero">
 
-<section
-    style="
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-    "
->
 
-    <div style="max-width: 850px;">
+    <div class="hero-content">
 
-        <div class="badge">
-            ✦ Welcome to Squence
+
+        <div class="eyebrow">
+
+            ✦ WELCOME TO SQUENCE
+
         </div>
 
 
-        <h1
-            style="
-                font-size: clamp(60px, 10vw, 120px);
-                line-height: 0.9;
-                letter-spacing: -7px;
-                margin-bottom: 30px;
+        <h1>
 
-                background:
-                    linear-gradient(
-                        120deg,
-                        #ffffff,
-                        #9c7cff,
-                        #54d9ff
-                    );
+            Everything.<br>
 
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-            "
-        >
-            EVERYTHING.<br>
-            IN ONE PLACE.
+            <span>
+                In one place.
+            </span>
+
         </h1>
 
 
-        <p
-            style="
-                color: #888;
-                font-size: 20px;
-                line-height: 1.6;
-                max-width: 650px;
-                margin-bottom: 35px;
-            "
-        >
+        <p class="hero-description">
+
             Discover news, play games, explore tools
             and experience the internet your way.
             Welcome to Squence.
+
         </p>
 
 
-        <div
-            style="
-                display: flex;
-                gap: 12px;
-                flex-wrap: wrap;
-            "
-        >
+        <div class="buttons">
+
 
             <a
                 href="news.html"
@@ -253,404 +1669,259 @@
                 href="games.html"
                 class="button secondary"
             >
-                Play Games
+                Play Games 🎮
             </a>
+
 
         </div>
 
+
     </div>
+
+
+    <!-- NEON VISUAL -->
+
+    <div class="hero-visual">
+
+        <div class="neon-circle one"></div>
+
+        <div class="neon-circle two"></div>
+
+    </div>
+
 
 </section>
 
 
 
-<!-- NEWS -->
+<!-- =====================================================
+     FEATURE CARDS
+     ===================================================== -->
 
-<section>
-
-    <div class="badge">
-        📰 Squence News
-    </div>
+<section class="features">
 
 
-    <h2 class="section-title">
-        Stay in the loop.
-    </h2>
+    <div class="card">
 
-
-    <p class="section-subtitle">
-        Fresh stories from around the world,
-        technology, gaming and more.
-    </p>
-
-
-    <div class="cards">
-
-
-        <div class="card">
-
-            <div class="icon">
-                🌍
-            </div>
-
-            <h3>
-                World
-            </h3>
-
-            <p>
-                Discover what's happening around
-                the world.
-            </p>
-
+        <div class="card-icon">
+            📰
         </div>
 
+        <h3>
+            News
+        </h3>
 
-        <div class="card">
-
-            <div class="icon">
-                💻
-            </div>
-
-            <h3>
-                Technology
-            </h3>
-
-            <p>
-                The latest technology and internet
-                stories.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">
-                🎮
-            </div>
-
-            <h3>
-                Gaming
-            </h3>
-
-            <p>
-                Gaming news, updates and everything
-                gamers care about.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">
-                🔬
-            </div>
-
-            <h3>
-                Science
-            </h3>
-
-            <p>
-                Interesting discoveries and scientific
-                developments.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-    <div style="margin-top: 30px;">
+        <p>
+            Stay updated with the latest stories
+            from around the world.
+        </p>
 
         <a
             href="news.html"
-            class="button secondary"
+            class="card-link"
         >
-            View all news →
+            Explore News →
         </a>
 
     </div>
 
-</section>
 
 
+    <div class="card">
 
-<!-- GAMES -->
-
-<section>
-
-    <div class="badge">
-        🎮 Squence Games
-    </div>
-
-
-    <h2 class="section-title">
-        Take a break.
-    </h2>
-
-
-    <p class="section-subtitle">
-        Play quick games without leaving Squence.
-        More games are coming soon.
-    </p>
-
-
-    <div class="cards">
-
-
-        <div class="card">
-
-            <div class="icon">
-                🧩
-            </div>
-
-            <h3>
-                Puzzle Games
-            </h3>
-
-            <p>
-                Challenge your brain with quick,
-                addictive puzzles.
-            </p>
-
+        <div class="card-icon">
+            🎮
         </div>
 
+        <h3>
+            Games
+        </h3>
 
-        <div class="card">
-
-            <div class="icon">
-                🏆
-            </div>
-
-            <h3>
-                Leaderboards
-            </h3>
-
-            <p>
-                Compete with other Squence players
-                and climb the rankings.
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <div class="icon">
-                💾
-            </div>
-
-            <h3>
-                Save Your Progress
-            </h3>
-
-            <p>
-                Squence accounts will eventually let
-                you keep your game progress.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-    <div style="margin-top: 30px;">
+        <p>
+            Play fun games directly on Squence.
+            More games are coming soon.
+        </p>
 
         <a
             href="games.html"
-            class="button primary"
+            class="card-link"
         >
             Explore Games →
         </a>
 
     </div>
 
-</section>
 
-
-
-<!-- ACCOUNT -->
-
-<section>
 
     <div class="card">
 
-        <div class="icon">
+        <div class="card-icon">
             👤
         </div>
 
+        <h3>
+            Your Squence
+        </h3>
 
-        <h2
-            style="
-                font-size: 35px;
-                margin-bottom: 15px;
-            "
-        >
-            Your Squence.
-        </h2>
-
-
-        <p
-            style="
-                max-width: 650px;
-                margin-bottom: 25px;
-            "
-        >
-            Create a Squence account to eventually
-            save your game progress, customize your
-            news feed, save favorites and more.
+        <p>
+            Accounts coming soon. Save progress,
+            customize your feed and more.
         </p>
-
 
         <a
             href="account.html"
-            class="button primary"
+            class="card-link"
         >
-            Create an account →
+            Learn More →
         </a>
 
     </div>
+
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            👑
+        </div>
+
+        <h3>
+            Squence Plans
+        </h3>
+
+        <p>
+            Choose the plan that fits you and
+            unlock more features.
+        </p>
+
+        <a
+            href="pricing.html"
+            class="card-link"
+        >
+            View Plans →
+        </a>
+
+    </div>
+
 
 </section>
 
 
 
-<!-- PRICING -->
+<!-- =====================================================
+     WHY SQUENCE
+     ===================================================== -->
 
-<section>
-
-    <div class="badge">
-        ✦ Squence Plans
-    </div>
+<section class="why">
 
 
-    <h2 class="section-title">
-        Squence your way.
-    </h2>
+    <div class="center">
 
+        <h2 class="section-title">
+            Why Squence?
+        </h2>
 
-    <p class="section-subtitle">
-        Start for free and upgrade whenever you
-        want more.
-    </p>
-
-
-    <div class="cards">
-
-
-        <div class="card">
-
-            <h3>
-                Free
-            </h3>
-
-            <div
-                style="
-                    font-size: 35px;
-                    font-weight: bold;
-                    margin: 20px 0;
-                "
-            >
-                €0
-            </div>
-
-            <p>
-                News, games and basic Squence
-                features with ads.
-            </p>
-
-        </div>
-
-
-
-        <div class="card">
-
-            <h3>
-                Go
-            </h3>
-
-            <div
-                style="
-                    font-size: 35px;
-                    font-weight: bold;
-                    margin: 20px 0;
-                "
-            >
-                €3.50
-            </div>
-
-            <p>
-                No pop-up ads and fewer static ads,
-                plus extra features.
-            </p>
-
-        </div>
-
-
-
-        <div class="card">
-
-            <h3>
-                Plus
-            </h3>
-
-            <div
-                style="
-                    font-size: 35px;
-                    font-weight: bold;
-                    margin: 20px 0;
-                "
-            >
-                €9.99
-            </div>
-
-            <p>
-                Completely ad-free with additional
-                Squence features.
-            </p>
-
-        </div>
-
-
-
-        <div class="card">
-
-            <h3>
-                Pro
-            </h3>
-
-            <div
-                style="
-                    font-size: 35px;
-                    font-weight: bold;
-                    margin: 20px 0;
-                "
-            >
-                €14.99
-            </div>
-
-            <p>
-                Everything Squence has to offer,
-                including advanced features.
-            </p>
-
-        </div>
-
+        <p class="section-subtitle">
+            Built to be simple, beautiful and powerful.
+        </p>
 
     </div>
 
 
-    <div style="margin-top: 30px;">
 
-        <a
-            href="pricing.html"
-            class="button primary"
-        >
-            Compare all plans →
-        </a>
+    <div class="why-grid">
+
+
+        <div class="why-item">
+
+            <div class="why-icon">
+                ▦
+            </div>
+
+            <div>
+
+                <h3>
+                    All in one
+                </h3>
+
+                <p>
+                    News, games and tools.
+                    All in one place.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="why-item">
+
+            <div class="why-icon">
+                ⚡
+            </div>
+
+            <div>
+
+                <h3>
+                    Fast & clean
+                </h3>
+
+                <p>
+                    A smooth experience without
+                    unnecessary clutter.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="why-item">
+
+            <div class="why-icon">
+                ♥
+            </div>
+
+            <div>
+
+                <h3>
+                    Made for you
+                </h3>
+
+                <p>
+                    Customize your experience
+                    however you like.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="why-item">
+
+            <div class="why-icon">
+                🌱
+            </div>
+
+            <div>
+
+                <h3>
+                    Always growing
+                </h3>
+
+                <p>
+                    New features and games
+                    added regularly.
+                </p>
+
+            </div>
+
+        </div>
+
 
     </div>
 
@@ -661,39 +1932,45 @@
 
 
 
-<!-- FOOTER -->
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
 <footer>
 
     <p>
-        © 2026 <strong>Squence</strong>.
+
+        © 2026
+        <strong>Squence</strong>.
         All rights reserved.
+
     </p>
 
+    <p style="margin-top: 7px;">
 
-    <p
-        style="
-            margin-top: 10px;
-            font-size: 13px;
-        "
-    >
         Squence is an independent project.
+
     </p>
 
 </footer>
 
 
 
-<!-- CLOCK SCRIPT -->
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
 
 <script>
 
-function updateSquenceClock() {
+
+/* =====================================================
+   CLOCK
+   ===================================================== */
+
+function updateClock() {
 
     const now = new Date();
 
-
-    /* TIME */
 
     const time =
         now.toLocaleTimeString(
@@ -706,8 +1983,6 @@ function updateSquenceClock() {
             }
         );
 
-
-    /* DATE */
 
     const date =
         now.toLocaleDateString(
@@ -733,16 +2008,148 @@ function updateSquenceClock() {
 }
 
 
-/* Start immediately */
+updateClock();
 
-updateSquenceClock();
-
-
-/* Update every second */
 
 setInterval(
-    updateSquenceClock,
+    updateClock,
     1000
+);
+
+
+
+/* =====================================================
+   THEME MENU
+   ===================================================== */
+
+function toggleThemeMenu() {
+
+    document
+        .getElementById("themeSelector")
+        .classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   CHANGE THEME
+   ===================================================== */
+
+function setTheme(theme) {
+
+    document.body.classList.remove(
+        "neon",
+        "tulip"
+    );
+
+
+    document.body.classList.add(
+        theme
+    );
+
+
+    localStorage.setItem(
+        "squenceTheme",
+        theme
+    );
+
+
+    document
+        .getElementById("themeSelector")
+        .classList.remove("open");
+
+
+    updateThemeUI();
+
+}
+
+
+/* =====================================================
+   UPDATE THEME UI
+   ===================================================== */
+
+function updateThemeUI() {
+
+    const theme =
+        document.body.classList.contains("tulip")
+            ? "tulip"
+            : "neon";
+
+
+    document
+        .getElementById("neonOption")
+        .classList.toggle(
+            "selected",
+            theme === "neon"
+        );
+
+
+    document
+        .getElementById("tulipOption")
+        .classList.toggle(
+            "selected",
+            theme === "tulip"
+        );
+
+}
+
+
+/* =====================================================
+   LOAD SAVED THEME
+   ===================================================== */
+
+const savedTheme =
+    localStorage.getItem(
+        "squenceTheme"
+    );
+
+
+if (
+    savedTheme === "tulip" ||
+    savedTheme === "neon"
+) {
+
+    document.body.classList.remove(
+        "neon",
+        "tulip"
+    );
+
+    document.body.classList.add(
+        savedTheme
+    );
+
+}
+
+
+updateThemeUI();
+
+
+
+/* =====================================================
+   CLOSE THEME MENU
+   ===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const selector =
+            document.getElementById(
+                "themeSelector"
+            );
+
+
+        if (
+            !selector.contains(event.target)
+        ) {
+
+            selector.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
 );
 
 </script>
@@ -751,142 +2158,3 @@ setInterval(
 </body>
 
 </html>
-
-<!-- Ovarne Rebrand Announcement -->
-<section class="rebrand-card">
-    <div class="rebrand-icon">✦</div>
-
-    <div class="rebrand-content">
-        <span class="rebrand-label">BIG NEWS</span>
-
-        <h2>Squence is becoming <span>Ovarne</span></h2>
-
-        <p>
-            Squence is getting a fresh new identity.
-            We're excited to announce that the project will soon
-            move to our new home:
-        </p>
-
-        <div class="domain">
-            <strong>ovarne.com</strong>
-        </div>
-
-        <p class="rebrand-small">
-            Nothing changes right now — Squence will continue as normal
-            while we prepare for the transition.
-        </p>
-
-        <div class="rebrand-date">
-            ✦ Rebrand date will be specified.
-        </div>
-    </div>
-</section>
-
-<style>
-    .rebrand-card {
-        max-width: 850px;
-        margin: 40px auto;
-        padding: 35px;
-        border-radius: 24px;
-        background: linear-gradient(135deg, #111827, #1f2937);
-        color: white;
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .rebrand-card::before {
-        content: "";
-        position: absolute;
-        width: 250px;
-        height: 250px;
-        background: rgba(120, 90, 255, 0.18);
-        border-radius: 50%;
-        filter: blur(60px);
-        right: -80px;
-        top: -100px;
-    }
-
-    .rebrand-icon {
-        min-width: 70px;
-        height: 70px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        position: relative;
-        z-index: 1;
-    }
-
-    .rebrand-content {
-        position: relative;
-        z-index: 1;
-    }
-
-    .rebrand-label {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        opacity: 0.65;
-    }
-
-    .rebrand-card h2 {
-        margin: 8px 0 12px;
-        font-size: 30px;
-    }
-
-    .rebrand-card h2 span {
-        background: linear-gradient(90deg, #a78bfa, #60a5fa);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .rebrand-card p {
-        line-height: 1.6;
-        opacity: 0.82;
-        margin-bottom: 20px;
-    }
-
-    .domain {
-        display: inline-block;
-        padding: 12px 18px;
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .rebrand-small {
-        font-size: 14px;
-        opacity: 0.6 !important;
-    }
-
-    .rebrand-date {
-        display: inline-block;
-        margin-top: 5px;
-        padding: 10px 15px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 13px;
-        color: #d1d5db;
-    }
-
-    @media (max-width: 600px) {
-        .rebrand-card {
-            flex-direction: column;
-            text-align: center;
-            padding: 28px 20px;
-        }
-
-        .rebrand-card h2 {
-            font-size: 24px;
-        }
-    }
-</style>
