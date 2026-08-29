@@ -3,18 +3,159 @@
 <html>
 <head>
     <title>Squence - Click Rush</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .game {
+            width: 90%;
+            max-width: 500px;
+            background: #1c1c1c;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .stat {
+            background: #292929;
+            padding: 15px 25px;
+            border-radius: 12px;
+            min-width: 120px;
+        }
+
+        .stat-label {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .stat-number {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        #clickButton {
+            width: 100%;
+            height: 180px;
+            border: none;
+            border-radius: 18px;
+            background: white;
+            color: #111;
+            font-size: 42px;
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: transform 0.08s;
+        }
+
+        #clickButton:hover {
+            transform: scale(1.02);
+        }
+
+        #clickButton:active {
+            transform: scale(0.96);
+        }
+
+        #clickButton:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        #restartButton {
+            display: none;
+            margin-top: 25px;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #333;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #restartButton:hover {
+            background: #444;
+        }
+
+        #result {
+            margin-top: 25px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>Click Rush</h1>
+    <div class="game">
 
-    <p>Clicks: <span id="score">0</span></p>
-    <p>Time: <span id="time">10</span></p>
+        <h1>Click Rush</h1>
 
-    <button id="clickButton">CLICK!</button>
+        <p class="subtitle">
+            Click as fast as you can!
+        </p>
+
+        <div class="stats">
+
+            <div class="stat">
+                <div class="stat-label">CLICKS</div>
+                <div class="stat-number" id="score">0</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-label">TIME</div>
+                <div class="stat-number" id="time">10</div>
+            </div>
+
+        </div>
+
+        <button id="clickButton">
+            CLICK!
+        </button>
+
+        <div id="result"></div>
+
+        <button id="restartButton">
+            Play Again
+        </button>
+
+    </div>
+
 
     <script>
+
         let score = 0;
         let time = 10;
         let gameStarted = false;
@@ -23,29 +164,67 @@
         const button = document.getElementById("clickButton");
         const scoreText = document.getElementById("score");
         const timeText = document.getElementById("time");
+        const result = document.getElementById("result");
+        const restartButton = document.getElementById("restartButton");
+
 
         button.onclick = function() {
 
             if (!gameStarted) {
+
                 gameStarted = true;
 
                 timer = setInterval(function() {
+
                     time--;
+
                     timeText.textContent = time;
 
                     if (time <= 0) {
+
                         clearInterval(timer);
+
                         button.disabled = true;
                         button.textContent = "TIME'S UP!";
+
+                        result.textContent =
+                            "You got " + score + " clicks!";
+
+                        restartButton.style.display = "inline-block";
                     }
+
                 }, 1000);
             }
 
             if (time > 0) {
+
                 score++;
+
                 scoreText.textContent = score;
+
             }
+
         };
+
+
+        restartButton.onclick = function() {
+
+            score = 0;
+            time = 10;
+            gameStarted = false;
+
+            scoreText.textContent = "0";
+            timeText.textContent = "10";
+
+            button.disabled = false;
+            button.textContent = "CLICK!";
+
+            result.textContent = "";
+
+            restartButton.style.display = "none";
+
+        };
+
     </script>
 
 </body>
