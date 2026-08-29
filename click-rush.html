@@ -1,8 +1,7 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Squence - Click Rush</title>
+    <title>Squence — Click Rush</title>
 
     <style>
         * {
@@ -12,146 +11,258 @@
         body {
             margin: 0;
             min-height: 100vh;
-            background: #111;
+            background: #0b0b0f;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
+        /* SQUENCE HEADER */
+
+        header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            border-bottom: 1px solid #24242c;
+            background: #101015;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            opacity: 0.45;
+        }
+
+        /* GAME AREA */
+
+        main {
+            min-height: calc(100vh - 70px);
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 40px 20px;
         }
 
         .game {
-            width: 90%;
-            max-width: 500px;
-            background: #1c1c1c;
-            padding: 40px;
-            border-radius: 20px;
+            width: 100%;
+            max-width: 520px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
-        h1 {
-            font-size: 42px;
-            margin-top: 0;
+        .game-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #777;
             margin-bottom: 10px;
         }
 
-        .subtitle {
-            color: #aaa;
-            margin-bottom: 30px;
+        h1 {
+            margin: 0;
+            font-size: 48px;
+            letter-spacing: -2px;
         }
+
+        .description {
+            color: #888;
+            margin: 12px 0 35px;
+            font-size: 16px;
+        }
+
+        /* STATS */
 
         .stats {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .stat {
-            background: #292929;
-            padding: 15px 25px;
-            border-radius: 12px;
-            min-width: 120px;
+            flex: 1;
+            background: #15151b;
+            border: 1px solid #26262f;
+            border-radius: 14px;
+            padding: 18px;
         }
 
         .stat-label {
-            color: #999;
-            font-size: 14px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            color: #777;
+            margin-bottom: 6px;
         }
 
         .stat-number {
-            font-size: 30px;
-            font-weight: bold;
-            margin-top: 5px;
+            font-size: 32px;
+            font-weight: 700;
         }
+
+        /* CLICK BUTTON */
 
         #clickButton {
             width: 100%;
-            height: 180px;
-            border: none;
+            height: 190px;
+
+            border: 1px solid #33333d;
             border-radius: 18px;
-            background: white;
-            color: #111;
+
+            background: #f5f5f5;
+            color: #101015;
+
             font-size: 42px;
-            font-weight: bold;
+            font-weight: 800;
+
             cursor: pointer;
 
-            transition: transform 0.08s;
+            transition:
+                transform 0.08s,
+                background 0.15s,
+                box-shadow 0.15s;
         }
 
         #clickButton:hover {
-            transform: scale(1.02);
+            background: white;
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
         }
 
         #clickButton:active {
-            transform: scale(0.96);
+            transform: scale(0.97);
         }
 
         #clickButton:disabled {
             cursor: default;
-            opacity: 0.7;
+            opacity: 0.55;
+            transform: none;
+            box-shadow: none;
         }
+
+        /* RESULT */
+
+        #result {
+            min-height: 28px;
+            margin-top: 22px;
+            font-size: 19px;
+            font-weight: 600;
+        }
+
+        /* RESTART */
 
         #restartButton {
             display: none;
-            margin-top: 25px;
-            padding: 14px 25px;
-            border: none;
+
+            margin-top: 15px;
+            padding: 12px 24px;
+
+            border: 1px solid #303039;
             border-radius: 10px;
-            background: #333;
+
+            background: #15151b;
             color: white;
-            font-size: 16px;
+
+            font-size: 15px;
             cursor: pointer;
+
+            transition: background 0.15s;
         }
 
         #restartButton:hover {
-            background: #444;
+            background: #22222a;
         }
 
-        #result {
-            margin-top: 25px;
-            font-size: 22px;
-            font-weight: bold;
+        /* MOBILE */
+
+        @media (max-width: 500px) {
+
+            header {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 40px;
+            }
+
+            #clickButton {
+                height: 160px;
+                font-size: 34px;
+            }
+
+            .stat-number {
+                font-size: 27px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="game">
+    <header>
+        <div class="logo">
+            squence<span>.</span>
+        </div>
+    </header>
 
-        <h1>Click Rush</h1>
 
-        <p class="subtitle">
-            Click as fast as you can!
-        </p>
+    <main>
 
-        <div class="stats">
+        <div class="game">
 
-            <div class="stat">
-                <div class="stat-label">CLICKS</div>
-                <div class="stat-number" id="score">0</div>
+            <div class="game-label">
+                Squence Games
             </div>
 
-            <div class="stat">
-                <div class="stat-label">TIME</div>
-                <div class="stat-number" id="time">10</div>
+            <h1>Click Rush</h1>
+
+            <p class="description">
+                How many times can you click in 10 seconds?
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-label">
+                        CLICKS
+                    </div>
+
+                    <div class="stat-number" id="score">
+                        0
+                    </div>
+                </div>
+
+
+                <div class="stat">
+                    <div class="stat-label">
+                        TIME
+                    </div>
+
+                    <div class="stat-number" id="time">
+                        10
+                    </div>
+                </div>
+
             </div>
+
+
+            <button id="clickButton">
+                CLICK!
+            </button>
+
+
+            <div id="result"></div>
+
+
+            <button id="restartButton">
+                Play Again
+            </button>
 
         </div>
 
-        <button id="clickButton">
-            CLICK!
-        </button>
-
-        <div id="result"></div>
-
-        <button id="restartButton">
-            Play Again
-        </button>
-
-    </div>
+    </main>
 
 
     <script>
@@ -188,13 +299,14 @@
                         button.textContent = "TIME'S UP!";
 
                         result.textContent =
-                            "You got " + score + " clicks!";
+                            "You got " + score + " clicks.";
 
                         restartButton.style.display = "inline-block";
                     }
 
                 }, 1000);
             }
+
 
             if (time > 0) {
 
@@ -229,4 +341,3 @@
 
 </body>
 </html>
-```
