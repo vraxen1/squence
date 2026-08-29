@@ -1,1 +1,53 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Squence - Click Rush</title>
+</head>
 
+<body>
+
+    <h1>Click Rush</h1>
+
+    <p>Clicks: <span id="score">0</span></p>
+    <p>Time: <span id="time">10</span></p>
+
+    <button id="clickButton">CLICK!</button>
+
+    <script>
+        let score = 0;
+        let time = 10;
+        let gameStarted = false;
+        let timer;
+
+        const button = document.getElementById("clickButton");
+        const scoreText = document.getElementById("score");
+        const timeText = document.getElementById("time");
+
+        button.onclick = function() {
+
+            if (!gameStarted) {
+                gameStarted = true;
+
+                timer = setInterval(function() {
+                    time--;
+                    timeText.textContent = time;
+
+                    if (time <= 0) {
+                        clearInterval(timer);
+                        button.disabled = true;
+                        button.textContent = "TIME'S UP!";
+                    }
+                }, 1000);
+            }
+
+            if (time > 0) {
+                score++;
+                scoreText.textContent = score;
+            }
+        };
+    </script>
+
+</body>
+</html>
+```
