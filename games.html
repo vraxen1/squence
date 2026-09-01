@@ -1,26 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Games - Squence</title>
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="topbar.css"><link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="topbar.css">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
-.coming-soon-card{background:rgba(84,217,255,.02);border:1px solid rgba(84,217,255,.15);box-shadow:0 0 40px rgba(84,217,255,.05),inset 0 0 20px rgba(84,217,255,.01);border-radius:24px;padding:60px 40px;text-align:center;max-width:600px;width:100%;margin:auto;backdrop-filter:blur(10px)}
-.neon-glow{text-shadow:0 0 10px rgba(84,217,255,.5),0 0 20px rgba(84,217,255,.3)}
-.feature-list{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:30px auto;text-align:left}.feature-item{display:flex;align-items:center;gap:12px;color:#aaa;font-size:15px}.feature-item span{color:#54d9ff;text-shadow:0 0 8px rgba(84,217,255,.6)}
-.notify-box{display:flex;gap:10px;max-width:400px;margin:25px auto 0}.neon-input{flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(84,217,255,.2);padding:14px 20px;border-radius:12px;color:white;font-size:15px;outline:none}.neon-input:focus{border-color:#54d9ff;box-shadow:0 0 15px rgba(84,217,255,.25)}
-@media(max-width:500px){.notify-box{flex-direction:column}}
+.games-page{min-height:calc(100vh - 100px);padding:70px 25px;max-width:1100px;margin:auto}.games-header{text-align:center;margin-bottom:50px}.games-header .badge{display:inline-block;margin-bottom:15px}.games-header h1{font-size:clamp(42px,7vw,68px);margin:0;letter-spacing:-3px;background:linear-gradient(120deg,#fff,#54d9ff,#9c7cff);-webkit-background-clip:text;background-clip:text;color:transparent}.games-header p{color:#888;font-size:17px;margin-top:15px}.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}.game-card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:28px;transition:transform .2s,border-color .2s,box-shadow .2s}.game-card:hover{transform:translateY(-5px);border-color:rgba(84,217,255,.35);box-shadow:0 15px 40px rgba(0,0,0,.25)}.game-icon{width:58px;height:58px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(84,217,255,.08);font-size:28px;margin-bottom:20px}.game-card h2{margin:0 0 8px;font-size:24px}.game-card p{color:#888;line-height:1.5;margin-bottom:22px}.play-button{display:inline-block;text-decoration:none;padding:11px 20px;border-radius:10px;background:#fff;color:#101015;font-weight:700;transition:transform .15s}.play-button:hover{transform:scale(1.03)}@media(max-width:500px){.games-page{padding:45px 18px}.games-header h1{letter-spacing:-2px}}
 </style>
 </head>
 <body>
 <div class="background"><div class="orb one"></div><div class="orb two"></div></div>
-<main><section style="min-height:calc(100vh - 100px);display:flex;align-items:center;justify-content:center;padding:40px 20px">
-<div class="coming-soon-card">
-<div class="badge" style="margin-bottom:20px">🎮 Squence Arcade</div>
-<h1 class="neon-glow" style="font-size:clamp(35px,6vw,55px);line-height:1;letter-spacing:-2px;margin-bottom:15px;background:linear-gradient(120deg,#fff,#54d9ff,#9c7cff);-webkit-background-clip:text;background-clip:text;color:transparent">ARCADE<br>COMING SOON</h1>
-<p style="color:#888;font-size:16px;line-height:1.5;max-width:450px;margin:0 auto">We are curating a collection of lightweight browser games. Take quick breaks, compete for ranks, and challenge your brain.</p>
-<div class="feature-list"><div class="feature-item"><span>🎮</span>Addictive, fast-loading puzzles</div><div class="feature-item"><span>🏆</span>Global high score leaderboards</div><div class="feature-item"><span>💾</span>Cloud progression via Squence accounts</div></div>
-<form class="notify-box" onsubmit="event.preventDefault();alert('You will be notified when the Arcade drops!')"><input type="email" placeholder="Enter your email for early access" class="neon-input" required><button type="submit" class="button primary" style="padding:14px 24px;white-space:nowrap">Get Access</button></form>
-</div></section></main>
+<main><section class="games-page"><div class="games-header"><div class="badge">🎮 Squence Arcade</div><h1>Games</h1><p>Quick games. Simple fun. All inside Squence.</p></div><div class="games-grid"><div class="game-card"><div class="game-icon">⚡</div><h2>Click Rush</h2><p>Click as fast as you can in 10 seconds. What's your best score?</p><a class="play-button" href="click-rush.html">Play Game →</a></div></div></section></main>
 <script src="topbar.js"></script>
-</body></html>
+</body>
+</html>
