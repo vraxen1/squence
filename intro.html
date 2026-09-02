@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Squence</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif;background:#050318;color:#fff;overflow-x:hidden}
+.orb{position:fixed;border-radius:50%;filter:blur(70px);opacity:.5;pointer-events:none}.orb.one{width:55vw;height:55vw;background:#7c3cff;top:-15%;left:-20%;animation:float 12s ease-in-out infinite}.orb.two{width:45vw;height:45vw;background:#1f8cff;bottom:-15%;right:-15%;animation:float2 14s ease-in-out infinite}
+@keyframes float{50%{transform:translate(18vw,14vh) scale(1.15)}}@keyframes float2{50%{transform:translate(-15vw,-12vh) scale(.9)}}
+.progress{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:7px;padding:9px 12px;border:1px solid rgba(255,255,255,.14);background:rgba(20,16,50,.42);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:99px}.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);transition:.4s}.dot.active{width:22px;background:#fff}
+.panel{height:100vh;min-height:100svh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;padding:90px 7vw;position:relative}
+.glass{width:min(900px,100%);padding:clamp(32px,7vw,80px);border:1px solid rgba(255,255,255,.16);border-radius:36px;background:linear-gradient(135deg,rgba(255,255,255,.13),rgba(255,255,255,.035));box-shadow:0 30px 100px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(28px) saturate(150%);-webkit-backdrop-filter:blur(28px) saturate(150%);text-align:center}
+.logo{font-size:18px;font-weight:800;letter-spacing:-1px;margin-bottom:36px}.logo span{color:#a855ff}
+.eyebrow{color:#bda7ff;font-size:12px;font-weight:700;letter-spacing:2px;margin-bottom:18px}
+h1{font-size:clamp(52px,11vw,120px);line-height:.9;letter-spacing:-.07em;margin-bottom:24px}h1.gradient{background:linear-gradient(135deg,#fff 20%,#b99cff 52%,#75bfff);-webkit-background-clip:text;background-clip:text;color:transparent}
+p{max-width:580px;margin:auto;color:rgba(255,255,255,.68);font-size:clamp(16px,2vw,21px);line-height:1.55}
+.icon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:38px}.mini{padding:24px 12px;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);font-size:28px}.mini small{display:block;font-size:12px;margin-top:10px;color:rgba(255,255,255,.65)}
+.ready{font-size:clamp(56px,10vw,110px);font-weight:800;letter-spacing:-.07em;margin-bottom:26px}
+.enter{display:inline-flex;margin-top:32px;padding:15px 26px;border-radius:16px;background:#fff;color:#151126;text-decoration:none;font-weight:750;font-size:15px;box-shadow:0 12px 40px rgba(255,255,255,.18);transition:.25s}.enter:hover{transform:scale(1.04)}
+.skip{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:20;border:1px solid rgba(255,255,255,.16);background:rgba(16,12,38,.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:rgba(255,255,255,.85);padding:13px 22px;border-radius:99px;font:600 13px inherit;cursor:pointer;transition:.2s}.skip:hover{background:rgba(255,255,255,.14);color:#fff}
+.scroll-hint{position:absolute;bottom:75px;color:rgba(255,255,255,.38);font-size:11px;letter-spacing:1px}
+@media(max-width:600px){.panel{padding:70px 20px}.glass{border-radius:28px;padding:42px 22px}.icon-grid{gap:8px}.mini{padding:18px 6px;font-size:23px}.progress{top:15px}.skip{bottom:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.orb{animation:none}}
+</style>
+</head>
+<body>
+<div class="orb one"></div><div class="orb two"></div>
+<div class="progress"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+
+<section class="panel">
+<div class="glass">
+<div class="logo">s<span>q</span>uence</div>
+<div class="eyebrow">WELCOME</div>
+<h1 class="gradient">A new<br>sequence.</h1>
+<p>More than a homepage. A place to explore, discover and make the internet feel a little more yours.</p>
+</div>
+<div class="scroll-hint">SCROLL TO EXPLORE ↓</div>
+</section>
+
+<section class="panel">
+<div class="glass">
+<div class="eyebrow">DISCOVER</div>
+<h1>What's<br>happening.</h1>
+<p>Stories, updates and things worth knowing — all brought together in one clean experience.</p>
+<div class="icon-grid"><div class="mini">📰<small>News</small></div><div class="mini">🌍<small>Explore</small></div><div class="mini">✦<small>Discover</small></div></div>
+</div>
+</section>
+
+<section class="panel">
+<div class="glass">
+<div class="eyebrow">EXPLORE</div>
+<h1 class="gradient">More than<br>one thing.</h1>
+<p>Play games. Try AI. Discover new features. Squence is designed to keep growing with you.</p>
+<div class="icon-grid"><div class="mini">🎮<small>Games</small></div><div class="mini">🤖<small>AI</small></div><div class="mini">👑<small>More</small></div></div>
+</div>
+</section>
+
+<section class="panel">
+<div class="glass">
+<div class="eyebrow">YOUR TURN</div>
+<div class="ready">Ready?</div>
+<p>Your Squence starts here.</p>
+<a class="enter" href="./" onclick="finishIntro()">Enter Squence →</a>
+</div>
+</section>
+
+<button class="skip" onclick="finishIntro()">Skip intro</button>
+
+<script>
+function finishIntro(){localStorage.setItem('squenceIntroSeen','true');window.location.href='./';}
+const panels=[...document.querySelectorAll('.panel')],dots=[...document.querySelectorAll('.dot')];
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const i=panels.indexOf(e.target);dots.forEach((d,n)=>d.classList.toggle('active',n===i));}})},{threshold:.6});
+panels.forEach(p=>observer.observe(p));
+</script>
+</body>
+</html>
