@@ -73,6 +73,16 @@ main{padding-top:64px}.logo{height:64px;padding:0 15px;display:flex;align-items:
 .hero{min-height:600px;padding:80px 7%}.hero-content{width:100%}.hero-visual{width:100%;right:-30%;opacity:.25}.features{grid-template-columns:repeat(2,1fr);padding:0 5%}.why-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:550px){.logo{font-size:23px}.hero{padding:70px 7%}.hero h1{font-size:58px;letter-spacing:-4px}.features,.why-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Mobile theme menu interaction fix */
+@media(max-width:850px){
+nav{isolation:isolate!important}
+.nav-links{position:relative!important;z-index:1!important}
+.theme-selector{position:relative!important;z-index:9999!important;pointer-events:auto!important;touch-action:manipulation!important}
+.theme-button{position:relative!important;z-index:10000!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
+.theme-menu{z-index:10001!important;pointer-events:none!important}
+.theme-selector.open .theme-menu{pointer-events:auto!important}
+}
 </style>
 </head>
 <body class="neon">
