@@ -128,8 +128,10 @@
 
 }
 
+body.alpine{background:linear-gradient(150deg,#0b3554,#061f35)!important;color:#eef4f7}.alpine .orb{filter:hue-rotate(160deg)}
 </style>
 
+<script>(function(){const t=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(t==='alpine')document.documentElement.dataset.squenceTheme='alpine'})()</script>
 </head>
 
 
@@ -300,5 +302,6 @@
     updateClock();
 </script>
 
+<script>if(document.documentElement.dataset.squenceTheme==='alpine')document.body.classList.add('alpine');</script>
 </body>
 </html>
