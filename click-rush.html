@@ -149,10 +149,12 @@
             #clickButton { height: 160px; font-size: 34px; }
             .stat-number { font-size: 27px; }
         }
+        body.alpine{background:linear-gradient(150deg,#0b3554,#061f35);color:#eef4f7}body.alpine header{background:rgba(7,35,56,.92);border-color:rgba(156,197,220,.2)}body.alpine .game-label,body.alpine .description,body.alpine .stat-label{color:#a9bdd0}body.alpine .stat,body.alpine #restartButton{background:rgba(20,65,96,.72);border-color:rgba(156,197,220,.18)}body.alpine #clickButton{background:#dbeaf0;color:#082b48;border-color:#a9c9d9;box-shadow:0 0 35px rgba(120,174,202,.12)}body.alpine #restartButton:hover{background:#285b7b}
     </style>
+<script>(function(){const t=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(t==='alpine')document.addEventListener('DOMContentLoaded',()=>document.body.classList.add('alpine'))})()</script>
 </head>
 
-<body>
+<body class="neon">
 
     <header>
         <a class="logo" href="index.html" aria-label="Squence homepage">
