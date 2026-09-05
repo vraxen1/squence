@@ -25,9 +25,11 @@ p{max-width:580px;margin:auto;color:rgba(255,255,255,.68);font-size:clamp(16px,2
 .scroll-hint{position:absolute;bottom:75px;color:rgba(255,255,255,.38);font-size:11px;letter-spacing:1px}
 @media(max-width:600px){.panel{padding:70px 20px}.glass{border-radius:28px;padding:42px 22px}.icon-grid{gap:8px}.mini{padding:18px 6px;font-size:23px}.progress{top:15px}.skip{bottom:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.orb{animation:none}}
+body.alpine{background:#082b48}.alpine .orb.one{background:#78aeca}.alpine .orb.two{background:#3d7399}.alpine .progress{background:rgba(7,35,56,.55);border-color:rgba(156,197,220,.2)}.alpine .glass{border-color:rgba(194,216,226,.16);background:linear-gradient(135deg,rgba(160,198,216,.12),rgba(20,65,96,.08));box-shadow:0 30px 100px rgba(0,20,35,.32),inset 0 1px 0 rgba(220,238,245,.10)}.alpine .logo span,.alpine .eyebrow{color:#9dc9de}.alpine h1.gradient{background:linear-gradient(135deg,#fff 20%,#b8d7e4 52%,#78aeca);-webkit-background-clip:text;background-clip:text;color:transparent}.alpine .enter{background:#e6f0f4;color:#082b48}.alpine .skip{background:rgba(7,35,56,.62);border-color:rgba(156,197,220,.2)}
 </style>
+<script>(function(){const t=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(t==='alpine')document.documentElement.dataset.squenceTheme='alpine'})()</script>
 </head>
-<body>
+<body class="neon" id="introBody">
 <div class="orb one"></div><div class="orb two"></div>
 <div class="progress"><i class="dot active"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
 
@@ -71,6 +73,7 @@ p{max-width:580px;margin:auto;color:rgba(255,255,255,.68);font-size:clamp(16px,2
 <button class="skip" onclick="finishIntro()">Skip intro</button>
 
 <script>
+if(document.documentElement.dataset.squenceTheme==='alpine')document.getElementById('introBody').classList.add('alpine');
 function finishIntro(){localStorage.setItem('squenceIntroSeen','true');window.location.href='./';}
 const panels=[...document.querySelectorAll('.panel')],dots=[...document.querySelectorAll('.dot')];
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const i=panels.indexOf(e.target);dots.forEach((d,n)=>d.classList.toggle('active',n===i));}})},{threshold:.6});
