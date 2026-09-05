@@ -17,16 +17,22 @@ button,a{font-family:inherit}
 /* THEMES */
 body.neon{--background:#050318;--background2:#09062b;--text:#fff;--muted:#9995ad;--card:rgba(14,11,45,.78);--card-border:rgba(151,92,255,.20);--accent:#a855ff;--accent2:#5968ff;--nav:rgba(5,3,24,.82);--button-text:#fff;--shadow:rgba(111,47,255,.25)}
 body.tulip{--background:#170b13;--background2:#321322;--text:#fff7f9;--muted:#c5a5b0;--card:rgba(62,24,42,.62);--card-border:rgba(239,154,180,.18);--accent:#e38aa9;--accent2:#b85f87;--nav:rgba(27,10,20,.84);--button-text:#fff;--shadow:rgba(190,72,117,.25)}
+body.alpine{--background:#082b48;--background2:#123f63;--text:#eef4f7;--muted:#a9bdd0;--card:rgba(20,65,96,.68);--card-border:rgba(156,197,220,.18);--accent:#78aeca;--accent2:#3d7399;--nav:rgba(7,35,56,.86);--button-text:#fff;--shadow:rgba(35,101,142,.28)}
 
 .background{position:fixed;inset:0;z-index:-10;overflow:hidden;background:linear-gradient(135deg,var(--background),var(--background2));transition:background .5s}
 .neon .background:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;right:5%;top:100px;background:radial-gradient(circle,rgba(160,70,255,.45),rgba(70,40,255,.15) 45%,transparent 70%);filter:blur(20px);animation:floatOrb 8s ease-in-out infinite}
 .neon .background:after{content:"";position:absolute;width:500px;height:500px;border-radius:50%;right:-50px;top:260px;background:radial-gradient(circle,rgba(20,180,255,.32),transparent 68%);filter:blur(15px);animation:floatOrb2 10s ease-in-out infinite}
 .tulip .background:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;left:-180px;top:80px;background:radial-gradient(circle,rgba(221,106,143,.28),rgba(130,55,91,.10) 48%,transparent 72%);filter:blur(30px);animation:tulipFloat 10s ease-in-out infinite}
 .tulip .background:after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-100px;bottom:-100px;background:radial-gradient(circle,rgba(176,82,130,.25),rgba(105,55,90,.10) 48%,transparent 72%);filter:blur(25px);animation:tulipFloat2 12s ease-in-out infinite}
+.alpine .background{background:radial-gradient(circle at 78% 8%,rgba(202,220,230,.14),transparent 24%),radial-gradient(circle at 18% 78%,rgba(57,111,148,.20),transparent 34%),linear-gradient(150deg,#0b3554 0%,#0a2b47 48%,#061f35 100%)}
+.alpine .background:before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;right:-180px;top:-180px;background:radial-gradient(circle,rgba(190,215,226,.18),rgba(83,135,165,.08) 48%,transparent 72%);filter:blur(35px);animation:alpineFloat 12s ease-in-out infinite}
+.alpine .background:after{content:"";position:absolute;width:560px;height:560px;border-radius:50%;left:-150px;bottom:-180px;background:radial-gradient(circle,rgba(44,103,143,.28),rgba(18,63,96,.08) 48%,transparent 72%);filter:blur(28px);animation:alpineFloat2 14s ease-in-out infinite}
 @keyframes floatOrb{0%,100%{transform:translateY(0)}50%{transform:translateY(-35px)}}
 @keyframes floatOrb2{0%,100%{transform:translateY(0)}50%{transform:translateY(30px)}}
 @keyframes tulipFloat{0%,100%{transform:translate(0)}50%{transform:translate(35px,-25px)}}
 @keyframes tulipFloat2{0%,100%{transform:translate(0)}50%{transform:translate(-30px,25px)}}
+@keyframes alpineFloat{0%,100%{transform:translate(0)}50%{transform:translate(-35px,30px)}}
+@keyframes alpineFloat2{0%,100%{transform:translate(0)}50%{transform:translate(35px,-25px)}}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;height:76px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4.5%;background:var(--nav);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--card-border);transition:.5s}
@@ -47,6 +53,9 @@ main{padding-top:76px}.hero{min-height:600px;max-width:1350px;margin:auto;paddin
 /* HERO VISUAL */
 .hero-visual{position:absolute;right:3%;top:50%;transform:translateY(-50%);width:48%;height:450px;pointer-events:none}.neon-circle{position:absolute;border-radius:50%;border:1px solid rgba(157,78,255,.5);box-shadow:0 0 70px rgba(130,60,255,.4);background:radial-gradient(circle at 30% 25%,rgba(174,80,255,.55),rgba(50,30,160,.15) 45%,transparent 70%)}.neon-circle.one{width:360px;height:360px;right:25px;top:20px}.neon-circle.two{width:320px;height:320px;right:-15px;bottom:10px;border-color:rgba(30,180,255,.55);background:radial-gradient(circle at 35% 25%,rgba(50,180,255,.45),rgba(20,50,160,.1) 50%,transparent 70%);box-shadow:0 0 70px rgba(30,150,255,.35)}
 .tulip .hero-visual:before{content:"";position:absolute;width:390px;height:390px;right:30px;top:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(235,145,174,.38),rgba(160,70,112,.18) 48%,transparent 72%);filter:blur(12px);box-shadow:0 0 90px rgba(211,104,145,.22)}.tulip .neon-circle{border-color:rgba(229,139,169,.35);background:radial-gradient(circle at 30% 25%,rgba(229,139,169,.30),rgba(100,42,73,.18) 48%,transparent 72%);box-shadow:0 0 65px rgba(195,79,124,.25)}.tulip .neon-circle.two{border-color:rgba(190,110,156,.32);background:radial-gradient(circle at 35% 25%,rgba(190,110,156,.25),transparent 70%);box-shadow:0 0 65px rgba(170,75,125,.20)}
+.alpine .hero-visual:before{content:"";position:absolute;width:390px;height:390px;right:30px;top:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(176,207,222,.20),rgba(65,121,155,.12) 48%,transparent 72%);filter:blur(12px);box-shadow:0 0 90px rgba(71,135,172,.18)}
+.alpine .neon-circle{border-color:rgba(142,190,214,.34);background:radial-gradient(circle at 30% 25%,rgba(126,181,209,.28),rgba(29,81,115,.14) 48%,transparent 72%);box-shadow:0 0 65px rgba(75,140,178,.22)}
+.alpine .neon-circle.two{border-color:rgba(183,211,224,.26);background:radial-gradient(circle at 35% 25%,rgba(170,206,222,.20),transparent 70%);box-shadow:0 0 65px rgba(61,115,153,.18)}
 
 /* CARDS */
 .features{max-width:1220px;margin:-15px auto 0;padding:0 4%;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:10}.card{min-height:210px;padding:25px;border:1px solid var(--card-border);border-radius:16px;background:var(--card);backdrop-filter:blur(12px);box-shadow:0 15px 50px rgba(0,0,0,.12);transition:.25s}.card:hover{transform:translateY(-6px);box-shadow:0 20px 55px var(--shadow)}.card-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:rgba(255,255,255,.07);color:var(--accent);font-size:20px;margin-bottom:22px}.card h3{color:var(--text);font-size:17px;margin-bottom:9px}.card p{color:var(--muted);font-size:12px;line-height:1.6;margin-bottom:18px}.card-link{color:var(--accent);text-decoration:none;font-size:11px;font-weight:700}
@@ -82,6 +91,7 @@ footer{border-top:1px solid var(--card-border);padding:30px 5%;text-align:center
 <div class="theme-menu">
 <button class="theme-option" id="neonOption" onclick="setTheme('neon')"><span>🌌</span><span><strong>Neon</strong><small class="theme-description">Original dark theme</small></span></button>
 <button class="theme-option" id="tulipOption" onclick="setTheme('tulip')"><span>🌷</span><span><strong>Tulip</strong><small class="theme-description">Warm tulip-inspired colors</small></span></button>
+<button class="theme-option" id="alpineOption" onclick="setTheme('alpine')"><span>🏔️</span><span><strong>Alpine</strong><small class="theme-description">Icy mountain and deep lake colors</small></span></button>
 </div>
 </div>
 </div>
