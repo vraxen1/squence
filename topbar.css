@@ -25,14 +25,14 @@ body.alpine .squence-topbar .theme-menu{background:rgba(8,39,61,.97)!important;b
 body.squence-shared-page{padding-top:76px!important}
 @media(max-width:1050px){.squence-topbar .clock{display:none!important}}
 @media(max-width:850px){
-.squence-topbar{height:64px;padding:0;display:flex!important;justify-content:flex-start!important;overflow:hidden}
-.squence-topbar .logo{flex:0 0 auto;padding:0 16px!important;font-size:23px!important;position:sticky;left:0;z-index:3;background:var(--top-bg)!important;height:64px;display:flex!important;align-items:center!important}
-.squence-topbar .nav-right{min-width:0;flex:1;display:flex!important;overflow:hidden!important}
-.squence-topbar .nav-links{display:flex!important;gap:0!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:none!important;padding-right:8px}
+.squence-topbar{height:64px;padding:0!important;display:grid!important;grid-template-columns:auto minmax(0,1fr) auto!important;gap:0!important;overflow:hidden!important}
+.squence-topbar .logo{grid-column:1;height:64px;padding:0 15px!important;display:flex!important;align-items:center!important;background:var(--top-bg)!important;z-index:3}
+.squence-topbar .nav-right{display:contents!important}
+.squence-topbar .nav-links{grid-column:2;display:flex!important;min-width:0!important;gap:0!important;overflow-x:auto!important;overflow-y:hidden!important;white-space:nowrap!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:none!important}
 .squence-topbar .nav-links::-webkit-scrollbar{display:none}
 .squence-topbar .nav-links a{flex:0 0 auto!important;padding:23px 12px!important;font-size:13px!important}
 .squence-topbar .plan,.squence-topbar .clock{display:none!important}
-.squence-topbar .theme-selector{display:block!important;flex:0 0 auto;position:sticky!important;right:0;padding:0 12px 0 4px;background:var(--top-bg)!important;z-index:3}
+.squence-topbar .theme-selector{grid-column:3;display:block!important;position:relative!important;padding:0 12px 0 6px!important;background:var(--top-bg)!important;z-index:4}
 .squence-topbar .theme-button{height:38px!important;padding:8px 11px!important}
 .squence-topbar .theme-menu{position:fixed!important;top:72px!important;right:12px!important;width:min(220px,calc(100vw - 24px))!important}
 body.squence-shared-page{padding-top:64px!important}
