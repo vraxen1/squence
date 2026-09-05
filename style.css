@@ -803,3 +803,24 @@ body.tulip .hero::before {
     }
 
 }
+
+
+/* =====================================================
+   ALPINE THEME — icy mountains and deep lake palette
+   ===================================================== */
+body.alpine .hero::after{
+    background:radial-gradient(ellipse at center,rgba(120,174,202,.42) 0%,rgba(61,115,153,.20) 38%,transparent 72%);
+    opacity:.42;
+}
+body.alpine .hero::before{
+    border-top:1px solid rgba(174,210,226,.32);
+    box-shadow:0 -15px 70px rgba(43,111,151,.24);
+}
+body.alpine .background{
+    background:
+        radial-gradient(circle at 80% 10%,rgba(194,216,226,.12),transparent 25%),
+        radial-gradient(circle at 20% 75%,rgba(61,115,153,.18),transparent 32%),
+        linear-gradient(150deg,#0b3554 0%,#0a2b47 48%,#061f35 100%);
+}
+body.alpine .orb.one{background:#78aeca;}
+body.alpine .orb.two{background:#3d7399;}
