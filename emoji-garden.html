@@ -1,11 +1,202 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Squence Emoji Garden</title><link rel="icon" href="favicon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="topbar.css"><style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,Arial,sans-serif}.garden-page{max-width:1050px;margin:auto;padding:105px 20px 60px;text-align:center}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.garden-page h1{font-size:clamp(42px,7vw,68px);letter-spacing:-3px;margin:8px 0}.garden-page p{color:var(--muted)}.panel{margin-top:25px;padding:18px;background:var(--card);border:1px solid var(--card-border);border-radius:25px}.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:15px}.stat{padding:10px 16px;background:rgba(255,255,255,.06);border-radius:12px}.toolbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.btn{border:1px solid var(--card-border);background:rgba(255,255,255,.08);color:var(--text);padding:10px 16px;border-radius:11px;font:inherit;font-weight:700;cursor:pointer}.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none}.garden{display:grid;grid-template-columns:repeat(12,1fr);aspect-ratio:1.7;min-height:330px;border-radius:18px;overflow:hidden;background:#5fae72;border:1px solid var(--card-border);touch-action:none}.plot{position:relative;border:1px solid rgba(255,255,255,.08);cursor:crosshair;min-height:42px;display:flex;align-items:center;justify-content:center;font-size:clamp(17px,2.4vw,31px);transition:.15s}.plot:hover{background:rgba(255,255,255,.13);transform:scale(1.03);z-index:2}.plot.filled{background:rgba(255,255,255,.04)}@media(max-width:600px){.garden{grid-template-columns:repeat(8,1fr);aspect-ratio:1;min-height:420px}}
-</style></head><body><div class="background"><div class="orb one"></div><div class="orb two"></div></div><main class="garden-page"><div class="eyebrow">Squence Games · Creative</div><h1>🌱 Emoji Garden</h1><p>Move over the garden to grow nature. Click a block to plant the emoji.</p><div class="stats"><div class="stat">Garden plants: <b id="count">0</b></div><div class="stat">Your garden saves on this device</div></div><div class="panel"><div class="toolbar"><button class="btn primary" id="random">Random garden</button><button class="btn" id="clear">Clear garden</button></div><div class="garden" id="garden"></div></div></main><script src="topbar.js"></script><script>
-const emojis=['🌱','🌿','☘️','🍀','🌷','🌸','🌼','🌻','🌺','🌹','🪻','🪴','🌲','🌳','🍃','🍂','🍁','🪨','🍄','🌾','🌵','🌴','🐝','🦋','🐞'];
-const garden=document.getElementById('garden'),count=document.getElementById('count');let saved=JSON.parse(localStorage.emojiGarden||'[]');const cells=[];
-function make(){for(let i=0;i<120;i++){let d=document.createElement('div');d.className='plot';d.dataset.i=i;let val=saved[i]||'';d.textContent=val;if(val)d.classList.add('filled');d.addEventListener('pointerenter',()=>{if(!d.textContent)d.textContent=emojis[Math.floor(Math.random()*emojis.length)]});d.addEventListener('pointerleave',()=>{if(!d.classList.contains('filled'))d.textContent=''});d.addEventListener('pointerdown',e=>{e.preventDefault();d.textContent=emojis[Math.floor(Math.random()*emojis.length)];d.classList.add('filled');saved[i]=d.textContent;save()});garden.appendChild(d);cells.push(d)}save()}
-function save(){localStorage.emojiGarden=JSON.stringify(saved);count.textContent=cells.filter(c=>c.classList.contains('filled')).length}
-document.getElementById('clear').onclick=()=>{saved=[];cells.forEach(c=>{c.textContent='';c.classList.remove('filled')});save()}
-document.getElementById('random').onclick=()=>{cells.forEach((c,i)=>{if(Math.random()>.42){c.textContent=emojis[Math.floor(Math.random()*emojis.length)];c.classList.add('filled');saved[i]=c.textContent}});save()}
-make();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Squence Emoji Garden</title>
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="topbar.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,Arial,sans-serif}
+.garden-page{max-width:1240px;margin:auto;padding:105px 20px 60px;text-align:center}
+.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+.garden-page h1{font-size:clamp(42px,7vw,68px);letter-spacing:-3px;margin:8px 0}
+.garden-page>p{color:var(--muted);margin-bottom:18px}
+.panel{margin-top:20px;padding:18px;background:var(--card);border:1px solid var(--card-border);border-radius:25px}
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:15px}
+.stat{padding:10px 16px;background:rgba(255,255,255,.06);border-radius:12px}
+.toolbar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:15px}
+.tool-group{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:center;padding:4px 8px;border-radius:14px;background:rgba(255,255,255,.035)}
+.btn{border:1px solid var(--card-border);background:rgba(255,255,255,.08);color:var(--text);padding:9px 13px;border-radius:10px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.18s}
+.btn:hover{transform:translateY(-1px);background:rgba(255,255,255,.14)}
+.btn.active{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
+.btn.remove{opacity:.8}
+.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none}
+.hint{font-size:13px;color:var(--muted);min-height:20px;margin:5px 0 13px}
+.world-wrap{max-width:100%;overflow:auto;border-radius:18px;border:1px solid var(--card-border);background:rgba(0,0,0,.12);-webkit-overflow-scrolling:touch}
+.garden{width:1080px;height:720px;display:grid;grid-template-columns:repeat(18,60px);grid-template-rows:repeat(12,60px);overflow:hidden;position:relative;background:
+radial-gradient(circle at 15% 20%,rgba(160,220,110,.45),transparent 26%),
+radial-gradient(circle at 78% 15%,rgba(72,145,72,.42),transparent 31%),
+radial-gradient(circle at 42% 75%,rgba(113,185,91,.35),transparent 35%),
+linear-gradient(135deg,#5d9b5d,#75b96d 42%,#4f925b 100%);touch-action:manipulation}
+.plot{position:relative;width:60px;height:60px;cursor:crosshair;display:flex;align-items:center;justify-content:center;font-size:31px;user-select:none;transition:background .12s,transform .12s}
+.plot:hover{background:rgba(255,255,255,.07);transform:scale(1.04);z-index:5}
+.plot.pond{background:radial-gradient(circle at 35% 30%,#9fe9ff,#5ab8dc 55%,#3187b8);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
+.plot.path{background:#c69b6c}
+.plot.dirt{background:#7b5538}
+.plot.house{background:rgba(255,255,255,.08)}
+.plot.lantern::after{content:"";position:absolute;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle,rgba(255,225,135,.35),rgba(255,205,100,.09) 45%,transparent 70%);pointer-events:none;z-index:0}
+.plot .emoji{position:relative;z-index:2;filter:drop-shadow(0 2px 2px rgba(0,0,0,.18))}
+.plot.preview .emoji{opacity:.72}
+@media(max-width:700px){.garden-page{padding:84px 12px 40px}.panel{padding:10px}.toolbar{gap:6px}.tool-group{padding:5px}.btn{padding:8px 10px;font-size:12px}.world-wrap{border-radius:14px}.stats{margin:10px 0}.stat{font-size:13px}.garden{transform-origin:top left}}
+</style>
+</head>
+<body>
+<div class="background"><div class="orb one"></div><div class="orb two"></div></div>
+<main class="garden-page">
+  <div class="eyebrow">Squence Games · Creative</div>
+  <h1>🌱 Emoji Garden</h1>
+  <p>Build a tiny world your way — plants, ponds, paths, a house and glowing lanterns.</p>
+
+  <div class="stats">
+    <div class="stat">Garden plants: <b id="count">0</b></div>
+    <div class="stat">Your garden saves on this device</div>
+  </div>
+
+  <div class="panel">
+    <div class="toolbar">
+      <div class="tool-group">
+        <button class="btn active" data-tool="plant">🌱 Plant</button>
+        <button class="btn" data-tool="pond">💧 Pond</button>
+        <button class="btn" data-tool="house">🏡 House</button>
+        <button class="btn" data-tool="lantern">🏮 Lantern</button>
+      </div>
+      <div class="tool-group">
+        <button class="btn" data-tool="path">🟫 Path</button>
+        <button class="btn" data-tool="dirt">🟤 Dirt</button>
+      </div>
+      <div class="tool-group">
+        <button class="btn remove" data-tool="remove-pond">Remove pond</button>
+        <button class="btn remove" data-tool="remove-house">Remove house</button>
+        <button class="btn remove" data-tool="remove-lantern">Remove lantern</button>
+        <button class="btn remove" data-tool="remove-path">Remove path</button>
+        <button class="btn remove" data-tool="remove-dirt">Remove dirt</button>
+      </div>
+      <div class="tool-group">
+        <button class="btn primary" id="random">Random garden</button>
+        <button class="btn" id="clear">Clear all</button>
+      </div>
+    </div>
+    <div class="hint" id="hint">Plant mode — hover over a space, then click to plant.</div>
+    <div class="world-wrap"><div class="garden" id="garden"></div></div>
+  </div>
+</main>
+
+<script src="topbar.js"></script>
+<script>
+const COLS=18, ROWS=12, TOTAL=COLS*ROWS;
+const plants=['🌱','🌿','☘️','🍀','🌷','🌸','🌼','🌻','🌺','🌹','🪻','🪴','🌲','🌳','🍃','🍂','🍁','🪨','🍄','🌾','🌵','🌴','🐝','🦋','🐞'];
+const waterPlants=['🌹','🪷'];
+const labels={
+  plant:'Plant mode — hover over a space, then click to plant.',
+  pond:'Pond mode — click a space to add water.',
+  house:'House mode — click a space to place a small house.',
+  lantern:'Lantern mode — click a space to place a softly glowing lantern.',
+  path:'Path mode — click spaces to create a light brown path.',
+  dirt:'Dirt mode — click spaces to add darker brown accents.',
+  'remove-pond':'Remove pond mode — click a pond to remove it.',
+  'remove-house':'Remove house mode — click a house to remove it.',
+  'remove-lantern':'Remove lantern mode — click a lantern to remove it.',
+  'remove-path':'Remove path mode — click a path to remove it.',
+  'remove-dirt':'Remove dirt mode — click dirt to remove it.'
+};
+let mode='plant';
+let saved;
+try{saved=JSON.parse(localStorage.emojiGardenWorld||'{}')}catch{saved={}}
+if(!saved.cells||!Array.isArray(saved.cells)) saved.cells=Array.from({length:TOTAL},()=>({terrain:'grass',object:'',plant:''}));
+if(saved.cells.length!==TOTAL) saved.cells=Array.from({length:TOTAL},(_,i)=>saved.cells[i]||({terrain:'grass',object:'',plant:''}));
+const garden=document.getElementById('garden'),count=document.getElementById('count'),hint=document.getElementById('hint');
+const cells=[];
+
+function pick(a){return a[Math.floor(Math.random()*a.length)]}
+function save(){localStorage.emojiGardenWorld=JSON.stringify(saved);count.textContent=saved.cells.filter(c=>c.plant).length}
+function render(i){
+  const d=cells[i],s=saved.cells[i];
+  d.className='plot';
+  if(s.terrain==='pond')d.classList.add('pond');
+  if(s.terrain==='path')d.classList.add('path');
+  if(s.terrain==='dirt')d.classList.add('dirt');
+  if(s.object==='house')d.classList.add('house');
+  d.innerHTML='';
+  const emoji=document.createElement('span');emoji.className='emoji';
+  emoji.textContent=s.object==='house'?'🏡':s.object==='lantern'?'🏮':s.plant||'';
+  d.appendChild(emoji);
+}
+function setMode(next){
+  mode=next;hint.textContent=labels[mode];
+  document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===mode));
+  cells.forEach((_,i)=>render(i));
+}
+function canPlant(s){return !s.object && s.terrain!=='path' && s.terrain!=='dirt'}
+function action(i){
+  const s=saved.cells[i];
+  if(mode==='plant'){
+    if(!canPlant(s))return;
+    s.plant=pick(s.terrain==='pond'?waterPlants:plants);
+  } else if(mode==='pond'){
+    if(s.object)return;
+    s.terrain='pond';s.plant='';
+  } else if(mode==='house'){
+    if(s.plant)return;
+    s.object='house';
+  } else if(mode==='lantern'){
+    if(s.object==='house')return;
+    s.object=s.object==='lantern'?'':'lantern';
+  } else if(mode==='path'){
+    if(s.object||s.plant||s.terrain==='pond')return;
+    s.terrain='path';
+  } else if(mode==='dirt'){
+    if(s.object||s.plant||s.terrain==='pond')return;
+    s.terrain='dirt';
+  } else if(mode==='remove-pond'&&s.terrain==='pond'){
+    s.terrain='grass';s.plant='';
+  } else if(mode==='remove-house'&&s.object==='house'){
+    s.object='';
+  } else if(mode==='remove-lantern'&&s.object==='lantern'){
+    s.object='';
+  } else if(mode==='remove-path'&&s.terrain==='path'){
+    s.terrain='grass';
+  } else if(mode==='remove-dirt'&&s.terrain==='dirt'){
+    s.terrain='grass';
+  }
+  render(i);save();
+}
+function preview(i){
+  const s=saved.cells[i],d=cells[i];
+  if(mode!=='plant'||!canPlant(s)||s.plant)return;
+  d.classList.add('preview');
+  d.querySelector('.emoji').textContent=pick(s.terrain==='pond'?waterPlants:plants);
+}
+function unpreview(i){
+  const s=saved.cells[i];if(s.plant)return;
+  render(i);
+}
+for(let i=0;i<TOTAL;i++){
+  const d=document.createElement('div');d.className='plot';d.dataset.i=i;
+  d.addEventListener('pointerenter',()=>preview(i));
+  d.addEventListener('pointerleave',()=>unpreview(i));
+  d.addEventListener('pointerdown',e=>{e.preventDefault();action(i)});
+  garden.appendChild(d);cells.push(d);render(i);
+}
+document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.tool)));
+document.getElementById('clear').onclick=()=>{
+  if(!confirm('Clear your entire garden?'))return;
+  saved.cells=Array.from({length:TOTAL},()=>({terrain:'grass',object:'',plant:''}));
+  cells.forEach((_,i)=>render(i));save();
+};
+document.getElementById('random').onclick=()=>{
+  saved.cells.forEach(s=>{
+    if(Math.random()<.08){s.terrain='pond';s.object='';s.plant=Math.random()<.45?pick(waterPlants):''}
+    else if(Math.random()<.08){s.terrain='path';s.object='';s.plant=''}
+    else if(Math.random()<.07){s.terrain='dirt';s.object='';s.plant=''}
+    else if(Math.random()<.18){s.terrain='grass';s.object='';s.plant=pick(plants)}
+    else {s.terrain='grass';s.object='';s.plant=''}
+  });
+  for(let n=0;n<3;n++){const s=pick(saved.cells);if(!s.plant&&s.terrain==='grass')s.object=n===0?'house':'lantern'}
+  cells.forEach((_,i)=>render(i));save();
+};
+save();
+</script>
+</body></html>
