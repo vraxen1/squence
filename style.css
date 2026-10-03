@@ -912,8 +912,8 @@ body.squence-shared-page::after {
    SPECTRUM v2 — softer Liquid Glass, white typography,
    and glass treatment across the entire shared UI
    ===================================================== */
-body.spectrum,
-body.squence-shared-page.spectrum{
+body.pinkvalley,
+body.squence-shared-page.pinkvalley{
   --sq-text:#fff!important;
   --sq-muted:rgba(255,255,255,.82)!important;
   --sq-card:rgba(255,255,255,.18)!important;
@@ -923,45 +923,47 @@ body.squence-shared-page.spectrum{
   --sq-shadow:rgba(70,20,120,.24)!important;
   color:#fff!important;
 }
-body.spectrum .background,
-body.squence-shared-page.spectrum .background{
+body.pinkvalley .background,
+body.squence-shared-page.pinkvalley .background{
   background:linear-gradient(135deg,#d86b12 0%,#d62d78 48%,#5d27b8 100%)!important;
 }
-body.spectrum .background::before,
-body.spectrum .background::after{opacity:.7!important}
-body.spectrum :where(nav,.squence-topbar,.card,.article,.game-card,.price-card,.account-box,.coming-soon-card,.error,.feature-item,.category,.retry,.neon-input,.secondary,.primary,.play-button,.badge,.popular-badge,.form-group input,.form-group select,.form-group textarea,.account-divider,.why-item,.why-icon,.plan,.theme-button,.theme-menu,.theme-option,.squence-clock,footer){
+body.pinkvalley .background::before,
+body.pinkvalley .background::after{opacity:.7!important}
+body.pinkvalley :where(nav,.squence-topbar,.card,.article,.game-card,.price-card,.account-box,.coming-soon-card,.error,.feature-item,.category,.retry,.neon-input,.secondary,.primary,.play-button,.badge,.popular-badge,.form-group input,.form-group select,.form-group textarea,.account-divider,.why-item,.why-icon,.plan,.theme-button,.theme-menu,.theme-option,.squence-clock,footer){
   -webkit-backdrop-filter:blur(30px) saturate(150%)!important;
   backdrop-filter:blur(30px) saturate(150%)!important;
   border-color:rgba(255,255,255,.28)!important;
   box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important;
 }
-body.spectrum :where(.card,.article,.game-card,.price-card,.account-box,.coming-soon-card,.error,.feature-item,.category,.retry,.neon-input,.secondary,.form-group input,.form-group select,.form-group textarea,.why-item,.why-icon,.squence-clock){
+body.pinkvalley :where(.card,.article,.game-card,.price-card,.account-box,.coming-soon-card,.error,.feature-item,.category,.retry,.neon-input,.secondary,.form-group input,.form-group select,.form-group textarea,.why-item,.why-icon,.squence-clock){
   background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.09))!important;
   color:#fff!important;
   border:1px solid rgba(255,255,255,.28)!important;
   border-radius:24px!important;
 }
-body.spectrum :where(.card:hover,.article:hover,.game-card:hover,.price-card:hover,.feature-item:hover,.category:hover,.why-item:hover){
+body.pinkvalley :where(.card:hover,.article:hover,.game-card:hover,.price-card:hover,.feature-item:hover,.category:hover,.why-item:hover){
   background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(255,255,255,.12))!important;
   border-color:rgba(255,255,255,.42)!important;
 }
-body.spectrum :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,li,a,.section-title,.section-subtitle,.card p,.price-description,.features li,.account-description,.form-group label,.theme-description,.clock-date,.nav-links a,footer,footer strong){color:#fff!important}
-body.spectrum :where(a:hover,.card-link,.features li::before){color:#fff!important}
-body.spectrum :where(.primary,.play-button,.popular-badge){
+body.pinkvalley :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,li,a,.section-title,.section-subtitle,.card p,.price-description,.features li,.account-description,.form-group label,.theme-description,.clock-date,.nav-links a,footer,footer strong){color:#fff!important}
+body.pinkvalley :where(a:hover,.card-link,.features li::before){color:#fff!important}
+body.pinkvalley :where(.primary,.play-button,.popular-badge){
   color:#fff!important;
   background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,150,220,.18))!important;
   border:1px solid rgba(255,255,255,.42)!important;
 }
-body.spectrum :where(.secondary,.theme-button,.plan,.badge){
+body.pinkvalley :where(.secondary,.theme-button,.plan,.badge){
   color:#fff!important;
   background:rgba(255,255,255,.16)!important;
 }
-body.spectrum :where(.theme-menu){background:rgba(70,25,90,.46)!important;color:#fff!important}
-body.spectrum :where(.theme-option:hover,.theme-option.selected){background:rgba(255,255,255,.18)!important}
-body.spectrum :where(.form-group input,.form-group select,.form-group textarea){outline:none!important}
-body.spectrum :where(.form-group input::placeholder,.form-group textarea::placeholder){color:rgba(255,255,255,.65)!important}
-body.spectrum footer{background:rgba(30,8,45,.16)!important;color:#fff!important}
-body.spectrum .icon,
-body.spectrum .card-icon,
-body.spectrum .why-icon{background:rgba(255,255,255,.14)!important;color:#fff!important}
-body.spectrum .neon-circle{border-color:rgba(255,255,255,.42)!important;box-shadow:0 0 70px rgba(255,255,255,.16)!important}
+body.pinkvalley :where(.theme-menu){background:rgba(70,25,90,.46)!important;color:#fff!important}
+body.pinkvalley :where(.theme-option:hover,.theme-option.selected){background:rgba(255,255,255,.18)!important}
+body.pinkvalley :where(.form-group input,.form-group select,.form-group textarea){outline:none!important}
+body.pinkvalley :where(.form-group input::placeholder,.form-group textarea::placeholder){color:rgba(255,255,255,.65)!important}
+body.pinkvalley footer{background:rgba(30,8,45,.16)!important;color:#fff!important}
+body.pinkvalley .icon,
+body.pinkvalley .card-icon,
+body.pinkvalley .why-icon{background:rgba(255,255,255,.14)!important;color:#fff!important}
+body.pinkvalley .neon-circle{border-color:rgba(255,255,255,.42)!important;box-shadow:0 0 70px rgba(255,255,255,.16)!important}
+
+body.pinkvalley,body.squence-shared-page.pinkvalley{color:#fff!important;background:linear-gradient(180deg,#421027 0%,#6d183f 52%,#a63b61 100%)!important}body.pinkvalley .background,body.squence-shared-page.pinkvalley .background{background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;overflow:hidden}body.pinkvalley .background:before,body.squence-shared-page.pinkvalley .background:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 76% 22%,rgba(235,45,55,.95) 0 7%,rgba(235,45,55,.34) 8%,transparent 18%),linear-gradient(155deg,transparent 0 38%,#7c234a 38.1% 52%,transparent 52.1%),linear-gradient(25deg,transparent 0 43%,#8d2a52 43.1% 58%,transparent 58.1%);opacity:.95}body.pinkvalley .background:after,body.squence-shared-page.pinkvalley .background:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-2%;height:52%;background:linear-gradient(165deg,transparent 0 18%,#c14a70 18.1% 39%,#9f315d 39.1% 57%,#762047 57.1% 100%);clip-path:polygon(0 72%,12% 48%,24% 64%,37% 28%,50% 55%,62% 34%,75% 60%,88% 40%,100% 63%,100% 100%,0 100%)}body.pinkvalley :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,li,a,.section-title,.section-subtitle,.card p,.price-description,.features li,.account-description,.form-group label,.theme-description,.clock-date,.nav-links a,footer,footer strong){color:#fff!important}body.pinkvalley :where(.card,.article,.game-card,.price-card,.account-box,.coming-soon-card,.error,.feature-item,.category,.retry,.neon-input,.secondary,.primary,.play-button,.badge,.popular-badge,.form-group input,.form-group select,.form-group textarea,.why-item,.why-icon,.theme-button,.theme-menu,.plan,.squence-clock){-webkit-backdrop-filter:blur(30px) saturate(145%)!important;backdrop-filter:blur(30px) saturate(145%)!important;border-color:rgba(255,190,212,.28)!important;box-shadow:0 16px 55px rgba(55,5,25,.18),inset 0 1px 1px rgba(255,255,255,.24)!important}body.pinkvalley :where(.card,.article,.game-card,.price-card,.account-box,.coming-soon-card,.feature-item,.category,.retry,.neon-input,.secondary,.form-group input,.form-group select,.form-group textarea,.why-item,.why-icon,.theme-button,.plan,.squence-clock){background:linear-gradient(145deg,rgba(255,185,210,.20),rgba(255,115,165,.07))!important;color:#fff!important;border-radius:24px!important}body.pinkvalley :where(.primary,.play-button,.popular-badge){background:linear-gradient(135deg,rgba(235,45,65,.55),rgba(255,130,175,.22))!important;color:#fff!important;border:1px solid rgba(255,205,220,.4)!important}body.pinkvalley .theme-menu{background:rgba(75,14,40,.55)!important;color:#fff!important}body.pinkvalley .theme-option:hover,body.pinkvalley .theme-option.selected{background:rgba(255,170,200,.16)!important}
