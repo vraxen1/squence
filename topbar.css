@@ -70,25 +70,25 @@ body.squence-shared-page{padding-top:64px!important}
         inset 0 1px 1px rgba(255,255,255,.18) !important;
 }
 
-body.spectrum .squence-topbar{
+body.pinkvalley .squence-topbar{
     --top-bg:rgba(255,255,255,.22);
     --top-border:rgba(255,255,255,.45);
     --top-accent:#7b00ff;
     --top-muted:#3a3a3c;
 }
-body.spectrum .squence-topbar .logo,
-body.spectrum .squence-topbar .clock-time,
-body.spectrum .squence-topbar .nav-links a:hover,
-body.spectrum .squence-topbar .nav-links a.active{color:#1c1c1e!important}
-body.spectrum .squence-topbar .theme-button,
-body.spectrum .squence-topbar .plan{
+body.pinkvalley .squence-topbar .logo,
+body.pinkvalley .squence-topbar .clock-time,
+body.pinkvalley .squence-topbar .nav-links a:hover,
+body.pinkvalley .squence-topbar .nav-links a.active{color:#1c1c1e!important}
+body.pinkvalley .squence-topbar .theme-button,
+body.pinkvalley .squence-topbar .plan{
     color:#1c1c1e!important;
     background:rgba(255,255,255,.35)!important;
 }
 
 
-/* Spectrum v2 — softer all-glass navigation */
-body.squence-shared-page.spectrum .squence-topbar{
+/* Pink Valley v2 — softer all-glass navigation */
+body.squence-shared-page.pinkvalley .squence-topbar{
   --top-bg:rgba(80,28,80,.34)!important;
   --top-border:rgba(255,255,255,.28)!important;
   --top-accent:#fff!important;
@@ -99,7 +99,10 @@ body.squence-shared-page.spectrum .squence-topbar{
   border-bottom:1px solid rgba(255,255,255,.28)!important;
   box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important;
 }
-body.squence-shared-page.spectrum .squence-topbar :where(.nav-links a,.plan,.clock-time,.clock-date,.theme-button,.logo,.theme-option,.theme-description){color:#fff!important}
-body.squence-shared-page.spectrum .squence-topbar :where(.plan,.theme-button){background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.28)!important;backdrop-filter:blur(25px) saturate(150%)!important;-webkit-backdrop-filter:blur(25px) saturate(150%)!important}
-body.squence-shared-page.spectrum .squence-topbar .theme-menu{background:rgba(70,25,90,.46)!important;border-color:rgba(255,255,255,.28)!important;backdrop-filter:blur(30px) saturate(150%)!important;-webkit-backdrop-filter:blur(30px) saturate(150%)!important}
-body.squence-shared-page.spectrum .squence-topbar .theme-option:hover,body.squence-shared-page.spectrum .squence-topbar .theme-option.selected{background:rgba(255,255,255,.18)!important}
+body.squence-shared-page.pinkvalley .squence-topbar :where(.nav-links a,.plan,.clock-time,.clock-date,.theme-button,.logo,.theme-option,.theme-description){color:#fff!important}
+body.squence-shared-page.pinkvalley .squence-topbar :where(.plan,.theme-button){background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.28)!important;backdrop-filter:blur(25px) saturate(150%)!important;-webkit-backdrop-filter:blur(25px) saturate(150%)!important}
+body.squence-shared-page.pinkvalley .squence-topbar .theme-menu{background:rgba(70,25,90,.46)!important;border-color:rgba(255,255,255,.28)!important;backdrop-filter:blur(30px) saturate(150%)!important;-webkit-backdrop-filter:blur(30px) saturate(150%)!important}
+body.squence-shared-page.pinkvalley .squence-topbar .theme-option:hover,body.squence-shared-page.pinkvalley .squence-topbar .theme-option.selected{background:rgba(255,255,255,.18)!important}
+
+body.squence-shared-page.pinkvalley .squence-topbar{--top-bg:rgba(80,15,42,.38)!important;--top-border:rgba(255,190,212,.28)!important;--top-accent:#ff9fc1!important;--top-muted:rgba(255,220,232,.82)!important;background:rgba(255,140,175,.12)!important;-webkit-backdrop-filter:blur(30px) saturate(145%)!important;backdrop-filter:blur(30px) saturate(145%)!important;box-shadow:0 16px 55px rgba(55,5,25,.2),inset 0 1px 1px rgba(255,255,255,.25)!important}
+body.squence-shared-page.pinkvalley .squence-topbar :where(.nav-links a,.plan,.clock-time,.clock-date,.theme-button,.logo,.theme-option,.theme-description){color:#fff!important}
