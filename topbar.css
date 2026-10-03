@@ -69,3 +69,19 @@ body.squence-shared-page{padding-top:64px!important}
         0 24px 70px rgba(0,0,0,.30),
         inset 0 1px 1px rgba(255,255,255,.18) !important;
 }
+
+body.spectrum .squence-topbar{
+    --top-bg:rgba(255,255,255,.22);
+    --top-border:rgba(255,255,255,.45);
+    --top-accent:#7b00ff;
+    --top-muted:#3a3a3c;
+}
+body.spectrum .squence-topbar .logo,
+body.spectrum .squence-topbar .clock-time,
+body.spectrum .squence-topbar .nav-links a:hover,
+body.spectrum .squence-topbar .nav-links a.active{color:#1c1c1e!important}
+body.spectrum .squence-topbar .theme-button,
+body.spectrum .squence-topbar .plan{
+    color:#1c1c1e!important;
+    background:rgba(255,255,255,.35)!important;
+}
