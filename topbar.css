@@ -106,3 +106,28 @@ body.squence-shared-page.pinkvalley .squence-topbar .theme-option:hover,body.squ
 
 body.squence-shared-page.pinkvalley .squence-topbar{--top-bg:rgba(80,15,42,.38)!important;--top-border:rgba(255,190,212,.28)!important;--top-accent:#ff9fc1!important;--top-muted:rgba(255,220,232,.82)!important;background:rgba(255,140,175,.12)!important;-webkit-backdrop-filter:blur(30px) saturate(145%)!important;backdrop-filter:blur(30px) saturate(145%)!important;box-shadow:0 16px 55px rgba(55,5,25,.2),inset 0 1px 1px rgba(255,255,255,.25)!important}
 body.squence-shared-page.pinkvalley .squence-topbar :where(.nav-links a,.plan,.clock-time,.clock-date,.theme-button,.logo,.theme-option,.theme-description){color:#fff!important}
+
+
+/* Pink Valley refinement — centered rounded Liquid Glass clock */
+body.squence-shared-page.pinkvalley .squence-topbar .clock {
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  text-align:center !important;
+  padding:7px 13px !important;
+  min-width:112px !important;
+  min-height:44px !important;
+  border-left:0 !important;
+  border:1px solid rgba(255,205,220,.32) !important;
+  border-radius:18px !important;
+  background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08)) !important;
+  -webkit-backdrop-filter:blur(30px) saturate(150%) !important;
+  backdrop-filter:blur(30px) saturate(150%) !important;
+  box-shadow:0 12px 35px rgba(55,5,25,.16),inset 0 1px 1px rgba(255,255,255,.28) !important;
+}
+body.squence-shared-page.pinkvalley .squence-topbar .clock-time,
+body.squence-shared-page.pinkvalley .squence-topbar .clock-date {
+  text-align:center !important;
+  width:100% !important;
+}
