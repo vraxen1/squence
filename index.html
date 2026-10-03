@@ -121,46 +121,46 @@ nav{
     background:rgba(20,16,48,.68)!important;
     border:1px solid rgba(255,255,255,.18)!important;
 }
-body.spectrum{
-    --bg:#ff007b;
-    --bg2:#7b00ff;
+body.pinkvalley{
+    --bg:#ff7da8;
+    --bg2:#b83262;
     --text:#1c1c1e;
     --muted:#3a3a3c;
-    --accent:#7b00ff;
-    --accent2:#ff007b;
+    --accent:#b83262;
+    --accent2:#ff7da8;
     --nav:rgba(255,255,255,.30);
     --card:rgba(255,255,255,.40);
     --card-border:rgba(255,255,255,.45);
     --shadow:rgba(123,0,255,.22);
-    background:linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)!important;
+    background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;
 }
-body.spectrum .background{
-    background:linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)!important;
+body.pinkvalley .background{
+    background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;
 }
-body.spectrum .card,
-body.spectrum .theme-button,
-body.spectrum .button.secondary{
+body.pinkvalley .card,
+body.pinkvalley .theme-button,
+body.pinkvalley .button.secondary{
     color:#1c1c1e!important;
 }
-body.spectrum .theme-menu{
+body.pinkvalley .theme-menu{
     background:rgba(255,255,255,.32)!important;
     color:#1c1c1e!important;
 }
-body.spectrum .nav-links a,
-body.spectrum .plan,
-body.spectrum .clock-time,
-body.spectrum .clock-date{
+body.pinkvalley .nav-links a,
+body.pinkvalley .plan,
+body.pinkvalley .clock-time,
+body.pinkvalley .clock-date{
     color:#1c1c1e!important;
 }
 
-body.spectrum .orb.one{background:#ff007b!important}
-body.spectrum .orb.two{background:#7b00ff!important}
-body.spectrum .hero::after{
+body.pinkvalley .orb.one{background:#ff7da8!important}
+body.pinkvalley .orb.two{background:#b83262!important}
+body.pinkvalley .hero::after{
     background:radial-gradient(ellipse at center,rgba(255,0,123,.55) 0%,rgba(123,0,255,.28) 35%,transparent 70%);
     opacity:.42;
     filter:blur(25px);
 }
-body.spectrum .hero::before{
+body.pinkvalley .hero::before{
     border-top:1px solid rgba(255,255,255,.42);
     box-shadow:0 -15px 70px rgba(123,0,255,.28);
 }
@@ -188,7 +188,7 @@ body.spectrum .hero::before{
 <button class="theme-option" id="neonOption" onclick="setTheme('neon')"><span>🌌</span><span><strong>Neon</strong><small class="theme-description">Original dark theme</small></span></button>
 <button class="theme-option" id="tulipOption" onclick="setTheme('tulip')"><span>🌷</span><span><strong>Tulip</strong><small class="theme-description">Warm tulip-inspired colors</small></span></button>
 <button class="theme-option" id="alpineOption" onclick="setTheme('alpine')"><span>🏔️</span><span><strong>Alpine</strong><small class="theme-description">Icy mountain and deep lake colors</small></span></button>
-<button class="theme-option" id="spectrumOption" onclick="setTheme('spectrum')"><span>🌈</span><span><strong>Spectrum</strong><small class="theme-description">Liquid Glass inspired by the new iOS logo</small></span></button>
+<button class="theme-option" id="pinkvalleyOption" onclick="setTheme('pinkvalley')"><span>🏔️</span><span><strong>Pink Valley</strong><small class="theme-description">Liquid Glass inspired by the new iOS logo</small></span></button>
 </div>
 </div>
 </div>
@@ -229,21 +229,22 @@ body.spectrum .hero::before{
 function updateClock(){const now=new Date();document.getElementById('clockTime').textContent=now.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});document.getElementById('clockDate').textContent=now.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'})}
 updateClock();setInterval(updateClock,1000);
 function toggleThemeMenu(){document.getElementById('themeSelector').classList.toggle('open')}
-function setTheme(theme){theme=['neon','tulip','alpine','spectrum'].includes(theme)?theme:'neon';document.body.classList.remove('neon','tulip','alpine','spectrum');document.body.classList.add(theme);localStorage.setItem('squenceTheme',theme);localStorage.setItem('squence-theme',theme);document.getElementById('themeSelector').classList.remove('open');updateThemeUI()}
-function updateThemeUI(){const theme=document.body.classList.contains('alpine')?'alpine':document.body.classList.contains('tulip')?'tulip':'neon';document.getElementById('neonOption').classList.toggle('selected',theme==='neon');document.getElementById('tulipOption').classList.toggle('selected',theme==='tulip');document.getElementById('alpineOption').classList.toggle('selected',theme==='alpine');document.getElementById('spectrumOption').classList.toggle('selected',theme==='spectrum');document.getElementById('themeDot').style.background=theme==='spectrum'?'linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)':theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff'}
-const savedTheme=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(['tulip','neon','alpine','spectrum'].includes(savedTheme)){document.body.classList.remove('neon','tulip','alpine');document.body.classList.add(savedTheme)}updateThemeUI();
+function setTheme(theme){theme=['neon','tulip','alpine','pinkvalley'].includes(theme)?theme:'neon';document.body.classList.remove('neon','tulip','alpine','pinkvalley');document.body.classList.add(theme);localStorage.setItem('squenceTheme',theme);localStorage.setItem('squence-theme',theme);document.getElementById('themeSelector').classList.remove('open');updateThemeUI()}
+function updateThemeUI(){const theme=document.body.classList.contains('alpine')?'alpine':document.body.classList.contains('tulip')?'tulip':'neon';document.getElementById('neonOption').classList.toggle('selected',theme==='neon');document.getElementById('tulipOption').classList.toggle('selected',theme==='tulip');document.getElementById('alpineOption').classList.toggle('selected',theme==='alpine');document.getElementById('pinkvalleyOption').classList.toggle('selected',theme==='pinkvalley');document.getElementById('themeDot').style.background=theme==='pinkvalley'?'linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)':theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff'}
+const savedTheme=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(['tulip','neon','alpine','pinkvalley'].includes(savedTheme)){document.body.classList.remove('neon','tulip','alpine');document.body.classList.add(savedTheme)}updateThemeUI();
 document.addEventListener('click',function(event){const selector=document.getElementById('themeSelector');if(!selector.contains(event.target))selector.classList.remove('open')});
 </script>
 </body>
 </html>
 <style>
-/* Spectrum v2 homepage overrides */
-body.spectrum{--text:#fff!important;--muted:rgba(255,255,255,.82)!important;--accent:#fff!important;--accent2:#ffb7df!important;--card:rgba(255,255,255,.18)!important;--card-border:rgba(255,255,255,.28)!important;--nav:rgba(255,255,255,.13)!important;--shadow:rgba(42,12,70,.24)!important;color:#fff!important;background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
-body.spectrum .background{background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
-body.spectrum :where(nav,.card,.theme-button,.theme-menu,.badge,.button,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){-webkit-backdrop-filter:blur(30px) saturate(150%)!important;backdrop-filter:blur(30px) saturate(150%)!important;border-color:rgba(255,255,255,.28)!important;box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important}
-body.spectrum :where(nav,.card,.theme-button,.badge,.button.secondary,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.08))!important;color:#fff!important}
-body.spectrum .theme-menu{background:rgba(70,25,90,.46)!important;color:#fff!important}
-body.spectrum :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,a,.section-title,.section-subtitle,.hero-description,.card p,.card-link,.why-item p,.why-item h3,footer,.nav-links a,.clock-time,.clock-date,.theme-option,.theme-description){color:#fff!important}
-body.spectrum .primary{color:#fff!important;background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,150,220,.18))!important;border:1px solid rgba(255,255,255,.42)!important}
-body.spectrum .neon-circle{border-color:rgba(255,255,255,.42)!important;box-shadow:0 0 70px rgba(255,255,255,.16)!important}
+/* Pink Valley v2 homepage overrides */
+body.pinkvalley{--text:#fff!important;--muted:rgba(255,255,255,.82)!important;--accent:#fff!important;--accent2:#ffb7df!important;--card:rgba(255,255,255,.18)!important;--card-border:rgba(255,255,255,.28)!important;--nav:rgba(255,255,255,.13)!important;--shadow:rgba(42,12,70,.24)!important;color:#fff!important;background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
+body.pinkvalley .background{background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
+body.pinkvalley :where(nav,.card,.theme-button,.theme-menu,.badge,.button,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){-webkit-backdrop-filter:blur(30px) saturate(150%)!important;backdrop-filter:blur(30px) saturate(150%)!important;border-color:rgba(255,255,255,.28)!important;box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important}
+body.pinkvalley :where(nav,.card,.theme-button,.badge,.button.secondary,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.08))!important;color:#fff!important}
+body.pinkvalley .theme-menu{background:rgba(70,25,90,.46)!important;color:#fff!important}
+body.pinkvalley :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,a,.section-title,.section-subtitle,.hero-description,.card p,.card-link,.why-item p,.why-item h3,footer,.nav-links a,.clock-time,.clock-date,.theme-option,.theme-description){color:#fff!important}
+body.pinkvalley .primary{color:#fff!important;background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,150,220,.18))!important;border:1px solid rgba(255,255,255,.42)!important}
+body.pinkvalley .neon-circle{border-color:rgba(255,255,255,.42)!important;box-shadow:0 0 70px rgba(255,255,255,.16)!important}
 </style>
+<style>body.pinkvalley{--text:#fff!important;--muted:rgba(255,220,232,.82)!important;--accent:#ff9fc1!important;--accent2:#e94b72!important;--card:rgba(255,185,210,.18)!important;--card-border:rgba(255,205,220,.28)!important;--nav:rgba(255,140,175,.12)!important;color:#fff!important;background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important}body.pinkvalley .background{background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;overflow:hidden}body.pinkvalley .background:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 76% 22%,rgba(235,45,55,.95) 0 7%,rgba(235,45,55,.34) 8%,transparent 18%),linear-gradient(155deg,transparent 0 38%,#7c234a 38.1% 52%,transparent 52.1%),linear-gradient(25deg,transparent 0 43%,#8d2a52 43.1% 58%,transparent 58.1%)}body.pinkvalley .background:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-2%;height:52%;background:#a83b63;clip-path:polygon(0 72%,12% 48%,24% 64%,37% 28%,50% 55%,62% 34%,75% 60%,88% 40%,100% 63%,100% 100%,0 100%)}body.pinkvalley :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,a,.section-title,.section-subtitle,.hero-description,.card p,.card-link,.why-item p,.why-item h3,footer,.nav-links a,.clock-time,.clock-date,.theme-option,.theme-description){color:#fff!important}body.pinkvalley :where(nav,.card,.theme-button,.theme-menu,.badge,.button,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){-webkit-backdrop-filter:blur(30px) saturate(145%)!important;backdrop-filter:blur(30px) saturate(145%)!important;border-color:rgba(255,205,220,.28)!important;box-shadow:0 16px 55px rgba(55,5,25,.18),inset 0 1px 1px rgba(255,255,255,.24)!important}body.pinkvalley :where(nav,.card,.theme-button,.badge,.button.secondary,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){background:linear-gradient(145deg,rgba(255,185,210,.20),rgba(255,115,165,.07))!important;color:#fff!important}body.pinkvalley .theme-menu{background:rgba(75,14,40,.55)!important}body.pinkvalley .primary{background:linear-gradient(135deg,rgba(235,45,65,.55),rgba(255,130,175,.22))!important;color:#fff!important}body.pinkvalley .neon-circle.one{border-color:rgba(245,70,70,.25)!important;background:radial-gradient(circle,rgba(240,55,55,.8) 0 16%,rgba(240,55,55,.18) 17% 32%,transparent 55%)!important;box-shadow:none!important}body.pinkvalley .neon-circle.two{display:none}</style>
