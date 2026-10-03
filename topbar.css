@@ -85,3 +85,21 @@ body.spectrum .squence-topbar .plan{
     color:#1c1c1e!important;
     background:rgba(255,255,255,.35)!important;
 }
+
+
+/* Spectrum v2 — softer all-glass navigation */
+body.squence-shared-page.spectrum .squence-topbar{
+  --top-bg:rgba(80,28,80,.34)!important;
+  --top-border:rgba(255,255,255,.28)!important;
+  --top-accent:#fff!important;
+  --top-muted:rgba(255,255,255,.82)!important;
+  background:rgba(255,255,255,.13)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(150%)!important;
+  backdrop-filter:blur(30px) saturate(150%)!important;
+  border-bottom:1px solid rgba(255,255,255,.28)!important;
+  box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important;
+}
+body.squence-shared-page.spectrum .squence-topbar :where(.nav-links a,.plan,.clock-time,.clock-date,.theme-button,.logo,.theme-option,.theme-description){color:#fff!important}
+body.squence-shared-page.spectrum .squence-topbar :where(.plan,.theme-button){background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.28)!important;backdrop-filter:blur(25px) saturate(150%)!important;-webkit-backdrop-filter:blur(25px) saturate(150%)!important}
+body.squence-shared-page.spectrum .squence-topbar .theme-menu{background:rgba(70,25,90,.46)!important;border-color:rgba(255,255,255,.28)!important;backdrop-filter:blur(30px) saturate(150%)!important;-webkit-backdrop-filter:blur(30px) saturate(150%)!important}
+body.squence-shared-page.spectrum .squence-topbar .theme-option:hover,body.squence-shared-page.spectrum .squence-topbar .theme-option.selected{background:rgba(255,255,255,.18)!important}
