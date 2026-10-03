@@ -22,7 +22,7 @@
           <button class="theme-option" id="squenceNeonOption" type="button" onclick="window.squenceSetTheme('neon')"><span>🌌</span><span><strong>Neon</strong><small class="theme-description">Original dark theme</small></span></button>
           <button class="theme-option" id="squenceTulipOption" type="button" onclick="window.squenceSetTheme('tulip')"><span>🌷</span><span><strong>Tulip</strong><small class="theme-description">Warm tulip-inspired colors</small></span></button>
           <button class="theme-option" id="squenceAlpineOption" type="button" onclick="window.squenceSetTheme('alpine')"><span>🏔️</span><span><strong>Alpine</strong><small class="theme-description">Icy mountain and deep lake colors</small></span></button>
-          <button class="theme-option" id="squenceSpectrumOption" type="button" onclick="window.squenceSetTheme('spectrum')"><span>🌈</span><span><strong>Spectrum</strong><small class="theme-description">Liquid Glass inspired by the new iOS logo</small></span></button>
+          <button class="theme-option" id="squencePink ValleyOption" type="button" onclick="window.squenceSetTheme('pinkvalley')"><span>🏔️</span><span><strong>Pink Valley</strong><small class="theme-description">Pink mountain valley with a red sun</small></span></button>
         </div>
       </div>
     </div>`;
@@ -33,17 +33,17 @@
     body.squence-shared-page.neon{--sq-bg:#050318;--sq-bg2:#09062b;--sq-text:#fff;--sq-muted:#9995ad;--sq-card:rgba(14,11,45,.78);--sq-border:rgba(151,92,255,.20);--sq-accent:#a855ff;--sq-accent2:#5968ff;--sq-shadow:rgba(111,47,255,.25)}
     body.squence-shared-page.tulip{--sq-bg:#170b13;--sq-bg2:#321322;--sq-text:#fff7f9;--sq-muted:#c5a5b0;--sq-card:rgba(62,24,42,.72);--sq-border:rgba(239,154,180,.22);--sq-accent:#e38aa9;--sq-accent2:#b85f87;--sq-shadow:rgba(190,72,117,.25)}
     body.squence-shared-page.alpine{--sq-bg:#082b48;--sq-bg2:#123f63;--sq-text:#eef4f7;--sq-muted:#a9bdd0;--sq-card:rgba(20,65,96,.72);--sq-border:rgba(156,197,220,.20);--sq-accent:#78aeca;--sq-accent2:#3d7399;--sq-shadow:rgba(35,101,142,.28)}
-    body.squence-shared-page.spectrum{--sq-bg:#321022;--sq-bg2:#4b0f50;--sq-text:#fff;--sq-muted:#5b4856;--sq-card:rgba(255,255,255,.42);--sq-border:rgba(255,255,255,.45);--sq-accent:#ff007b;--sq-accent2:#7b00ff;--sq-shadow:rgba(123,0,255,.22)}
+    body.squence-shared-page.pinkvalley{--sq-bg:#3b1025;--sq-bg2:#65163b;--sq-text:#fff;--sq-muted:rgba(255,220,232,.78);--sq-card:rgba(255,180,205,.16);--sq-border:rgba(255,210,225,.28);--sq-accent:#ff9fc1;--sq-accent2:#e94b72;--sq-shadow:rgba(110,10,45,.28)}
 
     body.squence-shared-page{background:var(--sq-bg)!important;color:var(--sq-text)!important;transition:background .45s,color .45s}
     body.squence-shared-page .background{background:radial-gradient(circle at 20% 20%,color-mix(in srgb,var(--sq-accent) 18%,transparent),transparent 30%),radial-gradient(circle at 80% 70%,color-mix(in srgb,var(--sq-accent2) 14%,transparent),transparent 32%),linear-gradient(135deg,var(--sq-bg),var(--sq-bg2))!important}
     body.squence-shared-page.alpine .background{background:radial-gradient(circle at 78% 8%,rgba(174,202,219,.16),transparent 26%),radial-gradient(circle at 18% 78%,rgba(57,111,148,.20),transparent 34%),linear-gradient(150deg,#0b3554 0%,#0a2b47 48%,#061f35 100%)!important}
-    body.squence-shared-page.spectrum .background{background:linear-gradient(135deg,#ff7b00 0%,#ff007b 48%,#7b00ff 100%)!important}
-    body.squence-shared-page.spectrum .orb.one{background:#ff007b!important}
-    body.squence-shared-page.spectrum .orb.two{background:#7b00ff!important}
-    body.squence-shared-page.spectrum .theme-menu{background:rgba(255,255,255,.30)!important;color:#1c1c1e!important}
-    body.squence-shared-page.spectrum :where(.card,.article,.game-card,.price-card,.account-box,.coming-soon-card){color:#1c1c1e!important}
-    body.squence-shared-page.spectrum :where(p,.subtitle,.status,.article-description,.source,.article-date,.price-description,.account-description,.feature-item,.loading){color:#3a3a3c!important}
+    body.squence-shared-page.pinkvalley .background{background:linear-gradient(135deg,#ff7b00 0%,#ff007b 48%,#7b00ff 100%)!important}
+    body.squence-shared-page.pinkvalley .orb.one{background:#ff007b!important}
+    body.squence-shared-page.pinkvalley .orb.two{background:#7b00ff!important}
+    body.squence-shared-page.pinkvalley .theme-menu{background:rgba(255,255,255,.30)!important;color:#1c1c1e!important}
+    body.squence-shared-page.pinkvalley :where(.card,.article,.game-card,.price-card,.account-box,.coming-soon-card){color:#1c1c1e!important}
+    body.squence-shared-page.pinkvalley :where(p,.subtitle,.status,.article-description,.source,.article-date,.price-description,.account-description,.feature-item,.loading){color:#3a3a3c!important}
     body.squence-shared-page .orb.one{background:var(--sq-accent)!important}
     body.squence-shared-page .orb.two{background:var(--sq-accent2)!important}
 
@@ -66,17 +66,17 @@
   `;
 
   function applyTheme(theme){
-    theme=['neon','tulip','alpine','spectrum'].includes(theme)?theme:'neon';
-    document.body.classList.remove('neon','tulip','alpine','spectrum');
+    theme=['neon','tulip','alpine','pinkvalley'].includes(theme)?theme:'neon';
+    document.body.classList.remove('neon','tulip','alpine','pinkvalley');
     document.body.classList.add('squence-shared-page',theme);
     localStorage.setItem('squenceTheme',theme);
     localStorage.setItem('squence-theme',theme);
     const dot=document.getElementById('squenceThemeDot');
-    if(dot)dot.style.background=theme==='spectrum'?'linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)':theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff';
+    if(dot)dot.style.background=theme==='pinkvalley'?'linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)':theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff';
     document.getElementById('squenceNeonOption')?.classList.toggle('selected',theme==='neon');
     document.getElementById('squenceTulipOption')?.classList.toggle('selected',theme==='tulip');
     document.getElementById('squenceAlpineOption')?.classList.toggle('selected',theme==='alpine');
-    document.getElementById('squenceSpectrumOption')?.classList.toggle('selected',theme==='spectrum');
+    document.getElementById('squencePink ValleyOption')?.classList.toggle('selected',theme==='pinkvalley');
   }
 
   window.squenceSetTheme=applyTheme;
