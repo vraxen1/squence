@@ -236,3 +236,14 @@ document.addEventListener('click',function(event){const selector=document.getEle
 </script>
 </body>
 </html>
+<style>
+/* Spectrum v2 homepage overrides */
+body.spectrum{--text:#fff!important;--muted:rgba(255,255,255,.82)!important;--accent:#fff!important;--accent2:#ffb7df!important;--card:rgba(255,255,255,.18)!important;--card-border:rgba(255,255,255,.28)!important;--nav:rgba(255,255,255,.13)!important;--shadow:rgba(42,12,70,.24)!important;color:#fff!important;background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
+body.spectrum .background{background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
+body.spectrum :where(nav,.card,.theme-button,.theme-menu,.badge,.button,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){-webkit-backdrop-filter:blur(30px) saturate(150%)!important;backdrop-filter:blur(30px) saturate(150%)!important;border-color:rgba(255,255,255,.28)!important;box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important}
+body.spectrum :where(nav,.card,.theme-button,.badge,.button.secondary,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.08))!important;color:#fff!important}
+body.spectrum .theme-menu{background:rgba(70,25,90,.46)!important;color:#fff!important}
+body.spectrum :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,a,.section-title,.section-subtitle,.hero-description,.card p,.card-link,.why-item p,.why-item h3,footer,.nav-links a,.clock-time,.clock-date,.theme-option,.theme-description){color:#fff!important}
+body.spectrum .primary{color:#fff!important;background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,150,220,.18))!important;border:1px solid rgba(255,255,255,.42)!important}
+body.spectrum .neon-circle{border-color:rgba(255,255,255,.42)!important;box-shadow:0 0 70px rgba(255,255,255,.16)!important}
+</style>
