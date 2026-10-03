@@ -83,6 +83,87 @@ nav{isolation:isolate!important}
 .theme-menu{z-index:10001!important;pointer-events:none!important}
 .theme-selector.open .theme-menu{pointer-events:auto!important}
 }
+
+/* =====================================================
+   LIQUID GLASS — all homepage themes
+   ===================================================== */
+nav,
+.card,
+.theme-button,
+.theme-menu,
+.badge,
+.button.secondary,
+.button.primary {
+    -webkit-backdrop-filter: blur(30px) saturate(190%);
+    backdrop-filter: blur(30px) saturate(190%);
+    box-shadow:
+        0 12px 40px rgba(0,0,0,.16),
+        inset 0 1px 1px rgba(255,255,255,.20);
+}
+nav{
+    background:rgba(255,255,255,.09)!important;
+    border:1px solid rgba(255,255,255,.15)!important;
+    border-bottom-color:var(--card-border)!important;
+}
+.card{
+    background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.045))!important;
+    border-color:rgba(255,255,255,.18)!important;
+    border-radius:24px!important;
+}
+.card:hover{
+    background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.07))!important;
+}
+.theme-button,.button.secondary{
+    background:rgba(255,255,255,.10)!important;
+    border:1px solid rgba(255,255,255,.18)!important;
+}
+.theme-menu{
+    background:rgba(20,16,48,.68)!important;
+    border:1px solid rgba(255,255,255,.18)!important;
+}
+body.spectrum{
+    --bg:#ff007b;
+    --bg2:#7b00ff;
+    --text:#1c1c1e;
+    --muted:#3a3a3c;
+    --accent:#7b00ff;
+    --accent2:#ff007b;
+    --nav:rgba(255,255,255,.30);
+    --card:rgba(255,255,255,.40);
+    --card-border:rgba(255,255,255,.45);
+    --shadow:rgba(123,0,255,.22);
+    background:linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)!important;
+}
+body.spectrum .background{
+    background:linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)!important;
+}
+body.spectrum .card,
+body.spectrum .theme-button,
+body.spectrum .button.secondary{
+    color:#1c1c1e!important;
+}
+body.spectrum .theme-menu{
+    background:rgba(255,255,255,.32)!important;
+    color:#1c1c1e!important;
+}
+body.spectrum .nav-links a,
+body.spectrum .plan,
+body.spectrum .clock-time,
+body.spectrum .clock-date{
+    color:#1c1c1e!important;
+}
+
+body.spectrum .orb.one{background:#ff007b!important}
+body.spectrum .orb.two{background:#7b00ff!important}
+body.spectrum .hero::after{
+    background:radial-gradient(ellipse at center,rgba(255,0,123,.55) 0%,rgba(123,0,255,.28) 35%,transparent 70%);
+    opacity:.42;
+    filter:blur(25px);
+}
+body.spectrum .hero::before{
+    border-top:1px solid rgba(255,255,255,.42);
+    box-shadow:0 -15px 70px rgba(123,0,255,.28);
+}
 </style>
 </head>
 <body class="neon">
@@ -107,6 +188,7 @@ nav{isolation:isolate!important}
 <button class="theme-option" id="neonOption" onclick="setTheme('neon')"><span>🌌</span><span><strong>Neon</strong><small class="theme-description">Original dark theme</small></span></button>
 <button class="theme-option" id="tulipOption" onclick="setTheme('tulip')"><span>🌷</span><span><strong>Tulip</strong><small class="theme-description">Warm tulip-inspired colors</small></span></button>
 <button class="theme-option" id="alpineOption" onclick="setTheme('alpine')"><span>🏔️</span><span><strong>Alpine</strong><small class="theme-description">Icy mountain and deep lake colors</small></span></button>
+<button class="theme-option" id="spectrumOption" onclick="setTheme('spectrum')"><span>🌈</span><span><strong>Spectrum</strong><small class="theme-description">Liquid Glass inspired by the new iOS logo</small></span></button>
 </div>
 </div>
 </div>
@@ -147,9 +229,9 @@ nav{isolation:isolate!important}
 function updateClock(){const now=new Date();document.getElementById('clockTime').textContent=now.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});document.getElementById('clockDate').textContent=now.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'})}
 updateClock();setInterval(updateClock,1000);
 function toggleThemeMenu(){document.getElementById('themeSelector').classList.toggle('open')}
-function setTheme(theme){theme=['neon','tulip','alpine'].includes(theme)?theme:'neon';document.body.classList.remove('neon','tulip','alpine');document.body.classList.add(theme);localStorage.setItem('squenceTheme',theme);localStorage.setItem('squence-theme',theme);document.getElementById('themeSelector').classList.remove('open');updateThemeUI()}
-function updateThemeUI(){const theme=document.body.classList.contains('alpine')?'alpine':document.body.classList.contains('tulip')?'tulip':'neon';document.getElementById('neonOption').classList.toggle('selected',theme==='neon');document.getElementById('tulipOption').classList.toggle('selected',theme==='tulip');document.getElementById('alpineOption').classList.toggle('selected',theme==='alpine');document.getElementById('themeDot').style.background=theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff'}
-const savedTheme=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(['tulip','neon','alpine'].includes(savedTheme)){document.body.classList.remove('neon','tulip','alpine');document.body.classList.add(savedTheme)}updateThemeUI();
+function setTheme(theme){theme=['neon','tulip','alpine','spectrum'].includes(theme)?theme:'neon';document.body.classList.remove('neon','tulip','alpine','spectrum');document.body.classList.add(theme);localStorage.setItem('squenceTheme',theme);localStorage.setItem('squence-theme',theme);document.getElementById('themeSelector').classList.remove('open');updateThemeUI()}
+function updateThemeUI(){const theme=document.body.classList.contains('alpine')?'alpine':document.body.classList.contains('tulip')?'tulip':'neon';document.getElementById('neonOption').classList.toggle('selected',theme==='neon');document.getElementById('tulipOption').classList.toggle('selected',theme==='tulip');document.getElementById('alpineOption').classList.toggle('selected',theme==='alpine');document.getElementById('spectrumOption').classList.toggle('selected',theme==='spectrum');document.getElementById('themeDot').style.background=theme==='spectrum'?'linear-gradient(135deg,#ff7b00,#ff007b,#7b00ff)':theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff'}
+const savedTheme=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(['tulip','neon','alpine','spectrum'].includes(savedTheme)){document.body.classList.remove('neon','tulip','alpine');document.body.classList.add(savedTheme)}updateThemeUI();
 document.addEventListener('click',function(event){const selector=document.getElementById('themeSelector');if(!selector.contains(event.target))selector.classList.remove('open')});
 </script>
 </body>
