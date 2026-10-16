@@ -54,6 +54,33 @@ footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,.07);text-align:cen
 @media(max-width:800px){main{padding-top:120px}.hero{grid-template-columns:1fr;gap:44px}.preview-wrap{max-width:540px;width:100%;margin:0 auto}.features{grid-template-columns:repeat(2,minmax(0,1fr))}.tag-one{left:-8px}.tag-two{right:-8px}}
 @media(max-width:560px){main{padding:110px 5% 60px}h1{letter-spacing:-3px}.lead{font-size:16px}.features{grid-template-columns:1fr}.feature{padding:22px}.preview{padding:17px}.tag-one{bottom:20px}.section{margin-top:65px}.bottom-cta{margin-top:60px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* Pink Valley theme — match the Squence homepage landscape and Liquid Glass */
+body.pinkvalley{--accent:#ff9fc1;--accent2:#e94b72;--glass:rgba(255,220,232,.16);--line:rgba(255,220,232,.3);background:#ff9fc1;color:#fff}
+body.pinkvalley .background{background:linear-gradient(180deg,#ffb0ce 0%,#ff8fba 48%,#f36b9d 100%);overflow:hidden}
+body.pinkvalley .background:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 76% 22%,rgba(235,45,55,.95) 0 7%,rgba(235,45,55,.30) 8%,transparent 18%),linear-gradient(155deg,transparent 0 38%,#ff7eae 38.1% 52%,transparent 52.1%),linear-gradient(25deg,transparent 0 43%,#ff94bc 43.1% 58%,transparent 58.1%);animation:none}
+body.pinkvalley .background:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-2%;height:52%;background:#ff72a5;clip-path:polygon(0 72%,12% 48%,24% 64%,37% 28%,50% 55%,62% 34%,75% 60%,88% 40%,100% 63%,100% 100%,0 100%)}
+body.pinkvalley .orb{display:none}
+body.pinkvalley .eyebrow,body.pinkvalley .preview-pill{color:#fff;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.34);box-shadow:0 8px 25px rgba(93,18,55,.08),inset 0 1px rgba(255,255,255,.24);backdrop-filter:blur(24px) saturate(150%)}
+body.pinkvalley .pulse{background:#fff;box-shadow:0 0 14px rgba(255,255,255,.9)}
+body.pinkvalley .gradient{background:linear-gradient(105deg,#fff 5%,#ffe5ef 48%,#fff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.pinkvalley .lead,body.pinkvalley .section-head p,body.pinkvalley .feature p,body.pinkvalley .bottom-cta p{color:rgba(255,255,255,.88)}
+body.pinkvalley .note,body.pinkvalley .hint{color:rgba(255,255,255,.74)}
+body.pinkvalley .btn,body.pinkvalley .preview,body.pinkvalley .feature,body.pinkvalley .bottom-cta{border-color:rgba(255,255,255,.32);background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08));-webkit-backdrop-filter:blur(30px) saturate(150%);backdrop-filter:blur(30px) saturate(150%);box-shadow:0 16px 55px rgba(93,18,55,.16),inset 0 1px 1px rgba(255,255,255,.26)}
+body.pinkvalley .btn.primary{background:linear-gradient(135deg,rgba(235,45,65,.62),rgba(255,130,175,.30));border-color:rgba(255,255,255,.48);box-shadow:0 12px 35px rgba(123,20,62,.20),inset 0 1px rgba(255,255,255,.28)}
+body.pinkvalley .preview-glow{background:linear-gradient(130deg,#f04473,#ffb1cf);opacity:.25}
+body.pinkvalley .brand-icon,body.pinkvalley .send{background:linear-gradient(135deg,#fff0f5,#ff8fb8);color:#7c234a}
+body.pinkvalley .preview-top{border-bottom-color:rgba(255,255,255,.24);color:#fff}
+body.pinkvalley .message{color:#fff;border-color:rgba(255,255,255,.23)}
+body.pinkvalley .message.user{background:rgba(139,20,65,.18);border-color:rgba(255,255,255,.3)}
+body.pinkvalley .message.ai{background:rgba(255,255,255,.12)}
+body.pinkvalley .fake-input{background:rgba(100,15,50,.12);border-color:rgba(255,255,255,.28);color:rgba(255,255,255,.78)}
+body.pinkvalley .feature-icon{background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(255,255,255,.10));border-color:rgba(255,255,255,.28)}
+body.pinkvalley .kicker{color:#fff}
+body.pinkvalley footer{border-top-color:rgba(255,255,255,.22);color:rgba(255,255,255,.82)}
+body.pinkvalley footer strong,body.pinkvalley footer a{color:#fff}
+@media(prefers-reduced-motion:reduce){body.pinkvalley .btn.primary{animation:none}}
+
 </style>
 </head>
 <body class="squence-shared-page neon">
@@ -64,7 +91,7 @@ footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,.07);text-align:cen
     <div class="eyebrow"><span class="pulse"></span> The next chapter of Squence</div>
     <h1>Your ideas.<br><span class="gradient">Amplified.</span></h1>
     <p class="lead">Meet Squence AI — a smarter space to ask questions, explore ideas, create things and get unstuck. We're shaping the experience now.</p>
-    <div class="actions"><a class="btn primary" href="#features">✦ Explore the vision <span aria-hidden="true">↘</span></a><a class="btn" href="./">← Back to Squence</a></div>
+    <div class="actions"><a class="btn primary" href="#features" id="exploreVision">✦ Explore the vision <span aria-hidden="true">↘</span></a><a class="btn" href="./">← Back to Squence</a></div>
     <p class="note">Squence AI is in development. Features shown here are planned concepts, not live tools yet.</p>
   </div>
   <div class="preview-wrap" aria-label="Illustrative preview of a future Squence AI chat interface">
@@ -98,6 +125,14 @@ footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,.07);text-align:cen
 </section>
 </main>
 <footer><p>© 2026 <strong>Squence</strong>. All rights reserved.</p><p style="margin-top:8px">By using Squence, you agree to our <a href="terms.html">Terms of Service</a>.</p></footer>
+<script>
+document.getElementById('exploreVision')?.addEventListener('click',function(event){
+  const target=document.getElementById('features');
+  if(!target)return;
+  event.preventDefault();
+  target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+});
+</script>
 <script src="topbar.js"></script>
 </body>
 </html>
