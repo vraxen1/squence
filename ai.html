@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080716">
+<title>Squence AI — Coming Soon</title>
+<link rel="stylesheet" href="topbar.css">
+<link rel="icon" type="image/png" href="favicon.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark;--accent:#a78bfa;--accent2:#67e8f9;--glass:rgba(255,255,255,.065);--line:rgba(255,255,255,.13)}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080716;color:#fff;overflow-x:hidden}
+.background{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 18% 15%,rgba(122,71,255,.26),transparent 34%),radial-gradient(ellipse at 84% 42%,rgba(34,211,238,.15),transparent 32%),linear-gradient(145deg,#080716,#100d2b 55%,#080716)}
+.orb{position:absolute;width:360px;height:360px;border-radius:50%;filter:blur(100px);opacity:.22;animation:float 14s ease-in-out infinite alternate}
+.orb.one{background:#8b5cf6;left:-150px;top:18%}.orb.two{background:#22d3ee;right:-150px;top:40%;animation-delay:-6s}
+@keyframes float{to{transform:translate(65px,-45px) scale(1.08)}}
+main{max-width:1180px;margin:auto;padding:145px 6% 90px}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:54px;min-height:490px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid rgba(167,139,250,.34);border-radius:999px;background:rgba(167,139,250,.1);color:#d6caff;font-size:12px;font-weight:750;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:24px}
+.pulse{width:7px;height:7px;border-radius:50%;background:#c4b5fd;box-shadow:0 0 14px #a78bfa}
+h1{font-size:clamp(54px,7vw,92px);line-height:.96;letter-spacing:-5px;font-weight:800;margin-bottom:25px}
+.gradient{background:linear-gradient(105deg,#fff 5%,#c4b5fd 48%,#67e8f9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;line-height:1.8;color:#b6b2ca;max-width:560px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:14px;text-decoration:none;color:#fff;font-size:14px;font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.06);backdrop-filter:blur(18px);transition:transform .2s,border-color .2s,background .2s}
+.btn.primary{border-color:rgba(196,181,253,.5);background:linear-gradient(120deg,rgba(139,92,246,.85),rgba(79,70,229,.78));box-shadow:0 12px 35px rgba(109,40,217,.22)}
+.btn:hover{transform:translateY(-3px);border-color:rgba(196,181,253,.55)}
+.note{font-size:12px;color:#77728f;margin-top:16px}
+.preview-wrap{position:relative;min-width:0}
+.preview-glow{position:absolute;inset:10% 8%;background:linear-gradient(130deg,#8b5cf6,#22d3ee);filter:blur(75px);opacity:.2}
+.preview{position:relative;padding:22px;border:1px solid rgba(255,255,255,.17);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(32px) saturate(155%);box-shadow:0 30px 100px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.17);transform:rotate(1.2deg)}
+.preview-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px;color:#d8d3ec}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;color:#fff}.brand-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#67e8f9);color:#17122f;font-size:17px}
+.preview-pill{padding:6px 9px;border-radius:999px;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.1);color:#d9ccff;font-size:10px}
+.chat{padding:22px 0 8px}.hello{font-size:22px;font-weight:750;letter-spacing:-.6px;margin-bottom:8px}.hint{font-size:12px;color:#918ca9;margin-bottom:20px}
+.message{max-width:90%;padding:13px 15px;border:1px solid rgba(255,255,255,.1);border-radius:16px;font-size:12px;line-height:1.7;color:#e8e4f4;margin-bottom:12px}
+.message.user{margin-left:auto;background:rgba(139,92,246,.2);border-color:rgba(167,139,250,.22);border-bottom-right-radius:5px}
+.message.ai{background:rgba(255,255,255,.055);border-bottom-left-radius:5px}
+.fake-input{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px;padding:13px 14px;border:1px solid rgba(255,255,255,.13);border-radius:15px;background:rgba(0,0,0,.13);color:#77728f;font-size:12px}
+.send{display:grid;place-items:center;width:29px;height:29px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#67e8f9);color:#17122f;font-weight:900}
+.floating-tag{position:absolute;padding:10px 13px;border:1px solid rgba(255,255,255,.16);border-radius:14px;background:rgba(22,18,48,.78);backdrop-filter:blur(22px);box-shadow:0 15px 40px rgba(0,0,0,.22);font-size:12px;color:#eee9ff}
+.tag-one{left:-24px;bottom:45px}.tag-two{right:-18px;top:35px}
+.section{margin-top:90px}.section-head{text-align:center;max-width:650px;margin:0 auto 35px}.kicker{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#b9a5ff;font-weight:800;margin-bottom:13px}.section h2{font-size:clamp(30px,4vw,46px);letter-spacing:-1.8px;margin-bottom:12px}.section-head p{color:#9e99b6;line-height:1.7}
+.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.feature{padding:25px;border-radius:22px;border:1px solid rgba(255,255,255,.11);background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));backdrop-filter:blur(24px);transition:transform .25s,border-color .25s}
+.feature:hover{transform:translateY(-5px);border-color:rgba(167,139,250,.4)}
+.feature-icon{display:grid;place-items:center;width:45px;height:45px;border-radius:15px;background:linear-gradient(145deg,rgba(167,139,250,.24),rgba(103,232,249,.12));border:1px solid rgba(196,181,253,.18);font-size:21px;margin-bottom:20px}
+.feature h3{font-size:17px;margin-bottom:10px}.feature p{font-size:13px;line-height:1.75;color:#a6a1bd}
+.bottom-cta{margin-top:80px;text-align:center;padding:42px 24px;border:1px solid rgba(255,255,255,.13);border-radius:28px;background:radial-gradient(ellipse at top,rgba(139,92,246,.16),transparent 65%),rgba(255,255,255,.035);backdrop-filter:blur(25px)}
+.bottom-cta h2{font-size:clamp(28px,4vw,42px);letter-spacing:-1.5px;margin-bottom:12px}.bottom-cta p{color:#aaa5c1;line-height:1.7;margin-bottom:22px}
+footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,.07);text-align:center;color:#77728f;font-size:12px}footer strong{color:#d8d3ec}footer a{color:#b9a5ff;text-decoration:none}
+@media(max-width:800px){main{padding-top:120px}.hero{grid-template-columns:1fr;gap:44px}.preview-wrap{max-width:540px;width:100%;margin:0 auto}.features{grid-template-columns:repeat(2,minmax(0,1fr))}.tag-one{left:-8px}.tag-two{right:-8px}}
+@media(max-width:560px){main{padding:110px 5% 60px}h1{letter-spacing:-3px}.lead{font-size:16px}.features{grid-template-columns:1fr}.feature{padding:22px}.preview{padding:17px}.tag-one{bottom:20px}.section{margin-top:65px}.bottom-cta{margin-top:60px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body class="squence-shared-page neon">
+<div class="background"><div class="orb one"></div><div class="orb two"></div></div>
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> The next chapter of Squence</div>
+    <h1>Your ideas.<br><span class="gradient">Amplified.</span></h1>
+    <p class="lead">Meet Squence AI — a smarter space to ask questions, explore ideas, create things and get unstuck. We're shaping the experience now.</p>
+    <div class="actions"><a class="btn primary" href="#features">✦ Explore the vision <span aria-hidden="true">↘</span></a><a class="btn" href="./">← Back to Squence</a></div>
+    <p class="note">Squence AI is in development. Features shown here are planned concepts, not live tools yet.</p>
+  </div>
+  <div class="preview-wrap" aria-label="Illustrative preview of a future Squence AI chat interface">
+    <div class="preview-glow"></div>
+    <div class="floating-tag tag-two">✧ Creative mode</div>
+    <div class="preview">
+      <div class="preview-top"><div class="brand"><span class="brand-icon">✦</span> Squence AI</div><span class="preview-pill">CONCEPT PREVIEW</span></div>
+      <div class="chat"><div class="hello">What are we making today?</div><div class="hint">A little curiosity can go a long way.</div>
+        <div class="message user">Help me turn a random idea into a real project.</div>
+        <div class="message ai">Absolutely. Let's break it into small steps, explore a few directions, and build a plan that fits your idea.</div>
+        <div class="message ai">✦ &nbsp; Brainstorm · Plan · Create</div>
+        <div class="fake-input"><span>Ask Squence AI anything...</span><span class="send">↑</span></div>
+      </div>
+    </div>
+    <div class="floating-tag tag-one">✦ Ideas, meet action</div>
+  </div>
+</section>
+<section class="section" id="features">
+  <div class="section-head"><div class="kicker">Made for curious minds</div><h2>One assistant. Lots of possibilities.</h2><p>A first look at what Squence AI could help you do, all wrapped in the Squence experience.</p></div>
+  <div class="features">
+    <article class="feature"><div class="feature-icon">💬</div><h3>Ask anything</h3><p>Get clear explanations, explore new topics and work through tricky questions one step at a time.</p></article>
+    <article class="feature"><div class="feature-icon">💡</div><h3>Brainstorm ideas</h3><p>Come up with names, concepts, stories and fresh angles when you're staring at a blank page.</p></article>
+    <article class="feature"><div class="feature-icon">✍️</div><h3>Writing helper</h3><p>Outline, rewrite, summarize and polish your writing while keeping your own voice.</p></article>
+    <article class="feature"><div class="feature-icon">🧩</div><h3>Learn step by step</h3><p>Turn big topics into manageable pieces, with examples that make complicated ideas easier to follow.</p></article>
+    <article class="feature"><div class="feature-icon">🖼️</div><h3>Creative tools</h3><p>Explore future possibilities for visual ideas, prompts and creative projects in one place.</p></article>
+    <article class="feature"><div class="feature-icon">⚡</div><h3>A Squence-native feel</h3><p>A clean, responsive workspace with the polished glass-inspired design that makes Squence feel like Squence.</p></article>
+  </div>
+</section>
+<section class="bottom-cta">
+  <div class="kicker">Currently in the works</div><h2>Good things take a little imagination.</h2><p>We're designing the experience before opening the doors.<br>Until then, explore the rest of Squence.</p><a class="btn primary" href="./">Explore Squence ↗</a>
+</section>
+</main>
+<footer><p>© 2026 <strong>Squence</strong>. All rights reserved.</p><p style="margin-top:8px">By using Squence, you agree to our <a href="terms.html">Terms of Service</a>.</p></footer>
+<script src="topbar.js"></script>
+</body>
+</html>
