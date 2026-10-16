@@ -25,12 +25,12 @@ h1{font-size:clamp(54px,7vw,92px);line-height:.96;letter-spacing:-5px;font-weigh
 .lead{font-size:18px;line-height:1.8;color:#b6b2ca;max-width:560px}
 .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:14px;text-decoration:none;color:#fff;font-size:14px;font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.06);backdrop-filter:blur(18px);transition:transform .2s,border-color .2s,background .2s}
-.btn.primary{border-color:rgba(196,181,253,.5);background:linear-gradient(120deg,rgba(139,92,246,.85),rgba(79,70,229,.78));box-shadow:0 12px 35px rgba(109,40,217,.22)}
+.btn.primary{position:relative;isolation:isolate;overflow:hidden;border-color:rgba(196,181,253,.5);background:linear-gradient(120deg,rgba(139,92,246,.85),rgba(79,70,229,.78));box-shadow:0 12px 35px rgba(109,40,217,.22);animation:visionFloat 3s ease-in-out infinite}.btn.primary:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.28) 48%,transparent 70%);transform:translateX(-110%);animation:visionShimmer 3.4s ease-in-out infinite;pointer-events:none}@keyframes visionShimmer{0%,30%{transform:translateX(-110%)}75%,100%{transform:translateX(110%)}}@keyframes visionFloat{0%,100%{translate:0 0}50%{translate:0 -3px}}
 .btn:hover{transform:translateY(-3px);border-color:rgba(196,181,253,.55)}
 .note{font-size:12px;color:#77728f;margin-top:16px}
-.preview-wrap{position:relative;min-width:0}
+.preview-wrap{position:relative;min-width:0;isolation:isolate}
 .preview-glow{position:absolute;inset:10% 8%;background:linear-gradient(130deg,#8b5cf6,#22d3ee);filter:blur(75px);opacity:.2}
-.preview{position:relative;padding:22px;border:1px solid rgba(255,255,255,.17);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(32px) saturate(155%);box-shadow:0 30px 100px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.17);transform:rotate(1.2deg)}
+.preview{position:relative;z-index:1;overflow:hidden;padding:22px;border:1px solid rgba(255,255,255,.17);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(32px) saturate(155%);box-shadow:0 30px 100px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.17);transform:rotate(1.2deg)}
 .preview-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.1);font-size:13px;color:#d8d3ec}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800;color:#fff}.brand-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#67e8f9);color:#17122f;font-size:17px}
 .preview-pill{padding:6px 9px;border-radius:999px;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.1);color:#d9ccff;font-size:10px}
@@ -69,7 +69,7 @@ footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,.07);text-align:cen
   </div>
   <div class="preview-wrap" aria-label="Illustrative preview of a future Squence AI chat interface">
     <div class="preview-glow"></div>
-    <div class="floating-tag tag-two">✧ Creative mode</div>
+    
     <div class="preview">
       <div class="preview-top"><div class="brand"><span class="brand-icon">✦</span> Squence AI</div><span class="preview-pill">CONCEPT PREVIEW</span></div>
       <div class="chat"><div class="hello">What are we making today?</div><div class="hint">A little curiosity can go a long way.</div>
@@ -79,7 +79,7 @@ footer{padding:30px 6%;border-top:1px solid rgba(255,255,255,.07);text-align:cen
         <div class="fake-input"><span>Ask Squence AI anything...</span><span class="send">↑</span></div>
       </div>
     </div>
-    <div class="floating-tag tag-one">✦ Ideas, meet action</div>
+    
   </div>
 </section>
 <section class="section" id="features">
