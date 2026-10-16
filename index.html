@@ -39,7 +39,7 @@ nav{position:fixed;top:0;left:0;right:0;height:76px;z-index:100;display:flex;ali
 .logo{text-decoration:none;color:var(--text);font-size:26px;font-weight:800;letter-spacing:-1.5px}.logo span{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:20px}.nav-links{display:flex;align-items:center;gap:22px}.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;transition:.2s}.nav-links a:hover,.nav-links a.active{color:var(--accent)}
 .plan{padding:8px 13px;border-radius:20px;border:1px solid var(--card-border);background:rgba(255,255,255,.04);color:var(--text);font-size:12px;font-weight:600;white-space:nowrap}
-.clock{padding-left:17px;border-left:1px solid var(--card-border);text-align:right;min-width:105px}.clock-time{color:var(--text);font-family:monospace;font-size:14px;font-weight:700}.clock-date{color:var(--muted);font-size:10px;margin-top:2px;white-space:nowrap}
+.clock{padding-left:17px;border-left:1px solid var(--card-border);text-align:right;min-width:105px}.clock-time{color:var(--text);font-family:monospace;font-size:14px;font-weight:700}.clock-date{color:var(--muted);font-size:10px;margin-top:2px;white-space:nowrap}.clock-toggle{margin-top:5px;padding:3px 7px;border:1px solid var(--card-border);border-radius:8px;background:rgba(255,255,255,.08);color:var(--text);font-size:9px;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s}.clock-toggle:hover{background:rgba(255,255,255,.16);border-color:var(--accent)}
 
 /* THEME MENU */
 .theme-selector{position:relative}.theme-button{border:1px solid var(--card-border);background:rgba(255,255,255,.04);color:var(--text);padding:9px 13px;border-radius:10px;cursor:pointer;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px}.theme-dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
@@ -181,7 +181,7 @@ body.pinkvalley .hero::before{
 <a href="account.html">Account</a>
 </div>
 <div class="plan">✦ Free Plan</div>
-<div class="clock"><div class="clock-time" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">Loading...</div></div>
+<div class="clock"><div class="clock-time" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">Loading...</div><button class="clock-toggle" id="clockFormatToggle" type="button" onclick="toggleClockFormat()">Use AM/PM</button></div>
 <div class="theme-selector" id="themeSelector">
 <button class="theme-button" onclick="toggleThemeMenu()"><span class="theme-dot" id="themeDot"></span>Theme</button>
 <div class="theme-menu">
@@ -226,7 +226,9 @@ body.pinkvalley .hero::before{
 <footer><p>© 2026 <strong>Squence</strong>. All rights reserved.</p><p style="margin-top:7px;">By using Squence, you agree to our <a href="terms.html" style="color:var(--accent);text-decoration:none;">Terms of Service</a>.</p></footer>
 
 <script>
-function updateClock(){const now=new Date();document.getElementById('clockTime').textContent=now.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});document.getElementById('clockDate').textContent=now.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'})}
+function getClockFormat(){return localStorage.getItem('squenceClockFormat')==='12'?'12':'24'}
+function updateClock(){const now=new Date();const is12=getClockFormat()==='12';document.getElementById('clockTime').textContent=now.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:is12});document.getElementById('clockDate').textContent=now.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'});const toggle=document.getElementById('clockFormatToggle');if(toggle){toggle.textContent=is12?'Use 24-hour':'Use AM/PM';toggle.setAttribute('aria-label',is12?'Switch to 24-hour clock':'Switch to 12-hour AM/PM clock')}}
+function toggleClockFormat(){localStorage.setItem('squenceClockFormat',getClockFormat()==='24'?'12':'24');updateClock()}
 updateClock();setInterval(updateClock,1000);
 function toggleThemeMenu(){document.getElementById('themeSelector').classList.toggle('open')}
 function setTheme(theme){theme=['neon','tulip','alpine','pinkvalley'].includes(theme)?theme:'neon';document.body.classList.remove('neon','tulip','alpine','pinkvalley');document.body.classList.add(theme);localStorage.setItem('squenceTheme',theme);localStorage.setItem('squence-theme',theme);document.getElementById('themeSelector').classList.remove('open');updateThemeUI()}
