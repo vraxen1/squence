@@ -9,6 +9,7 @@
       <div class="nav-links">
         <a href="./" data-page="index.html">Home</a>
         <a href="news.html" data-page="news.html">News</a>
+        <a href="music.html" data-page="music.html">Music</a>
         <a href="games.html" data-page="games.html">Games</a>
         <a href="ai.html" data-page="ai.html">AI</a>
         <a href="pricing.html" data-page="pricing.html">Pricing</a>
