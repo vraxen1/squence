@@ -67,6 +67,13 @@ footer strong{color:#dcd7ef}
 @media(max-width:850px){main{padding-top:64px}.hero{grid-template-columns:1fr;gap:12px;padding-top:65px}.hero-art{min-height:440px}.feature-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){h1{font-size:clamp(58px,15vw,82px)}.hero{padding-top:52px}.lead{font-size:15px}.hero-art{min-height:400px}.glass-panel{padding:17px}.orbit{width:320px;height:320px}.orbit.two{width:270px;height:270px}.feature-grid{grid-template-columns:1fr}.feature{min-height:auto}.section{padding:48px 0 60px}.closing{padding:36px 22px;margin-bottom:58px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+.site-footer{padding:30px 5% 26px;text-align:center;border-top:1px solid rgba(255,255,255,.12);color:#9690ad;font-size:12px;line-height:1.8}
+.site-footer strong{color:#fff}
+.site-footer nav{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.site-footer nav a{color:#c4b5fd;text-decoration:none;transition:color .2s}
+.site-footer nav a:hover{color:#fff;text-decoration:underline}
+.site-footer .copyright{margin-top:9px;color:#77728f;font-size:11px}
 </style>
 </head>
 <body>
@@ -104,7 +111,11 @@ footer strong{color:#dcd7ef}
 </section>
 <section class="closing reveal"><div class="kicker">The next chapter starts here</div><h2>Make room for what’s next.</h2><p>Squence is more than a collection of pages. It’s a growing place to discover, create, listen and explore — with a little more intention in every detail.</p><div class="actions" style="justify-content:center"><a class="btn primary" href="account.html">Meet your Squence space ↗</a></div></section>
 </main>
-<footer><strong>Squence</strong> · Find your flow. <span style="opacity:.65">Concept previews are still evolving.</span></footer>
+<footer class="site-footer">
+  <p><strong>Squence</strong> · Find your flow. <span style="opacity:.7">Concept previews are still evolving.</span></p>
+  <nav aria-label="Legal links"><a href="terms.html">Terms of Service</a><span aria-hidden="true">·</span><a href="privacy.html">Privacy Policy</a></nav>
+  <p class="copyright">© 2026 Squence. All rights reserved.</p>
+</footer>
 <script src="topbar.js"></script>
 <script>
 (function(){
