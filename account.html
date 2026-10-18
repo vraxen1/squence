@@ -60,6 +60,13 @@ footer{padding:28px 5%;text-align:center;border-top:1px solid rgba(255,255,255,.
 @media(max-width:850px){main{padding-top:115px}.hero{grid-template-columns:1fr;gap:40px}.preview-wrap{max-width:520px;width:100%;margin:auto}.feature-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){main{padding:100px 5% 60px}.hero{gap:32px}h1{font-size:clamp(50px,13vw,70px);letter-spacing:-3px}.lead{font-size:15px}.profile-card{padding:17px}.feature-grid{grid-template-columns:1fr}.feature{min-height:auto}.section{padding-top:40px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+
+.site-footer{padding:30px 5% 26px;text-align:center;border-top:1px solid rgba(255,255,255,.12);color:#9690ad;font-size:12px;line-height:1.8}
+.site-footer strong{color:#fff}
+.site-footer nav{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.site-footer nav a{color:#c4b5fd;text-decoration:none;transition:color .2s}
+.site-footer nav a:hover{color:#fff;text-decoration:underline}
+.site-footer .copyright{margin-top:9px;color:#77728f;font-size:11px}
 </style>
 </head>
 <body>
@@ -94,7 +101,11 @@ footer{padding:28px 5%;text-align:center;border-top:1px solid rgba(255,255,255,.
   <div class="bottom-note reveal">This page is a concept preview, not a working account service. No email address is collected here, and there is no sign-up form until account creation is actually ready.</div>
 </section>
 </main>
-<footer><strong>Squence Account</strong> · A more connected experience, coming into focus.</footer>
+<footer class="site-footer">
+  <p><strong>Squence Account</strong> · A more connected experience, coming into focus.</p>
+  <nav aria-label="Legal links"><a href="terms.html">Terms of Service</a><span aria-hidden="true">·</span><a href="privacy.html">Privacy Policy</a></nav>
+  <p class="copyright">© 2026 Squence. All rights reserved.</p>
+</footer>
 <script src="topbar.js"></script>
 <script>
 (function(){const items=document.querySelectorAll('.reveal');if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
