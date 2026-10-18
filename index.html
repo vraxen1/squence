@@ -3,291 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Squence</title>
+<meta name="theme-color" content="#080716">
+<meta name="description" content="Squence brings your digital world together — discover, explore and enjoy what's next.">
+<title>Squence — Your world, in sequence.</title>
+<link rel="stylesheet" href="topbar.css">
 <link rel="icon" type="image/png" href="favicon.png">
-<script>
-if(!localStorage.getItem("squenceIntroSeen")){window.location.replace("intro.html");}
-</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:100vh;color:var(--text);background:var(--background);transition:background .5s,color .5s}
-button,a{font-family:inherit}
-
-/* THEMES */
-body.neon{--background:#050318;--background2:#09062b;--text:#fff;--muted:#9995ad;--card:rgba(14,11,45,.78);--card-border:rgba(151,92,255,.20);--accent:#a855ff;--accent2:#5968ff;--nav:rgba(5,3,24,.82);--button-text:#fff;--shadow:rgba(111,47,255,.25)}
-body.tulip{--background:#170b13;--background2:#321322;--text:#fff7f9;--muted:#c5a5b0;--card:rgba(62,24,42,.62);--card-border:rgba(239,154,180,.18);--accent:#e38aa9;--accent2:#b85f87;--nav:rgba(27,10,20,.84);--button-text:#fff;--shadow:rgba(190,72,117,.25)}
-body.alpine{--background:#082b48;--background2:#123f63;--text:#eef4f7;--muted:#a9bdd0;--card:rgba(20,65,96,.68);--card-border:rgba(156,197,220,.18);--accent:#78aeca;--accent2:#3d7399;--nav:rgba(7,35,56,.86);--button-text:#fff;--shadow:rgba(35,101,142,.28)}
-
-.background{position:fixed;inset:0;z-index:-10;overflow:hidden;background:linear-gradient(135deg,var(--background),var(--background2));transition:background .5s}
-.neon .background:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;right:5%;top:100px;background:radial-gradient(circle,rgba(160,70,255,.45),rgba(70,40,255,.15) 45%,transparent 70%);filter:blur(20px);animation:floatOrb 8s ease-in-out infinite}
-.neon .background:after{content:"";position:absolute;width:500px;height:500px;border-radius:50%;right:-50px;top:260px;background:radial-gradient(circle,rgba(20,180,255,.32),transparent 68%);filter:blur(15px);animation:floatOrb2 10s ease-in-out infinite}
-.tulip .background:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;left:-180px;top:80px;background:radial-gradient(circle,rgba(221,106,143,.28),rgba(130,55,91,.10) 48%,transparent 72%);filter:blur(30px);animation:tulipFloat 10s ease-in-out infinite}
-.tulip .background:after{content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-100px;bottom:-100px;background:radial-gradient(circle,rgba(176,82,130,.25),rgba(105,55,90,.10) 48%,transparent 72%);filter:blur(25px);animation:tulipFloat2 12s ease-in-out infinite}
-.alpine .background{background:radial-gradient(circle at 78% 8%,rgba(202,220,230,.14),transparent 24%),radial-gradient(circle at 18% 78%,rgba(57,111,148,.20),transparent 34%),linear-gradient(150deg,#0b3554 0%,#0a2b47 48%,#061f35 100%)}
-.alpine .background:before{content:"";position:absolute;width:700px;height:700px;border-radius:50%;right:-180px;top:-180px;background:radial-gradient(circle,rgba(190,215,226,.18),rgba(83,135,165,.08) 48%,transparent 72%);filter:blur(35px);animation:alpineFloat 12s ease-in-out infinite}
-.alpine .background:after{content:"";position:absolute;width:560px;height:560px;border-radius:50%;left:-150px;bottom:-180px;background:radial-gradient(circle,rgba(44,103,143,.28),rgba(18,63,96,.08) 48%,transparent 72%);filter:blur(28px);animation:alpineFloat2 14s ease-in-out infinite}
-@keyframes floatOrb{0%,100%{transform:translateY(0)}50%{transform:translateY(-35px)}}
-@keyframes floatOrb2{0%,100%{transform:translateY(0)}50%{transform:translateY(30px)}}
-@keyframes tulipFloat{0%,100%{transform:translate(0)}50%{transform:translate(35px,-25px)}}
-@keyframes tulipFloat2{0%,100%{transform:translate(0)}50%{transform:translate(-30px,25px)}}
-@keyframes alpineFloat{0%,100%{transform:translate(0)}50%{transform:translate(-35px,30px)}}
-@keyframes alpineFloat2{0%,100%{transform:translate(0)}50%{transform:translate(35px,-25px)}}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;height:76px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 4.5%;background:var(--nav);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--card-border);transition:.5s}
-.logo{text-decoration:none;color:var(--text);font-size:26px;font-weight:800;letter-spacing:-1.5px}.logo span{color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:20px}.nav-links{display:flex;align-items:center;gap:22px}.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:600;transition:.2s}.nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.plan{padding:8px 13px;border-radius:20px;border:1px solid var(--card-border);background:rgba(255,255,255,.04);color:var(--text);font-size:12px;font-weight:600;white-space:nowrap}
-.clock{padding-left:17px;border-left:1px solid var(--card-border);text-align:right;min-width:105px}.clock-time{color:var(--text);font-family:monospace;font-size:14px;font-weight:700}.clock-date{color:var(--muted);font-size:10px;margin-top:2px;white-space:nowrap}.clock-toggle{margin-top:5px;padding:3px 7px;border:1px solid var(--card-border);border-radius:8px;background:rgba(255,255,255,.08);color:var(--text);font-size:9px;font-weight:700;cursor:pointer;transition:background .2s,border-color .2s}.clock-toggle:hover{background:rgba(255,255,255,.16);border-color:var(--accent)}
-
-/* THEME MENU */
-.theme-selector{position:relative}.theme-button{border:1px solid var(--card-border);background:rgba(255,255,255,.04);color:var(--text);padding:9px 13px;border-radius:10px;cursor:pointer;font-size:12px;font-weight:600;display:flex;align-items:center;gap:7px}.theme-dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
-.theme-menu{position:absolute;top:calc(100% + 10px);right:0;width:220px;padding:8px;border-radius:14px;background:var(--card);border:1px solid var(--card-border);backdrop-filter:blur(20px);box-shadow:0 20px 60px var(--shadow);opacity:0;pointer-events:none;transform:translateY(-5px);transition:.2s}.theme-selector.open .theme-menu{opacity:1;pointer-events:auto;transform:translateY(0)}
-.theme-option{width:100%;border:none;background:transparent;color:var(--text);text-align:left;padding:12px;border-radius:10px;cursor:pointer;display:flex;align-items:center;gap:10px}.theme-option:hover,.theme-option.selected{background:rgba(255,255,255,.07)}.theme-description{display:block;color:var(--muted);font-size:10px;margin-top:2px}
-
-/* MAIN */
-main{padding-top:76px}.hero{min-height:600px;max-width:1350px;margin:auto;padding:100px 6% 70px;display:flex;align-items:center;position:relative}.hero-content{width:52%;position:relative;z-index:5}.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border:1px solid var(--card-border);border-radius:30px;color:var(--accent);background:rgba(255,255,255,.04);font-size:11px;font-weight:700;margin-bottom:23px}.hero h1{font-size:clamp(60px,8vw,105px);line-height:.92;letter-spacing:-6px;color:var(--text);margin-bottom:25px}.hero h1 span{color:var(--accent)}.hero-description{max-width:530px;color:var(--muted);font-size:16px;line-height:1.65;margin-bottom:28px}
-.buttons{display:flex;gap:10px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}.button:hover{transform:translateY(-3px)}.primary{color:var(--button-text);background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 10px 30px var(--shadow)}.secondary{color:var(--text);background:rgba(255,255,255,.04);border:1px solid var(--card-border)}
-
-/* HERO VISUAL */
-.hero-visual{position:absolute;right:3%;top:50%;transform:translateY(-50%);width:48%;height:450px;pointer-events:none}.neon-circle{position:absolute;border-radius:50%;border:1px solid rgba(157,78,255,.5);box-shadow:0 0 70px rgba(130,60,255,.4);background:radial-gradient(circle at 30% 25%,rgba(174,80,255,.55),rgba(50,30,160,.15) 45%,transparent 70%)}.neon-circle.one{width:360px;height:360px;right:25px;top:20px}.neon-circle.two{width:320px;height:320px;right:-15px;bottom:10px;border-color:rgba(30,180,255,.55);background:radial-gradient(circle at 35% 25%,rgba(50,180,255,.45),rgba(20,50,160,.1) 50%,transparent 70%);box-shadow:0 0 70px rgba(30,150,255,.35)}
-.tulip .hero-visual:before{content:"";position:absolute;width:390px;height:390px;right:30px;top:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(235,145,174,.38),rgba(160,70,112,.18) 48%,transparent 72%);filter:blur(12px);box-shadow:0 0 90px rgba(211,104,145,.22)}.tulip .neon-circle{border-color:rgba(229,139,169,.35);background:radial-gradient(circle at 30% 25%,rgba(229,139,169,.30),rgba(100,42,73,.18) 48%,transparent 72%);box-shadow:0 0 65px rgba(195,79,124,.25)}.tulip .neon-circle.two{border-color:rgba(190,110,156,.32);background:radial-gradient(circle at 35% 25%,rgba(190,110,156,.25),transparent 70%);box-shadow:0 0 65px rgba(170,75,125,.20)}
-.alpine .hero-visual:before{content:"";position:absolute;width:390px;height:390px;right:30px;top:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(176,207,222,.20),rgba(65,121,155,.12) 48%,transparent 72%);filter:blur(12px);box-shadow:0 0 90px rgba(71,135,172,.18)}
-.alpine .neon-circle{border-color:rgba(142,190,214,.34);background:radial-gradient(circle at 30% 25%,rgba(126,181,209,.28),rgba(29,81,115,.14) 48%,transparent 72%);box-shadow:0 0 65px rgba(75,140,178,.22)}
-.alpine .neon-circle.two{border-color:rgba(183,211,224,.26);background:radial-gradient(circle at 35% 25%,rgba(170,206,222,.20),transparent 70%);box-shadow:0 0 65px rgba(61,115,153,.18)}
-
-/* CARDS */
-.features{max-width:1220px;margin:-15px auto 0;padding:0 4%;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:10}.card{min-height:210px;padding:25px;border:1px solid var(--card-border);border-radius:16px;background:var(--card);backdrop-filter:blur(12px);box-shadow:0 15px 50px rgba(0,0,0,.12);transition:.25s}.card:hover{transform:translateY(-6px);box-shadow:0 20px 55px var(--shadow)}.card-icon{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:rgba(255,255,255,.07);color:var(--accent);font-size:20px;margin-bottom:22px}.card h3{color:var(--text);font-size:17px;margin-bottom:9px}.card p{color:var(--muted);font-size:12px;line-height:1.6;margin-bottom:18px}.card-link{color:var(--accent);text-decoration:none;font-size:11px;font-weight:700}
-
-/* WHY */
-.why{max-width:1200px;margin:auto;padding:90px 5% 100px}.center{text-align:center}.section-title{color:var(--text);font-size:34px;letter-spacing:-1.5px;margin-bottom:10px}.section-subtitle{color:var(--muted);font-size:14px;margin-bottom:50px}.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:35px}.why-item{display:flex;gap:14px}.why-icon{flex-shrink:0;width:48px;height:48px;display:flex;align-items:center;justify-content:center;border-radius:13px;color:var(--accent);background:rgba(255,255,255,.05);border:1px solid var(--card-border);font-size:20px}.why-item h3{color:var(--text);font-size:14px;margin-bottom:6px}.why-item p{color:var(--muted);font-size:11px;line-height:1.5}
-footer{border-top:1px solid var(--card-border);padding:30px 5%;text-align:center;background:rgba(0,0,0,.08);color:var(--muted);font-size:11px}footer strong{color:var(--text)}
-
-@media(max-width:1050px){.nav-links{gap:14px}.clock{display:none}.hero-visual{opacity:.5}}
-@media(max-width:850px){
-nav{height:64px;padding:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:0;overflow:hidden}
-main{padding-top:64px}.logo{height:64px;padding:0 15px;display:flex;align-items:center;background:var(--nav);z-index:3}
-.nav-right{display:contents}.nav-links{display:flex;min-width:0;gap:0;overflow-x:auto;overflow-y:hidden;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}.nav-links a{flex:0 0 auto;padding:23px 12px;font-size:13px}
-.plan,.clock{display:none}.theme-selector{display:block;position:relative;padding:0 12px 0 6px;background:var(--nav);z-index:4}.theme-button{height:38px;padding:8px 11px}.theme-menu{position:fixed;top:72px;right:12px;width:min(220px,calc(100vw - 24px))}
-.hero{min-height:600px;padding:80px 7%}.hero-content{width:100%}.hero-visual{width:100%;right:-30%;opacity:.25}.features{grid-template-columns:repeat(2,1fr);padding:0 5%}.why-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:550px){.logo{font-size:23px}.hero{padding:70px 7%}.hero h1{font-size:58px;letter-spacing:-4px}.features,.why-grid{grid-template-columns:1fr}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
-
-/* Mobile theme menu interaction fix */
-@media(max-width:850px){
-nav{isolation:isolate!important}
-.nav-links{position:relative!important;z-index:1!important}
-.theme-selector{position:relative!important;z-index:9999!important;pointer-events:auto!important;touch-action:manipulation!important}
-.theme-button{position:relative!important;z-index:10000!important;pointer-events:auto!important;touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important}
-.theme-menu{z-index:10001!important;pointer-events:none!important}
-.theme-selector.open .theme-menu{pointer-events:auto!important}
-}
-
-/* =====================================================
-   LIQUID GLASS — all homepage themes
-   ===================================================== */
-nav,
-.card,
-.theme-button,
-.theme-menu,
-.badge,
-.button.secondary,
-.button.primary {
-    -webkit-backdrop-filter: blur(30px) saturate(190%);
-    backdrop-filter: blur(30px) saturate(190%);
-    box-shadow:
-        0 12px 40px rgba(0,0,0,.16),
-        inset 0 1px 1px rgba(255,255,255,.20);
-}
-nav{
-    background:rgba(255,255,255,.09)!important;
-    border:1px solid rgba(255,255,255,.15)!important;
-    border-bottom-color:var(--card-border)!important;
-}
-.card{
-    background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.045))!important;
-    border-color:rgba(255,255,255,.18)!important;
-    border-radius:24px!important;
-}
-.card:hover{
-    background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.07))!important;
-}
-.theme-button,.button.secondary{
-    background:rgba(255,255,255,.10)!important;
-    border:1px solid rgba(255,255,255,.18)!important;
-}
-.theme-menu{
-    background:rgba(20,16,48,.68)!important;
-    border:1px solid rgba(255,255,255,.18)!important;
-}
-body.pinkvalley{
-    --bg:#ff7da8;
-    --bg2:#b83262;
-    --text:#1c1c1e;
-    --muted:#3a3a3c;
-    --accent:#b83262;
-    --accent2:#ff7da8;
-    --nav:rgba(255,255,255,.30);
-    --card:rgba(255,255,255,.40);
-    --card-border:rgba(255,255,255,.45);
-    --shadow:rgba(123,0,255,.22);
-    background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;
-}
-body.pinkvalley .background{
-    background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;
-}
-body.pinkvalley .card,
-body.pinkvalley .theme-button,
-body.pinkvalley .button.secondary{
-    color:#1c1c1e!important;
-}
-body.pinkvalley .theme-menu{
-    background:rgba(255,255,255,.32)!important;
-    color:#1c1c1e!important;
-}
-body.pinkvalley .nav-links a,
-body.pinkvalley .plan,
-body.pinkvalley .clock-time,
-body.pinkvalley .clock-date{
-    color:#1c1c1e!important;
-}
-
-body.pinkvalley .orb.one{background:#ff7da8!important}
-body.pinkvalley .orb.two{background:#b83262!important}
-body.pinkvalley .hero::after{
-    background:radial-gradient(ellipse at center,rgba(255,0,123,.55) 0%,rgba(123,0,255,.28) 35%,transparent 70%);
-    opacity:.42;
-    filter:blur(25px);
-}
-body.pinkvalley .hero::before{
-    border-top:1px solid rgba(255,255,255,.42);
-    box-shadow:0 -15px 70px rgba(123,0,255,.28);
-}
+:root{color-scheme:dark;--accent:#a78bfa;--accent2:#67e8f9;--line:rgba(255,255,255,.13);--muted:#b6b2ca}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080716;color:#fff;overflow-x:hidden}
+.background{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 18% 15%,rgba(122,71,255,.26),transparent 34%),radial-gradient(ellipse at 84% 42%,rgba(34,211,238,.15),transparent 32%),linear-gradient(145deg,#080716,#100d2b 55%,#080716)}
+.orb{position:absolute;width:390px;height:390px;border-radius:50%;filter:blur(105px);opacity:.23;animation:float 14s ease-in-out infinite alternate}
+.orb.one{background:#8b5cf6;left:-150px;top:14%}.orb.two{background:#22d3ee;right:-150px;top:42%;animation-delay:-6s}
+@keyframes float{to{transform:translate(65px,-45px) scale(1.08)}}
+main{max-width:1240px;margin:auto;padding:76px 5% 0}
+.hero{position:relative;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:48px;min-height:640px;padding:70px 0 75px}
+.hero-copy{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid rgba(167,139,250,.34);border-radius:999px;background:rgba(167,139,250,.1);color:#d6caff;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:26px}
+.pulse{width:7px;height:7px;border-radius:50%;background:#67e8f9;box-shadow:0 0 14px #67e8f9}
+h1{font-size:clamp(64px,8.5vw,112px);line-height:.88;letter-spacing:-.085em;font-weight:850;margin-bottom:27px}
+h1 .brand-word{display:block;color:#fff;font-size:1.12em;letter-spacing:-.095em;font-weight:900}
+h1 .gradient{display:block;margin-top:15px;background:linear-gradient(105deg,#fff 4%,#c4b5fd 45%,#67e8f9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:520px;color:#b6b2ca;font-size:17px;line-height:1.85}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 19px;border-radius:15px;text-decoration:none;color:#fff;font-size:14px;font-weight:750;border:1px solid var(--line);background:rgba(255,255,255,.06);backdrop-filter:blur(20px);transition:transform .25s,border-color .25s,background .25s}
+.btn.primary{position:relative;isolation:isolate;overflow:hidden;border-color:rgba(196,181,253,.5);background:linear-gradient(120deg,rgba(139,92,246,.9),rgba(79,70,229,.82));box-shadow:0 12px 35px rgba(109,40,217,.24)}
+.btn.primary:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.28) 48%,transparent 70%);transform:translateX(-110%);animation:shimmer 4s ease-in-out infinite;pointer-events:none}
+@keyframes shimmer{0%,35%{transform:translateX(-110%)}75%,100%{transform:translateX(110%)}}
+.btn:hover{transform:translateY(-3px);border-color:rgba(196,181,253,.55)}
+.microcopy{margin-top:18px;color:#79748f;font-size:12px}
+.hero-art{position:relative;min-height:460px;display:grid;place-items:center;perspective:1000px}
+.art-halo{position:absolute;width:min(95%,440px);aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,rgba(139,92,246,.25),rgba(34,211,238,.12));filter:blur(12px);box-shadow:0 0 100px rgba(124,58,237,.2)}
+.orbit{position:absolute;border:1px solid rgba(196,181,253,.22);border-radius:50%;width:410px;height:410px;transform:rotate(-24deg) scaleY(.48);animation:orbit 20s linear infinite}
+.orbit.two{width:340px;height:340px;border-color:rgba(103,232,249,.26);transform:rotate(35deg) scaleY(.52);animation-direction:reverse}
+@keyframes orbit{to{rotate:360deg}}
+.glass-panel{position:relative;z-index:1;width:min(100%,365px);padding:22px;border-radius:30px;border:1px solid rgba(255,255,255,.2);background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.035));backdrop-filter:blur(35px) saturate(160%);box-shadow:0 35px 100px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.2);transform:rotateY(-9deg) rotateX(4deg);animation:panelFloat 7s ease-in-out infinite}
+@keyframes panelFloat{0%,100%{transform:translateY(0) rotateY(-9deg) rotateX(4deg)}50%{transform:translateY(-10px) rotateY(-5deg) rotateX(2deg)}}
+.panel-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:19px;border-bottom:1px solid rgba(255,255,255,.1)}
+.wordmark{font-size:21px;font-weight:900;letter-spacing:-1.3px}.wordmark span{color:#a78bfa}
+.status-pill{font-size:10px;color:#c4b5fd;padding:6px 9px;border:1px solid rgba(167,139,250,.28);border-radius:999px;background:rgba(167,139,250,.09)}
+.panel-heading{font-size:25px;font-weight:800;letter-spacing:-1px;margin:23px 0 5px}.panel-sub{color:#918ca9;font-size:12px;margin-bottom:18px}
+.module{display:flex;align-items:center;gap:13px;padding:13px;margin-top:10px;border:1px solid rgba(255,255,255,.09);border-radius:17px;background:rgba(255,255,255,.045);transition:transform .25s,background .25s}
+.module:hover{transform:translateX(4px);background:rgba(255,255,255,.075)}
+.module-icon{width:43px;height:43px;display:grid;place-items:center;flex-shrink:0;border-radius:13px;font-size:20px;background:linear-gradient(145deg,rgba(167,139,250,.25),rgba(103,232,249,.13));border:1px solid rgba(255,255,255,.1)}
+.module strong{display:block;font-size:13px;margin-bottom:4px}.module small{color:#918ca9;font-size:11px}
+.module-arrow{margin-left:auto;color:#aaa2c7;font-size:18px}
+.section{padding:68px 0 84px}
+.section-head{text-align:center;max-width:650px;margin:0 auto 35px}
+.kicker{color:#c4b5fd;text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:13px}
+h2{font-size:clamp(30px,4vw,46px);line-height:1.08;letter-spacing:-2px;font-weight:800;margin-bottom:13px}
+.section-head p{color:#a6a1bd;line-height:1.75;font-size:15px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feature{min-height:195px;padding:25px;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.025));backdrop-filter:blur(28px);box-shadow:inset 0 1px rgba(255,255,255,.1);transition:transform .3s,border-color .3s,background .3s}
+.feature:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.4);background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.04))}
+.feature-icon{width:44px;height:44px;display:grid;place-items:center;border-radius:14px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.19);font-size:20px;margin-bottom:21px}
+.feature h3{font-size:17px;margin-bottom:9px}.feature p{font-size:13px;line-height:1.75;color:#a6a1bd}
+.closing{margin:10px 0 86px;padding:48px 30px;text-align:center;border:1px solid rgba(255,255,255,.15);border-radius:30px;background:radial-gradient(ellipse at 50% 0%,rgba(139,92,246,.17),transparent 60%),linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));backdrop-filter:blur(30px)}
+.closing p{max-width:580px;margin:0 auto;color:#aaa5c1;line-height:1.8;font-size:14px}
+footer{padding:28px 5%;text-align:center;border-top:1px solid rgba(255,255,255,.1);color:#77728f;font-size:12px}
+footer strong{color:#dcd7ef}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:850px){main{padding-top:64px}.hero{grid-template-columns:1fr;gap:12px;padding-top:65px}.hero-art{min-height:440px}.feature-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){h1{font-size:clamp(58px,15vw,82px)}.hero{padding-top:52px}.lead{font-size:15px}.hero-art{min-height:400px}.glass-panel{padding:17px}.orbit{width:320px;height:320px}.orbit.two{width:270px;height:270px}.feature-grid{grid-template-columns:1fr}.feature{min-height:auto}.section{padding:48px 0 60px}.closing{padding:36px 22px;margin-bottom:58px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
-<body class="neon">
-<div class="background"></div>
-
-<nav>
-<a href="./" class="logo">s<span>q</span>uence</a>
-<div class="nav-right">
-<div class="nav-links">
-<a href="./" class="active">Home</a>
-<a href="news.html">News</a>
-<a href="games.html">Games</a>
-<a href="ai.html">AI</a>
-<a href="pricing.html">Pricing</a>
-<a href="account.html">Account</a>
-</div>
-<div class="plan">✦ Free Plan</div>
-<div class="clock"><div class="clock-time" id="clockTime">--:--:--</div><div class="clock-date" id="clockDate">Loading...</div><button class="clock-toggle" id="clockFormatToggle" type="button" onclick="toggleClockFormat()">Use AM/PM</button></div>
-<div class="theme-selector" id="themeSelector">
-<button class="theme-button" onclick="toggleThemeMenu()"><span class="theme-dot" id="themeDot"></span>Theme</button>
-<div class="theme-menu">
-<button class="theme-option" id="neonOption" onclick="setTheme('neon')"><span>🌌</span><span><strong>Neon</strong><small class="theme-description">Original dark theme</small></span></button>
-<button class="theme-option" id="tulipOption" onclick="setTheme('tulip')"><span>🌷</span><span><strong>Tulip</strong><small class="theme-description">Warm tulip-inspired colors</small></span></button>
-<button class="theme-option" id="alpineOption" onclick="setTheme('alpine')"><span>🏔️</span><span><strong>Alpine</strong><small class="theme-description">Icy mountain and deep lake colors</small></span></button>
-<button class="theme-option" id="pinkvalleyOption" onclick="setTheme('pinkvalley')"><span>🏔️</span><span><strong>Pink Valley</strong><small class="theme-description">Liquid Glass inspired by the new iOS logo</small></span></button>
-</div>
-</div>
-</div>
-</nav>
-
+<body>
+<div class="background"><div class="orb one"></div><div class="orb two"></div></div>
 <main>
 <section class="hero">
-<div class="hero-content">
-<div class="eyebrow">✦ WELCOME TO SQUENCE</div>
-<h1>Everything.<br><span>In one place.</span></h1>
-<p class="hero-description">Discover news, play games, explore tools and experience the internet your way. Welcome to Squence.</p>
-<div class="buttons"><a href="news.html" class="button primary">Explore News →</a><a href="games.html" class="button secondary">Play Games 🎮</a></div>
-</div>
-<div class="hero-visual"><div class="neon-circle one"></div><div class="neon-circle two"></div></div>
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="pulse"></span> A new rhythm for your digital life</div>
+    <h1><span class="brand-word">Squence.</span><span class="gradient">Find your flow.</span></h1>
+    <p class="lead">A little less noise. A lot more possibility. Discover the things you love, explore fresh ideas and move through your digital world — all with one thoughtful, beautifully connected experience.</p>
+    <div class="actions"><a class="btn primary" href="#discover">Explore Squence <span aria-hidden="true">↗</span></a><a class="btn" href="account.html">Your space <span aria-hidden="true">→</span></a></div>
+    <p class="microcopy">Made to feel simple. Designed to feel different.</p>
+  </div>
+  <div class="hero-art" aria-label="Preview of the Squence experience">
+    <div class="art-halo"></div><div class="orbit"></div><div class="orbit two"></div>
+    <div class="glass-panel">
+      <div class="panel-top"><div class="wordmark">s<span>q</span>uence</div><div class="status-pill">YOUR SPACE, REIMAGINED</div></div>
+      <div class="panel-heading">A world in motion.</div><div class="panel-sub">Explore what feels right to you.</div>
+      <div class="module"><div class="module-icon">✦</div><div><strong>Ideas worth exploring</strong><small>Fresh perspectives, every day</small></div><div class="module-arrow">↗</div></div>
+      <div class="module"><div class="module-icon">♫</div><div><strong>Find your frequency</strong><small>Music for every kind of moment</small></div><div class="module-arrow">↗</div></div>
+      <div class="module"><div class="module-icon">⌘</div><div><strong>Tools that think with you</strong><small>More room to imagine</small></div><div class="module-arrow">↗</div></div>
+    </div>
+  </div>
 </section>
-
-<section class="features">
-<div class="card"><div class="card-icon">📰</div><h3>News</h3><p>Stay updated with the latest stories from around the world.</p><a href="news.html" class="card-link">Explore News →</a></div>
-<div class="card"><div class="card-icon">🎮</div><h3>Games</h3><p>Play fun games directly on Squence. More games are coming soon.</p><a href="games.html" class="card-link">Explore Games →</a></div>
-<div class="card"><div class="card-icon">🤖</div><h3>Squence AI</h3><p>Ask questions, brainstorm ideas and explore the next part of Squence.</p><a href="ai.html" class="card-link">Try Squence AI →</a></div>
-<div class="card"><div class="card-icon">👑</div><h3>Squence Plans</h3><p>Choose the plan that fits you and unlock more features when you want them.</p><a href="pricing.html" class="card-link">View Plans →</a></div>
+<section class="section" id="discover">
+  <div class="section-head reveal"><div class="kicker">One connected experience</div><h2>Everything has its place.</h2><p>From a quick break to a brand-new idea, Squence is being shaped around the way you actually want to spend your time online.</p></div>
+  <div class="feature-grid">
+    <article class="feature reveal"><div class="feature-icon">✧</div><h3>Think beyond</h3><p>Meet Squence AI — a future space for questions, creativity and turning your thoughts into something more.</p><a class="btn" style="margin-top:17px;padding:9px 12px;font-size:12px" href="ai.html">Explore AI →</a></article>
+    <article class="feature reveal"><div class="feature-icon">◉</div><h3>Stay curious</h3><p>A more considered way to catch up on the stories, discoveries and ideas shaping the world.</p><a class="btn" style="margin-top:17px;padding:9px 12px;font-size:12px" href="news.html">Discover News →</a></article>
+    <article class="feature reveal"><div class="feature-icon">♫</div><h3>Feel the frequency</h3><p>A music experience imagined around your mood, your discoveries and the sounds you want close by.</p><a class="btn" style="margin-top:17px;padding:9px 12px;font-size:12px" href="music.html">Meet Music →</a></article>
+    <article class="feature reveal"><div class="feature-icon">▣</div><h3>Take a little break</h3><p>Small moments of fun, with games you can jump into without making a whole thing of it.</p><a class="btn" style="margin-top:17px;padding:9px 12px;font-size:12px" href="games.html">Play Games →</a></article>
+    <article class="feature reveal"><div class="feature-icon">⌁</div><h3>Make it yours</h3><p>Find the look and feel that suits you, from the original Neon atmosphere to Pink Valley and Alpine.</p><a class="btn" style="margin-top:17px;padding:9px 12px;font-size:12px" href="account.html">Your space →</a></article>
+    <article class="feature reveal"><div class="feature-icon">✦</div><h3>Room to grow</h3><p>Squence is a growing idea. Explore the plans and see where the experience is heading next.</p><a class="btn" style="margin-top:17px;padding:9px 12px;font-size:12px" href="pricing.html">Explore plans →</a></article>
+  </div>
 </section>
-
-<section class="why">
-<div class="center"><h2 class="section-title">Why Squence?</h2><p class="section-subtitle">Built to be simple, beautiful and powerful.</p></div>
-<div class="why-grid">
-<div class="why-item"><div class="why-icon">▦</div><div><h3>All in one</h3><p>News, games, AI and tools. All in one place.</p></div></div>
-<div class="why-item"><div class="why-icon">⚡</div><div><h3>Fast & clean</h3><p>A smooth experience without unnecessary clutter.</p></div></div>
-<div class="why-item"><div class="why-icon">♥</div><div><h3>Made for you</h3><p>Customize your experience however you like.</p></div></div>
-<div class="why-item"><div class="why-icon">🌱</div><div><h3>Always growing</h3><p>New features and games added regularly.</p></div></div>
-</div>
-</section>
+<section class="closing reveal"><div class="kicker">The next chapter starts here</div><h2>Make room for what’s next.</h2><p>Squence is more than a collection of pages. It’s a growing place to discover, create, listen and explore — with a little more intention in every detail.</p><div class="actions" style="justify-content:center"><a class="btn primary" href="account.html">Meet your Squence space ↗</a></div></section>
 </main>
-
-<footer><p>© 2026 <strong>Squence</strong>. All rights reserved.</p><p style="margin-top:7px;">By using Squence, you agree to our <a href="terms.html" style="color:var(--accent);text-decoration:none;">Terms of Service</a>.</p></footer>
-
+<footer><strong>Squence</strong> · Find your flow. <span style="opacity:.65">Concept previews are still evolving.</span></footer>
+<script src="topbar.js"></script>
 <script>
-function getClockFormat(){return localStorage.getItem('squenceClockFormat')==='12'?'12':'24'}
-function updateClock(){const now=new Date();const is12=getClockFormat()==='12';document.getElementById('clockTime').textContent=now.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:is12});document.getElementById('clockDate').textContent=now.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short',year:'numeric'});const toggle=document.getElementById('clockFormatToggle');if(toggle){toggle.textContent=is12?'Use 24-hour':'Use AM/PM';toggle.setAttribute('aria-label',is12?'Switch to 24-hour clock':'Switch to 12-hour AM/PM clock')}}
-function toggleClockFormat(){localStorage.setItem('squenceClockFormat',getClockFormat()==='24'?'12':'24');updateClock()}
-updateClock();setInterval(updateClock,1000);
-function toggleThemeMenu(){document.getElementById('themeSelector').classList.toggle('open')}
-function setTheme(theme){theme=['neon','tulip','alpine','pinkvalley'].includes(theme)?theme:'neon';document.body.classList.remove('neon','tulip','alpine','pinkvalley');document.body.classList.add(theme);localStorage.setItem('squenceTheme',theme);localStorage.setItem('squence-theme',theme);document.getElementById('themeSelector').classList.remove('open');updateThemeUI()}
-function updateThemeUI(){const theme=document.body.classList.contains('alpine')?'alpine':document.body.classList.contains('tulip')?'tulip':'neon';document.getElementById('neonOption').classList.toggle('selected',theme==='neon');document.getElementById('tulipOption').classList.toggle('selected',theme==='tulip');document.getElementById('alpineOption').classList.toggle('selected',theme==='alpine');document.getElementById('pinkvalleyOption').classList.toggle('selected',theme==='pinkvalley');document.getElementById('themeDot').style.background=theme==='pinkvalley'?'linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)':theme==='alpine'?'#78aeca':theme==='tulip'?'#e38aa9':'#a855ff'}
-const savedTheme=localStorage.getItem('squenceTheme')||localStorage.getItem('squence-theme');if(['tulip','neon','alpine','pinkvalley'].includes(savedTheme)){document.body.classList.remove('neon','tulip','alpine');document.body.classList.add(savedTheme)}updateThemeUI();
-document.addEventListener('click',function(event){const selector=document.getElementById('themeSelector');if(!selector.contains(event.target))selector.classList.remove('open')});
+(function(){
+ const items=document.querySelectorAll('.reveal');
+ if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+   const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+   items.forEach(item=>observer.observe(item));
+ }else items.forEach(item=>item.classList.add('visible'));
+})();
 </script>
 </body>
 </html>
-<style>
-/* Pink Valley v2 homepage overrides */
-body.pinkvalley{--text:#fff!important;--muted:rgba(255,255,255,.82)!important;--accent:#fff!important;--accent2:#ffb7df!important;--card:rgba(255,255,255,.18)!important;--card-border:rgba(255,255,255,.28)!important;--nav:rgba(255,255,255,.13)!important;--shadow:rgba(42,12,70,.24)!important;color:#fff!important;background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
-body.pinkvalley .background{background:linear-gradient(135deg,#d86b12,#d62d78 48%,#5d27b8)!important}
-body.pinkvalley :where(nav,.card,.theme-button,.theme-menu,.badge,.button,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){-webkit-backdrop-filter:blur(30px) saturate(150%)!important;backdrop-filter:blur(30px) saturate(150%)!important;border-color:rgba(255,255,255,.28)!important;box-shadow:0 16px 55px rgba(42,12,70,.18),inset 0 1px 1px rgba(255,255,255,.28)!important}
-body.pinkvalley :where(nav,.card,.theme-button,.badge,.button.secondary,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.08))!important;color:#fff!important}
-body.pinkvalley .theme-menu{background:rgba(70,25,90,.46)!important;color:#fff!important}
-body.pinkvalley :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,a,.section-title,.section-subtitle,.hero-description,.card p,.card-link,.why-item p,.why-item h3,footer,.nav-links a,.clock-time,.clock-date,.theme-option,.theme-description){color:#fff!important}
-body.pinkvalley .primary{color:#fff!important;background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,150,220,.18))!important;border:1px solid rgba(255,255,255,.42)!important}
-body.pinkvalley .neon-circle{border-color:rgba(255,255,255,.42)!important;box-shadow:0 0 70px rgba(255,255,255,.16)!important}
-</style>
-<style>body.pinkvalley{--text:#fff!important;--muted:rgba(255,220,232,.82)!important;--accent:#ff9fc1!important;--accent2:#e94b72!important;--card:rgba(255,185,210,.18)!important;--card-border:rgba(255,205,220,.28)!important;--nav:rgba(255,140,175,.12)!important;color:#fff!important;background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important}body.pinkvalley .background{background:linear-gradient(180deg,#3e1025,#67183d 48%,#9f3158)!important;overflow:hidden}body.pinkvalley .background:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 76% 22%,rgba(235,45,55,.95) 0 7%,rgba(235,45,55,.34) 8%,transparent 18%),linear-gradient(155deg,transparent 0 38%,#7c234a 38.1% 52%,transparent 52.1%),linear-gradient(25deg,transparent 0 43%,#8d2a52 43.1% 58%,transparent 58.1%)}body.pinkvalley .background:after{content:"";position:absolute;left:-10%;right:-10%;bottom:-2%;height:52%;background:#a83b63;clip-path:polygon(0 72%,12% 48%,24% 64%,37% 28%,50% 55%,62% 34%,75% 60%,88% 40%,100% 63%,100% 100%,0 100%)}body.pinkvalley :where(h1,h2,h3,h4,h5,h6,p,span,small,strong,label,a,.section-title,.section-subtitle,.hero-description,.card p,.card-link,.why-item p,.why-item h3,footer,.nav-links a,.clock-time,.clock-date,.theme-option,.theme-description){color:#fff!important}body.pinkvalley :where(nav,.card,.theme-button,.theme-menu,.badge,.button,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){-webkit-backdrop-filter:blur(30px) saturate(145%)!important;backdrop-filter:blur(30px) saturate(145%)!important;border-color:rgba(255,205,220,.28)!important;box-shadow:0 16px 55px rgba(55,5,25,.18),inset 0 1px 1px rgba(255,255,255,.24)!important}body.pinkvalley :where(nav,.card,.theme-button,.badge,.button.secondary,.card-icon,.why-icon,.plan,.clock,.eyebrow,footer){background:linear-gradient(145deg,rgba(255,185,210,.20),rgba(255,115,165,.07))!important;color:#fff!important}body.pinkvalley .theme-menu{background:rgba(75,14,40,.55)!important}body.pinkvalley .primary{background:linear-gradient(135deg,rgba(235,45,65,.55),rgba(255,130,175,.22))!important;color:#fff!important}body.pinkvalley .neon-circle.one{border-color:rgba(245,70,70,.25)!important;background:radial-gradient(circle,rgba(240,55,55,.8) 0 16%,rgba(240,55,55,.18) 17% 32%,transparent 55%)!important;box-shadow:none!important}body.pinkvalley .neon-circle.two{display:none}</style>
-
-<style>
-/* Pink Valley refinement — lighter pink landscape + centered Liquid Glass clock */
-body.pinkvalley {
-  background:linear-gradient(180deg,#ffb0ce 0%,#ff8fba 48%,#f36b9d 100%) !important;
-}
-body.pinkvalley .background {
-  background:linear-gradient(180deg,#ffb0ce 0%,#ff8fba 48%,#f36b9d 100%) !important;
-}
-body.pinkvalley .background:before {
-  background:
-    radial-gradient(circle at 76% 22%,rgba(235,45,55,.95) 0 7%,rgba(235,45,55,.30) 8%,transparent 18%),
-    linear-gradient(155deg,transparent 0 38%,#ff7eae 38.1% 52%,transparent 52.1%),
-    linear-gradient(25deg,transparent 0 43%,#ff94bc 43.1% 58%,transparent 58.1%) !important;
-}
-body.pinkvalley .background:after {
-  background:#ff72a5 !important;
-}
-body.pinkvalley .clock {
-  display:flex !important;
-  flex-direction:column !important;
-  align-items:center !important;
-  justify-content:center !important;
-  text-align:center !important;
-  padding:7px 13px !important;
-  min-width:112px !important;
-  min-height:44px !important;
-  border-left:0 !important;
-  border:1px solid rgba(255,205,220,.32) !important;
-  border-radius:18px !important;
-  background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08)) !important;
-  -webkit-backdrop-filter:blur(30px) saturate(150%) !important;
-  backdrop-filter:blur(30px) saturate(150%) !important;
-  box-shadow:0 12px 35px rgba(55,5,25,.16),inset 0 1px 1px rgba(255,255,255,.28) !important;
-}
-body.pinkvalley .clock-time,
-body.pinkvalley .clock-date {
-  text-align:center !important;
-  width:100% !important;
-}
-</style>
