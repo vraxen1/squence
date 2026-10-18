@@ -1,21 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Account - Squence</title>
-<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="topbar.css"><link rel="icon" type="image/png" href="favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080716">
+<meta name="description" content="A first look at your future Squence account — your own space across Squence.">
+<title>Squence Account — Coming Soon</title>
+<link rel="stylesheet" href="topbar.css">
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
-.coming-soon-card{background:rgba(140,92,255,.03);border:1px solid rgba(140,92,255,.15);box-shadow:0 0 40px rgba(140,92,255,.05),inset 0 0 20px rgba(140,92,255,.02);border-radius:24px;padding:60px 40px;text-align:center;max-width:600px;width:100%;margin:auto;backdrop-filter:blur(10px)}.neon-glow{text-shadow:0 0 10px rgba(140,92,255,.5),0 0 20px rgba(140,92,255,.3)}.feature-list{display:flex;flex-direction:column;gap:12px;max-width:380px;margin:30px auto;text-align:left}.feature-item{display:flex;align-items:center;gap:12px;color:#aaa;font-size:15px}.feature-item span{color:#9c7cff;text-shadow:0 0 8px rgba(140,92,255,.6)}.notify-box{display:flex;gap:10px;max-width:400px;margin:25px auto 0}.neon-input{flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(140,92,255,.2);padding:14px 20px;border-radius:12px;color:white;font-size:15px;outline:none}.neon-input:focus{border-color:#9c7cff;box-shadow:0 0 15px rgba(140,92,255,.25)}@media(max-width:500px){.notify-box{flex-direction:column}}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{color-scheme:dark;--accent:#a78bfa;--accent2:#67e8f9;--line:rgba(255,255,255,.13)}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#080716;color:#fff;overflow-x:hidden}
+.background{position:fixed;inset:0;z-index:-2;overflow:hidden;background:radial-gradient(ellipse at 18% 15%,rgba(122,71,255,.26),transparent 34%),radial-gradient(ellipse at 84% 42%,rgba(34,211,238,.15),transparent 32%),linear-gradient(145deg,#080716,#100d2b 55%,#080716)}
+.orb{position:absolute;width:360px;height:360px;border-radius:50%;filter:blur(100px);opacity:.22;animation:float 14s ease-in-out infinite alternate}
+.orb.one{background:#8b5cf6;left:-150px;top:18%}.orb.two{background:#22d3ee;right:-150px;top:40%;animation-delay:-6s}
+@keyframes float{to{transform:translate(65px,-45px) scale(1.08)}}
+main{max-width:1180px;margin:auto;padding:145px 6% 90px}
+.hero{display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:55px;min-height:470px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:9px 14px;border:1px solid rgba(167,139,250,.34);border-radius:999px;background:rgba(167,139,250,.1);color:#d6caff;font-size:12px;font-weight:750;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:24px}
+.pulse{width:7px;height:7px;border-radius:50%;background:#c4b5fd;box-shadow:0 0 14px #a78bfa;animation:pulse 2.2s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45;transform:scale(.82)}}
+h1{font-size:clamp(54px,7vw,88px);line-height:.96;letter-spacing:-5px;font-weight:850;margin-bottom:24px}
+.gradient{background:linear-gradient(105deg,#fff 5%,#c4b5fd 48%,#67e8f9 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:17px;line-height:1.8;color:#b6b2ca;max-width:560px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:14px;text-decoration:none;color:#fff;font-size:14px;font-weight:700;border:1px solid var(--line);background:rgba(255,255,255,.06);backdrop-filter:blur(18px);transition:transform .25s,border-color .25s,background .25s}
+.btn.primary{position:relative;isolation:isolate;overflow:hidden;border-color:rgba(196,181,253,.5);background:linear-gradient(120deg,rgba(139,92,246,.85),rgba(79,70,229,.78));box-shadow:0 12px 35px rgba(109,40,217,.22)}
+.btn.primary:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.28) 48%,transparent 70%);transform:translateX(-110%);animation:shimmer 3.6s ease-in-out infinite;pointer-events:none}
+@keyframes shimmer{0%,30%{transform:translateX(-110%)}75%,100%{transform:translateX(110%)}}
+.btn:hover{transform:translateY(-3px);border-color:rgba(196,181,253,.55)}
+.note{font-size:12px;color:#79748f;margin-top:16px;line-height:1.7}
+.preview-wrap{position:relative;min-width:0;isolation:isolate}
+.glow{position:absolute;inset:10% 8%;background:linear-gradient(130deg,#8b5cf6,#22d3ee);filter:blur(75px);opacity:.22}
+.profile-card{position:relative;z-index:1;padding:24px;border:1px solid rgba(255,255,255,.17);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(32px) saturate(155%);box-shadow:0 30px 100px rgba(0,0,0,.35),inset 0 1px rgba(255,255,255,.17);animation:drift 7s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-7px) rotate(-.5deg)}}
+.profile-head{display:flex;align-items:center;gap:13px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.avatar{width:54px;height:54px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,#a78bfa,#67e8f9);color:#151027;font-size:25px;font-weight:900;box-shadow:0 10px 30px rgba(139,92,246,.25)}
+.profile-head strong{display:block;font-size:15px;margin-bottom:5px}.profile-head small{font-size:11px;color:#a6a1bd}
+.coming{margin-left:auto;padding:6px 9px;border-radius:999px;border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.1);color:#d9ccff;font-size:10px;white-space:nowrap}
+.profile-title{font-size:22px;font-weight:800;letter-spacing:-.7px;margin:22px 0 5px}.profile-caption{font-size:12px;color:#918ca9;margin-bottom:16px}
+.profile-row{display:flex;align-items:center;gap:12px;padding:14px 13px;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:rgba(255,255,255,.045);margin-top:10px}
+.row-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;background:rgba(167,139,250,.13);font-size:18px}
+.profile-row strong{display:block;font-size:12px;margin-bottom:4px}.profile-row small{color:#918ca9;font-size:11px}.row-check{margin-left:auto;color:#c4b5fd}
+.section{padding:52px 0 20px}
+.section-head{text-align:center;max-width:650px;margin:0 auto 30px}
+.kicker{color:#c4b5fd;text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:800;margin-bottom:13px}
+h2{font-size:clamp(30px,4vw,43px);line-height:1.08;letter-spacing:-2px;font-weight:800;margin-bottom:13px}
+.section-head p{color:#a6a1bd;line-height:1.75;font-size:15px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feature{min-height:175px;padding:23px;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.025));backdrop-filter:blur(28px);box-shadow:inset 0 1px rgba(255,255,255,.1);transition:transform .3s,border-color .3s}
+.feature:hover{transform:translateY(-6px);border-color:rgba(167,139,250,.4)}
+.feature-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.19);font-size:19px;margin-bottom:18px}
+.feature h3{font-size:16px;margin-bottom:8px}.feature p{font-size:12px;line-height:1.75;color:#a6a1bd}
+.bottom-note{margin-top:35px;padding:20px 23px;border:1px solid rgba(255,255,255,.11);border-radius:18px;background:rgba(255,255,255,.04);text-align:center;color:#9690ad;font-size:12px;line-height:1.8}
+footer{padding:28px 5%;text-align:center;border-top:1px solid rgba(255,255,255,.1);color:#77728f;font-size:12px}footer strong{color:#dcd7ef}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:850px){main{padding-top:115px}.hero{grid-template-columns:1fr;gap:40px}.preview-wrap{max-width:520px;width:100%;margin:auto}.feature-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){main{padding:100px 5% 60px}.hero{gap:32px}h1{font-size:clamp(50px,13vw,70px);letter-spacing:-3px}.lead{font-size:15px}.profile-card{padding:17px}.feature-grid{grid-template-columns:1fr}.feature{min-height:auto}.section{padding-top:40px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <div class="background"><div class="orb one"></div><div class="orb two"></div></div>
-<main><section style="min-height:calc(100vh - 100px);display:flex;align-items:center;justify-content:center;padding:40px 20px"><div class="coming-soon-card">
-<div class="badge" style="margin-bottom:20px">👤 Squence Profile</div>
-<h1 class="neon-glow" style="font-size:clamp(35px,6vw,55px);line-height:1;letter-spacing:-2px;margin-bottom:15px;background:linear-gradient(120deg,#fff,#9c7cff,#bfadff);-webkit-background-clip:text;background-clip:text;color:transparent">ACCOUNTS<br>COMING SOON</h1>
-<p style="color:#888;font-size:16px;line-height:1.5;max-width:450px;margin:0 auto">We are working hard to build a unified system. Get ready to experience personalized navigation across Squence.</p>
-<div class="feature-list"><div class="feature-item"><span>✦</span>Save and track game progress</div><div class="feature-item"><span>✦</span>Synchronize your tailored news feed</div><div class="feature-item"><span>✦</span>Manage cloud backups and favorites</div></div>
-<form class="notify-box" onsubmit="event.preventDefault();alert('You will be notified!')"><input type="email" placeholder="Enter your email address" class="neon-input" required><button type="submit" class="button primary" style="padding:14px 24px;white-space:nowrap">Notify Me</button></form>
-</div></section></main>
+<main>
+<section class="hero">
+  <div>
+    <div class="eyebrow"><span class="pulse"></span> Your next chapter</div>
+    <h1>Your Squence.<br><span class="gradient">Your space.</span></h1>
+    <p class="lead">One identity for a more connected Squence experience. Your preferences, your saved discoveries and your personal space — thoughtfully brought together in one place.</p>
+    <div class="actions"><a class="btn primary" href="#features">Explore what’s coming ↘</a><a class="btn" href="./">Back to Squence ↗</a></div>
+    <p class="note">Squence accounts are a concept in development. Sign-in and account creation are not available yet.</p>
+  </div>
+  <div class="preview-wrap"><div class="glow"></div><div class="profile-card">
+    <div class="profile-head"><div class="avatar">s.</div><div><strong>Your Squence ID</strong><small>One identity. More possibilities.</small></div><span class="coming">COMING SOON</span></div>
+    <div class="profile-title">Welcome to your space.</div><div class="profile-caption">A preview of what your account could bring together.</div>
+    <div class="profile-row"><div class="row-icon">✦</div><div><strong>Your preferences</strong><small>The themes and settings you love</small></div><span class="row-check">↗</span></div>
+    <div class="profile-row"><div class="row-icon">♡</div><div><strong>Saved for later</strong><small>Keep your favourite discoveries close</small></div><span class="row-check">↗</span></div>
+    <div class="profile-row"><div class="row-icon">⌁</div><div><strong>One connected profile</strong><small>Your Squence experience, in one place</small></div><span class="row-check">↗</span></div>
+  </div></div>
+</section>
+<section class="section" id="features">
+  <div class="section-head reveal"><div class="kicker">Designed around you</div><h2>A little more personal.</h2><p>Here’s the direction we’re exploring for Squence accounts and Veya ID-style unified identity ideas — simple, useful and built to grow with the ecosystem.</p></div>
+  <div class="feature-grid">
+    <article class="feature reveal"><div class="feature-icon">◈</div><h3>One Squence ID</h3><p>A single identity designed to connect supported Squence services without making every page feel separate.</p></article>
+    <article class="feature reveal"><div class="feature-icon">♡</div><h3>Your saved things</h3><p>A place for favourites, stories and discoveries you want to find again when you need them.</p></article>
+    <article class="feature reveal"><div class="feature-icon">⌘</div><h3>Your preferences</h3><p>Keep your experience feeling like yours, with personal choices and settings in one place.</p></article>
+    <article class="feature reveal"><div class="feature-icon">▣</div><h3>Connected experiences</h3><p>Over time, an account could link supported features across Squence rather than keeping them isolated.</p></article>
+    <article class="feature reveal"><div class="feature-icon">☁</div><h3>Sync, thoughtfully</h3><p>Cloud sync and backups are ideas for the future, with clear controls and privacy considered from the start.</p></article>
+    <article class="feature reveal"><div class="feature-icon">⌑</div><h3>Choice stays yours</h3><p>The goal is to make accounts useful without forcing everyone to sign up just to explore Squence.</p></article>
+  </div>
+  <div class="bottom-note reveal">This page is a concept preview, not a working account service. No email address is collected here, and there is no sign-up form until account creation is actually ready.</div>
+</section>
+</main>
+<footer><strong>Squence Account</strong> · A more connected experience, coming into focus.</footer>
 <script src="topbar.js"></script>
-</body></html>
+<script>
+(function(){const items=document.querySelectorAll('.reveal');if('IntersectionObserver' in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});items.forEach(item=>observer.observe(item))}else items.forEach(item=>item.classList.add('visible'))})();
+</script>
+</body>
+</html>
